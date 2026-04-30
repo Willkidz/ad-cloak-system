@@ -1,0 +1,17 @@
+Worker 分析：
+1. Worker 只做 token_mapping（302 redirect + 寫 n8n webhook）
+2. CAPI Lead 回傳不在 Worker 裡，應該在 n8n Token Attribution System workflow 裡
+3. Worker 把 pixels 陣列傳給 n8n，n8n 負責 CAPI 回傳
+
+問題分析：
+- 截圖顯示像素 943527751701905（BF 主像素），潛在顧客事件=4（總計）、3/17=1
+- 這是主像素，不是 BF01 廣告像素
+- LINE 加好友：3/15=2244, 3/16=2269, 3/17=2277
+  - 3/16 新增 25 人，3/17 新增 8 人
+- 但 Lead 事件 3/17 只有 1 筆
+
+需要查：
+1. n8n Token Attribution workflow 的 CAPI 回傳邏輯
+2. 3/17 有沒有 execution（目前看到最新是 3/16 22:01 UTC = 3/17 06:01 UTC+8）
+3. BF01 的 token 已經 API access blocked，所以 BF01 廣告像素的 CAPI 回傳會失敗
+4. 但主像素用的是主資料庫 token，那個應該是正常的

@@ -1,0 +1,47 @@
+印尼號碼租用平台完整比較
+
+Grizzly SMS (grizzlysms.com):
+- Facebook 印尼號碼: 單次 $0.62
+- 只有單次驗證，沒有長租選項
+- 號碼數量: 19,772 個
+
+SMS-Activation-Service (rent.sms-activation-service.com):
+- 有印尼選項，但顯示 "No phone numbers available"
+- 最長租 3 個月
+- 目前無庫存
+
+SMSPVA (smspva.com):
+- Facebook 印尼號碼: $0.9/天
+- 30天以上打7折 = $0.63/天 = $18.9/月
+- Physical SIM (Non-VoIP) 可選
+- 號碼數量: 1148 個
+- 有長租
+
+SMS-Man (sms-man.com):
+- 印尼號碼:
+  - 日租: $6.62
+  - 週租: $18.05
+  - 月租: $36.09
+- 號碼數量: 28 個
+- 有長租
+
+OnlineSim (onlinesim.io):
+- 有印尼號碼
+- 有租用功能但頁面 404
+- 價格不確定
+
+SecondNumber (secondnumber.io):
+- 主要英美號碼
+- 7天到1年租期
+- 印尼號碼不確定
+
+5SIM (5sim.net):
+- 主要單次驗證
+- 長租不確定
+
+Tiger SMS (tiger-sms.com):
+- 主要單次驗證
+
+DaisySMS (daisysms.com):
+- 只有美國號碼 (Non-VoIP)
+- 無印尼

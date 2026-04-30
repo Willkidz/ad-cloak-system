@@ -1,0 +1,44 @@
+clicks table columns:
+click_id TEXT PK
+timestamp TEXT NOT NULL
+tag TEXT NOT NULL
+ad_code TEXT default ""
+line_oa_id TEXT NOT NULL
+ip_address TEXT default ""
+user_agent TEXT default ""
+accept_language TEXT default ""
+ip_country TEXT default ""
+ip_asn TEXT default ""
+fbclid TEXT default ""
+fbc TEXT default ""
+fbp TEXT default ""
+pixel_id TEXT default ""
+capi_token TEXT default ""
+pixels TEXT default "[]"
+matched INTEGER default 0
+matched_at TEXT
+matched_user_id TEXT
+destination TEXT default ''
+ip_city TEXT default ''
+cf_colo TEXT default ''
+tls_version TEXT default ''
+http_protocol TEXT default ''
+ip_region TEXT
+ip_region_code TEXT
+ip_postal_code TEXT
+ip_timezone TEXT
+ip_asn_org TEXT
+os TEXT
+os_version TEXT
+device_model TEXT
+device_brand TEXT
+browser TEXT
+browser_version TEXT
+source_app TEXT
+screen_resolution TEXT
+is_bot INTEGER default 0
+referer TEXT
+latitude TEXT
+longitude TEXT
+continent TEXT
+client_tcp_rtt TEXT

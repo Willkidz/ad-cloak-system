@@ -1,0 +1,4 @@
+name = "money-page"
+account_id = "61f1eb800e48d2cf41ed9ddacf01581b"
+main = "money-page.js"
+compatibility_date = "2024-12-01"

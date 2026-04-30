@@ -1,0 +1,36 @@
+新版3月消耗表欄位映射 (0-indexed):
+
+Row 2 (header):
+0: 人員 (A)
+1: 類型 (B)
+2: 落地頁 (C)
+3: TAG (D) ← CODE在這裡！
+4: ads (E)
+5: 素材名稱 (F)
+6: 廣告帳戶 (G)
+7: 日消 (H)
+8: 卡 (I)
+9: 廣告狀態 (J) ← 新欄位（原狀態）
+10: 權杖狀態 (K) ← 新插入
+11: 卡總充值 (L)
+12: 廣告總消耗 (M)
+13: 待付款 (N)
+
+Row 1 (日期):
+14: 預付餘額/空 (O)
+15: 總計/3/1 (P)
+16: 2月/3/2 (Q)
+17: 3月/3/3 (R)
+18: 空/3/4 (S) ... 日期從O列開始
+
+n8n Calculate Stats 需要修正:
+- 舊: rawCode = row[8] (日消) → 應改為 row[3] (TAG)
+- 舊: adInfo accountId=row[2], person=row[9], status=row[7], material=row[3], project=row[10]
+- 新: adInfo accountId=row[6], person=row[0], status=row[9], material=row[5], project=row[3]
+- 舊: dateColStart = 12
+- 新: dateColStart = 14 (日期從O列開始，但要確認Row1的日期位置)
+
+等等... Row1的日期是從 index 14 (O列) 開始: 3/1
+但 Row2 的 index 14 是「預付餘額」
+
+所以 headerRow 應該用 Row 0 (spendRows[0])，dateColStart 需要確認

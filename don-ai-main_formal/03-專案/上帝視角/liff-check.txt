@@ -1,0 +1,26 @@
+LIFF App 設定檢查：
+- liffId: 2009129136-lUm2n85A
+- view.type: full
+- view.url: https://gv-liff.laoqin1689.workers.dev
+- moduleMode: false
+- scope: profile
+- botPrompt: aggressive
+- permanentLinkPattern: concat
+
+問題分析：
+1. view.type 是 "full" — 在 LINE App 內會全螢幕開啟，但在外部瀏覽器會觸發 LINE Login
+2. moduleMode: false — 正確
+3. botPrompt: aggressive — 正確，會顯示加好友
+
+可能問題：
+- LIFF endpoint URL 指向 gv-liff.laoqin1689.workers.dev
+- Worker 302 跳到 liff.line.me/2009129136-lUm2n85A?tag=n21&...
+- LIFF SDK init 後 liff.login() 觸發 LINE Login OAuth
+- 在 FB Messenger WebView 中，LINE Login OAuth redirect 到 access.line.me
+- access.line.me 無法觸發 Universal Link 跳到 LINE App
+
+關鍵發現：LINE Login channel 沒有綁定 LINE Official Account Bot！
+LIFF app 的 botPrompt=aggressive 只在 LINE Login channel 有 linked bot 時才會顯示加好友。
+需要確認 LINE Login channel 2009129136 是否有 linked bot。
+
+另外：view.type 改成 "compact" 或 "tall" 不會改變外部瀏覽器行為。

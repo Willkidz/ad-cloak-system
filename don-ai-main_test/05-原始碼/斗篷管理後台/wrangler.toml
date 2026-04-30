@@ -1,0 +1,35 @@
+name = "cloak-admin-api"
+account_id = "61f1eb800e48d2cf41ed9ddacf01581b"
+main = "cloak-admin-api.js"
+compatibility_date = "2024-12-01"
+
+# ── Production (default) ──────────────────────────────────────────────────────
+[[d1_databases]]
+binding = "DB"
+database_name = "godview-clicks"
+database_id = "3f7ed41d-1ec6-4519-8b0d-eda22ae9b00c"
+
+[[kv_namespaces]]
+binding = "CLOAKER_CONFIG"
+id = "cfca8f5e3aa84d33b889cddfc5d5763c"
+
+[[r2_buckets]]
+binding = "R2_ASSETS"
+bucket_name = "cloak-assets"
+
+# ── Staging ───────────────────────────────────────────────────────────────────
+[env.staging]
+name = "cloak-admin-api-staging"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "godview-clicks-staging"
+database_id = "594f8569-ad3c-40c0-ac7c-8b691f9d7885"
+
+[[env.staging.kv_namespaces]]
+binding = "CLOAKER_CONFIG"
+id = "40f192e8fc514af1b6a55eff8f63bbff"
+
+[[env.staging.r2_buckets]]
+binding = "R2_ASSETS"
+bucket_name = "cloak-assets"

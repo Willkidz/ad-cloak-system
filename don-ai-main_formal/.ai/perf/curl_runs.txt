@@ -1,0 +1,42 @@
+=== z1k4h run 1 ===
+DNS:0.009750s
+TCP:0.010345s
+TLS:1.382738s
+TTFB:4.802329s
+Total:4.982882s
+
+=== z1k4h run 2 ===
+DNS:0.001082s
+TCP:0.001586s
+TLS:1.207969s
+TTFB:3.093538s
+Total:3.288479s
+
+=== z1k4h run 3 ===
+DNS:0.001086s
+TCP:0.001499s
+TLS:1.268511s
+TTFB:3.103454s
+Total:3.280286s
+
+=== safe-page run 1 ===
+DNS:0.013920s
+TCP:0.014414s
+TLS:1.446570s
+TTFB:1.942476s
+Total:2.202155s
+
+=== safe-page run 2 ===
+DNS:0.001079s
+TCP:0.001524s
+TLS:1.436088s
+TTFB:1.932046s
+Total:2.152586s
+
+=== safe-page run 3 ===
+DNS:0.001006s
+TCP:0.001334s
+TLS:1.396067s
+TTFB:1.907352s
+Total:2.168304s
+

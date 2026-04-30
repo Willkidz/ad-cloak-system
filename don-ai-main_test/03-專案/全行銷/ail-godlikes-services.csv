@@ -1,0 +1,75 @@
+﻿service_id,name,platform,service_type,category,rate_twd,rate_usd,min,max,refill,cancel,dripfeed,currency
+19,LINE-官方好友✅ | 不封鎖,LINE,Other,Line,4000.0,125.0,10,230,0,1,0,TWD
+20,LINE-社群人數🔗 | 審核🔑 | 無已讀,Other,Other,Line,16000.0,500.0,10,230,0,1,0,TWD
+39,FB-影片觀看次數,Facebook,Views/Plays,Facebook,200.0,6.25,100,1000000000,0,0,0,TWD
+66,FB-貼文讚 | 全球,Facebook,Likes/Reactions,Facebook,400.0,12.5,30,10000,0,0,0,TWD
+68,Twitch-頻道追蹤,Twitch,Followers/Subscribers,Twitch,500.0,15.625,20,1000,0,0,0,TWD
+69,IG-高質量台灣粉絲⚡平均200~400粉絲(請關閉過濾垃圾粉絲，在下單),Instagram,Followers/Subscribers,Instagram,5000.0,156.25,10,2000,0,1,0,TWD
+70,IG-台灣高質量愛心❤️,Instagram,Likes/Reactions,Instagram,500.0,15.625,10,3000,0,1,0,TWD
+71,IG-自動愛心❤️ | 台灣,Instagram,Likes/Reactions,Instagram,300.0,9.375,10,5000,0,0,0,TWD
+82,TikTok-粉絲 | 全球 (S2),TikTok,Followers/Subscribers,TikTok,1000.0,31.25,10,150000,0,0,0,TWD
+98,FB-粉絲專頁按讚（台灣）,Facebook,Followers/Subscribers,Facebook粉絲專頁,3000.0,93.75,5,1000,0,0,0,TWD
+104,FB-包月直播 | 每日最多3次 | 12小時生效 （自然慢速）,Other,Live Stream Viewers,FB直播包月觀看人數,94000.0,2937.5,50,10000,0,0,1,TWD
+106,YT-直播 | 30分鐘（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,1250.0,39.0625,50,50000,0,0,0,TWD
+107,YT-直播 | 60分鐘（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,2500.0,78.125,50,50000,0,0,0,TWD
+108,YT-直播 | 90分鐘（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,3750.0,117.1875,50,500000,0,0,0,TWD
+109,YT-直播 | 120分鐘（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,5000.0,156.25,50,500000,0,0,0,TWD
+110,YT-直播 | 180分鐘（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,7500.0,234.375,50,50000,0,0,0,TWD
+112,YT-直播 | 06小時（斷線不退款）,Other,Live Stream Viewers,YT直播單次觀看人數,15000.0,468.75,50,500000,0,0,0,TWD
+134,YT-影片留言的評論讚,YouTube,Likes/Reactions,Youtube,1000.0,31.25,10,500000,0,0,0,TWD
+139,Telegram-頻道貼文觀看次數（最近的10則）,Telegram,Views/Plays,Telegram,100.0,3.125,10,10000000,0,0,0,TWD
+140,Telegram-頻道貼文按讚,Telegram,Likes/Reactions,Telegram,500.0,15.625,10,1000000,0,0,0,TWD
+159,IG-自動愛心 | 全球,Instagram,Likes/Reactions,Instagram,100.0,3.125,50,200000,0,1,0,TWD
+187,YT-影片按喜歡,YouTube,Likes/Reactions,Youtube,500.0,15.625,10,50000,0,0,0,TWD
+189,TikTok-影片點愛心 | 全球 (S1),TikTok,Likes/Reactions,TikTok,500.0,15.625,10,10000000,0,1,0,TWD
+190,蝦皮-直播 | 30分鐘（斷線不退款）（S1）,Shopee,Live Stream Viewers,蝦皮直播單次觀看人數,2000.0,62.5,10,300000,0,0,0,TWD
+193,蝦皮-直播 | 120分鐘（斷線不退款）（S1）,Shopee,Live Stream Viewers,蝦皮直播單次觀看人數,8000.0,250.0,10,300000,0,0,0,TWD
+198,FB-高質量貼文讚🌲 | 台灣 | 線路1,Facebook,Likes/Reactions,Facebook,2000.0,62.5,1,1300,0,1,0,TWD
+199,YT-頻道訂閱 [300/day],YouTube,Followers/Subscribers,Youtube,3000.0,93.75,10,100000,0,0,0,TWD
+211,FB-高質量留言讚 🌲| 台灣,Facebook,Likes/Reactions,Facebook,2000.0,62.5,10,800,0,0,0,TWD
+220,FB-高質量粉絲專頁追蹤按讚🌲（台灣）,Facebook,Followers/Subscribers,Facebook粉絲專頁,3000.0,93.75,1,1000,0,1,0,TWD
+222,IG-影片觀看次數 | Video+Reel+IGTV  (S1),Instagram,Views/Plays,Instagram,100.0,3.125,100,2147483647,0,0,1,TWD
+247,FB-粉絲專頁按讚（全球）,Facebook,Followers/Subscribers,Facebook粉絲專頁,800.0,25.0,10,50000,0,0,0,TWD
+249,Twitter-追蹤人數,Twitter/X,Followers/Subscribers,Twitter,800.0,25.0,100,80000000,0,0,1,TWD
+259,LINE-官方好友✅ |🔒封鎖,LINE,Other,Line,6000.0,187.5,10,230,0,1,0,TWD
+260,LINE-社群人數🔗 | 不審核 | 無已讀,Other,Other,Line,10000.0,312.5,1,300,0,1,0,TWD
+263,FB-高質量社團人數🌲 | 台灣,Facebook,Other,Facebook,3000.0,93.75,1,1000,0,0,0,TWD
+273,TikTok-影片收藏,TikTok,Saves,TikTok,500.0,15.625,10,100000000,0,0,0,TWD
+279,TikTok-影片觀看次數 | 台灣(NEW),TikTok,Views/Plays,TikTok,150.0,4.6875,100,50000000,0,0,1,TWD
+280,TikTok-影片觀看次數 | 全球(NEW),TikTok,Views/Plays,TikTok,50.0,1.5625,100,2147483647,0,0,1,TWD
+281,TikTok-影片點分享 | 保30日 | 全球(NEW),TikTok,Shares,TikTok,180.0,5.625,10,100000,0,1,1,TWD
+284,IG-鑽石高質量台灣愛心【真人貼文，文章10~30篇，有一定量的粉絲數】,Instagram,Followers/Subscribers,Instagram,600.0,18.75,10,300,0,1,0,TWD
+287,TikTok-自訂義評論 | 全球 |  100-1k/days (S1),TikTok,Reviews/Ratings,TikTok,10000.0,312.5,10,160000,0,0,0,TWD
+289,IG-鑽石高質量台灣粉絲【真人貼文，文章10~30篇，有一定量的粉絲數】,Instagram,Followers/Subscribers,Instagram,7000.0,218.75,1,300,0,1,0,TWD
+291,FB-社團人數 | 台灣(線路2),Facebook,Other,Facebook,3000.0,93.75,10,350,0,0,0,TWD
+304,LINE-群組人數(聯繫官方下單!),LINE,Other,Line,15000.0,468.75,1,9999999,0,1,0,TWD
+305,TK-直播 | 30分鐘（斷線不退款）(S1),TikTok,Live Stream Viewers,TikTok直播單次觀看人數,1000.0,31.25,10,5000,0,0,0,TWD
+306,TK-直播 | 60分鐘（斷線不退款） (S1),TikTok,Live Stream Viewers,TikTok直播單次觀看人數,2000.0,62.5,10,5000,0,0,0,TWD
+307,TK-直播 | 90分鐘（斷線不退款） (S1),TikTok,Live Stream Viewers,TikTok直播單次觀看人數,3000.0,93.75,10,5000,0,0,0,TWD
+309,TK-直播 | 180分鐘（斷線不退款） (S1),TikTok,Live Stream Viewers,TikTok直播單次觀看人數,6000.0,187.5,10,5000,0,0,0,TWD
+311,FB-社團人數 | 台灣 |  線路2,Facebook,Other,Facebook,3500.0,109.375,10,350,0,0,0,TWD
+312,LINE-客製化1,Other,Other,Line,15000.0,468.75,10,150,0,0,0,TWD
+313,網站瀏覽(全球),Website Traffic,Website Traffic,網站流量增加,100.0,3.125,100,1000000,0,1,1,TWD
+317,IG-影片觀看次數 | Video+Reel+IGTV (S2),Instagram,Views/Plays,Instagram,100.0,3.125,100,2147483647,0,0,0,TWD
+328,Threads-讚 | 台灣,Threads,Likes/Reactions,Threads,1000.0,31.25,10,1400,0,1,0,TWD
+329,Threads-粉絲 | 台灣,Threads,Followers/Subscribers,Threads,3000.0,93.75,10,1400,0,1,0,TWD
+332,IG-全球愛心 (穩定),Instagram,Likes/Reactions,Instagram,100.0,3.125,10,500000,0,0,0,TWD
+333,FB-粉絲專頁按讚（全球）,Facebook,Followers/Subscribers,Facebook粉絲專頁,800.0,25.0,50,500000,0,1,0,TWD
+334,YT-影片觀看次數,YouTube,Views/Plays,Youtube,300.0,9.375,100,1000000,0,0,0,TWD
+336,FB-社團人數 | 全球 (S2),Facebook,Other,Facebook,500.0,15.625,10,1000000,0,1,0,TWD
+337,IG-台灣繁體留言,Instagram,Comments,Instagram,15000.0,468.75,1,1000,0,0,0,TWD
+339,FB-好友 | 台灣,Facebook,Other,Facebook,8000.0,250.0,1,100,0,1,0,TWD
+359,FB-貼文讚 | 台灣 | 線路2 保固7天,Facebook,Likes/Reactions,Facebook,2000.0,62.5,25,1000,0,0,0,TWD
+360,FB-粉絲專頁追蹤（台灣）,Facebook,Followers/Subscribers,Facebook粉絲專頁,3000.0,93.75,10,1000,0,0,0,TWD
+362,Threads-留言讚 | 台灣,Threads,Likes/Reactions,Threads,1500.0,46.875,10,1400,0,1,0,TWD
+365,Fb 直播觀看人數 (30分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,1200.0,37.5,20,20000,0,0,1,TWD
+366,Fb 直播觀看人數 (60分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,2200.0,68.75,20,20000,0,0,1,TWD
+367,Fb 直播觀看人數 (90分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,3200.0,100.0,20,20000,0,0,1,TWD
+368,Fb 直播觀看人數 (120分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,4200.0,131.25,20,20000,0,0,1,TWD
+369,Fb 直播觀看人數 (150分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,5200.0,162.5,20,20000,0,0,1,TWD
+370,Fb 直播觀看人數 (180分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,6200.0,193.75,20,20000,0,0,1,TWD
+371,Fb 直播觀看人數 (240分鐘）穩定,Facebook,Live Stream Viewers,FB直播單次觀看人數,8200.0,256.25,20,20000,0,0,1,TWD
+372,FB-粉絲專頁追蹤（全球）,Facebook,Followers/Subscribers,Facebook粉絲專頁,800.0,25.0,100,200000,0,0,0,TWD
+376,IG-全球粉絲 無保固,Instagram,Followers/Subscribers,Instagram,300.0,9.375,100,100000,1,0,1,TWD
+377,IG-全球粉絲 無保固 2線,Instagram,Followers/Subscribers,Instagram,300.0,9.375,100,100000,1,0,1,TWD
+381,FB-貼文留言 | 台灣,Facebook,Comments,Facebook,25000.0,781.25,1,2000,0,0,0,TWD

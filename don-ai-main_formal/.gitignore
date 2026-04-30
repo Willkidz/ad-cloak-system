@@ -1,0 +1,15 @@
+# Cloudflare Wrangler
+.wrangler/
+
+# Temporary files and folders
+.tmp-*/
+.tmp_*.sh
+.tmp-action-verify-tests.sh
+
+# System files
+.DS_Store
+node_modules/
+dist/
+.env
+.env.*
+!.env.example

@@ -1,0 +1,282 @@
+  name: Daily Worker Sync Check
+
+on:
+  schedule:
+    # 每天 UTC 00:00 檢查一次（台灣時間 08:00）
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允許手動觸發
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Worker versions and download source code
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+
+          mkdir -p /tmp/diff-results
+          mkdir -p /tmp/cf-workers
+
+          # Worker list with source file mapping
+          declare -A WORKER_SRC
+          WORKER_SRC["cloak-admin-api"]="05-原始碼/斗篷管理後台/cloak-admin-api.js"
+          WORKER_SRC["line-redirect"]="05-原始碼/上帝視角/line-redirect.js"
+          WORKER_SRC["money-page"]="05-原始碼/上帝視角/money-page.js"
+          WORKER_SRC["preview-page"]="05-原始碼/上帝視角/preview-page.js"
+          WORKER_SRC["safe-page"]="05-原始碼/斗篷管理後台/safe-page.js"
+          WORKER_SRC["shadow-cloak"]="05-原始碼/斗篷管理後台/shadow-cloak.js"
+
+          WORKERS=("cloak-admin-api" "line-redirect" "money-page" "preview-page" "safe-page" "shadow-cloak")
+
+          HAS_DIFF=false
+          DIFF_WORKERS=""
+          SUMMARY=""
+
+          # Load deploy-record.json
+          DEPLOY_RECORD_FILE="05-原始碼/deploy-record.json"
+          if [ ! -f "$DEPLOY_RECORD_FILE" ]; then
+            echo '{}' > "$DEPLOY_RECORD_FILE"
+          fi
+
+          # Get all workers' metadata from Cloudflare
+          CF_RESPONSE=$(curl -s "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/workers/scripts" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}")
+
+          CF_SUCCESS=$(echo "$CF_RESPONSE" | python3 -c 'import sys, json; data = json.load(sys.stdin); print(data.get("success", False))' 2>/dev/null || echo 'error')
+          echo "CF API success: $CF_SUCCESS"
+
+          if [ "$CF_SUCCESS" != "True" ]; then
+            echo "❌ Failed to fetch worker list from Cloudflare"
+            echo "$CF_RESPONSE" | head -200
+            exit 1
+          fi
+
+          echo "=== Checking Worker Versions ==="
+
+          for WORKER in "${WORKERS[@]}"; do
+            echo ""
+            echo "=== Checking $WORKER ==="
+            SRC_FILE="${WORKER_SRC[$WORKER]}"
+
+            # Extract modified_on time from Cloudflare response
+            CF_MODIFIED=$(echo "$CF_RESPONSE" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+result = [s.get('modified_on', '') for s in data.get('result', []) if s.get('id') == '$WORKER']
+print(result[0] if result else '', end='')
+")
+
+            if [ -z "$CF_MODIFIED" ]; then
+              echo "  ⚠️ Worker not found on Cloudflare: $WORKER"
+              SUMMARY="$SUMMARY\n- **$WORKER**: ⚠️ 未在 Cloudflare 找到"
+              continue
+            fi
+
+            echo "  Cloudflare modified_on: $CF_MODIFIED"
+
+            # Download actual source code from Cloudflare
+            echo "  Downloading source code from Cloudflare..."
+            CF_RAW=$(curl -s "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/workers/scripts/${WORKER}" \
+              -H "Authorization: Bearer ${CF_API_TOKEN}")
+
+            # Extract JS from multipart response
+            python3 -c "
+import sys
+content = sys.stdin.read()
+# Find content after first blank line (skip multipart headers)
+parts = content.split('\n\n', 1)
+if len(parts) > 1:
+    js = parts[1]
+    # Remove trailing boundary
+    idx = js.rfind('\n--')
+    if idx > 0:
+        js = js[:idx]
+    with open('/tmp/cf-workers/${WORKER}.js', 'w') as f:
+        f.write(js)
+    print(f'  Downloaded {len(js)} bytes')
+else:
+    print('  ⚠️ Could not parse multipart response')
+    with open('/tmp/cf-workers/${WORKER}.js', 'w') as f:
+        f.write(content)
+" <<< "$CF_RAW"
+
+            # Compare with Git version
+            if [ -f "$SRC_FILE" ] && [ -f "/tmp/cf-workers/${WORKER}.js" ]; then
+              if diff -q "$SRC_FILE" "/tmp/cf-workers/${WORKER}.js" > /dev/null 2>&1; then
+                echo "  ✅ Source code matches Git version"
+                SUMMARY="$SUMMARY\n- **$WORKER**: ✅ 源碼一致"
+              else
+                echo "  ❌ SOURCE CODE DIFFERS from Git version!"
+                diff --unified=3 "$SRC_FILE" "/tmp/cf-workers/${WORKER}.js" > "/tmp/diff-results/${WORKER}.diff" 2>&1 || true
+                DIFF_LINES=$(wc -l < "/tmp/diff-results/${WORKER}.diff")
+                echo "  Diff: $DIFF_LINES lines"
+
+                HAS_DIFF=true
+                DIFF_WORKERS="$DIFF_WORKERS $WORKER"
+                SUMMARY="$SUMMARY\n- **$WORKER**: ❌ 源碼不一致 (差異 $DIFF_LINES 行)"
+
+                # Copy the Cloudflare version to repo for PR
+                cp "/tmp/cf-workers/${WORKER}.js" "$SRC_FILE"
+                echo "  Updated $SRC_FILE with Cloudflare version"
+              fi
+            else
+              echo "  ⚠️ Git source file not found: $SRC_FILE"
+              if [ -f "/tmp/cf-workers/${WORKER}.js" ]; then
+                # Copy to repo
+                mkdir -p "$(dirname "$SRC_FILE")"
+                cp "/tmp/cf-workers/${WORKER}.js" "$SRC_FILE"
+                HAS_DIFF=true
+                DIFF_WORKERS="$DIFF_WORKERS $WORKER"
+                SUMMARY="$SUMMARY\n- **$WORKER**: 🆕 Git 中無源碼，已從 Cloudflare 下載"
+              fi
+            fi
+
+            # Update deploy-record.json with current Cloudflare timestamp
+            python3 -c "
+import json
+record_file = '$DEPLOY_RECORD_FILE'
+with open(record_file, 'r') as f:
+    records = json.load(f)
+key = '${WORKER}-production'
+records[key] = {
+    'deployed_at': '$CF_MODIFIED',
+    'commit_hash': 'synced-from-cloudflare',
+    'deployed_by': 'sync-check',
+    'environment': 'production',
+}
+with open(record_file, 'w') as f:
+    json.dump(records, f, indent=2)
+"
+          done
+
+          echo ""
+          echo "HAS_DIFF=$HAS_DIFF" >> $GITHUB_ENV
+          echo "DIFF_WORKERS=$DIFF_WORKERS" >> $GITHUB_ENV
+
+          # Save summary for PR body
+          echo -e "# Worker 同步檢查報告\n\n**檢查時間**：$(TZ='Asia/Taipei' date '+%Y-%m-%d %H:%M:%S') (台灣時間)\n\n## 檢查結果\n$SUMMARY\n\n## 說明\n\n此 PR 包含從 Cloudflare 下載的最新 Worker 源碼，用於同步 Git 記錄。\n如果源碼不一致，表示有人透過 Cloudflare Dashboard 或 API 直接修改了 Worker。" > /tmp/diff-results/summary.md
+
+      - name: Create PR if source code differences found
+        if: env.HAS_DIFF == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+          # Create branch
+          BRANCH="sync/worker-drift-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
+
+          # Stage all changes (updated source files + deploy-record.json)
+          git add -A 2>/dev/null || true
+
+          # Only commit if there are changes
+          if ! git diff --cached --quiet; then
+            git commit -m "sync: 從 Cloudflare 同步 Worker 源碼
+
+          偵測到以下 Worker 的線上版本與 Git 不一致：
+          ${{ env.DIFF_WORKERS }}
+
+          此 PR 包含從 Cloudflare 下載的最新源碼。"
+
+            # Push branch
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/laoqin1689/don-ai.git "$BRANCH"
+
+            # Create PR using REST API
+            PR_BODY=$(cat /tmp/diff-results/summary.md)
+            PR_TITLE="🔄 Worker 源碼同步 - $(TZ='Asia/Taipei' date '+%Y-%m-%d')"
+
+            PR_JSON=$(jq -n \
+              --arg title "$PR_TITLE" \
+              --arg body "$PR_BODY" \
+              --arg head "$BRANCH" \
+              '{title: $title, body: $body, head: $head, base: "main"}')
+
+            PR_RESPONSE=$(curl -s -X POST "https://api.github.com/repos/laoqin1689/don-ai/pulls" \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d "$PR_JSON")
+
+            PR_NUMBER=$(echo "$PR_RESPONSE" | jq -r '.number // empty')
+
+            if [ -z "$PR_NUMBER" ]; then
+              echo "❌ Failed to create PR"
+              echo "Response: $PR_RESPONSE"
+            else
+              echo "PR_URL=https://github.com/laoqin1689/don-ai/pull/$PR_NUMBER" >> $GITHUB_ENV
+              echo "✅ PR created: #$PR_NUMBER"
+            fi
+          else
+            echo "No file changes to commit (timestamps updated but source identical)"
+          fi
+
+      - name: Update deploy-record.json on main (if no source drift)
+        if: env.HAS_DIFF != 'true'
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          # Update deploy-record.json with latest timestamps
+          if ! git diff --quiet "05-原始碼/deploy-record.json"; then
+            git add "05-原始碼/deploy-record.json"
+            git commit -m "chore: update deploy-record.json timestamps (sync-check)"
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/laoqin1689/don-ai.git HEAD:main
+            echo "✅ deploy-record.json updated on main"
+          else
+            echo "No changes to deploy-record.json"
+          fi
+
+      - name: Send Telegram notification (only on drift)
+        if: env.HAS_DIFF == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          # Skip if Telegram secrets are not configured
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
+            echo "⚠️ Telegram secrets not configured, skipping notification"
+            exit 0
+          fi
+
+          WORKERS_LIST=$(echo "${{ env.DIFF_WORKERS }}" | xargs -n1 | sed 's/^/- /')
+          PR_URL="${{ env.PR_URL }}"
+          TIMESTAMP=$(TZ='Asia/Taipei' date '+%Y-%m-%d %H:%M:%S')
+
+          MESSAGE=$(printf "⚠️ *Worker 源碼漂移警告*\n\n以下 Worker 的線上版本與 Git 不一致：\n%s\n\n已建立 PR 包含最新源碼：\n%s\n\n時間：%s (台灣時間)" "$WORKERS_LIST" "$PR_URL" "$TIMESTAMP")
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=${MESSAGE}" \
+            -d "parse_mode=Markdown" \
+            -o /dev/null
+
+          echo "✅ Telegram notification sent"
+
+      - name: Summary
+        run: |
+          echo "## Worker Sync Check Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ env.HAS_DIFF }}" == "true" ]; then
+            echo "⚠️ **Source code drift detected!** A PR has been created with the latest Cloudflare source." >> $GITHUB_STEP_SUMMARY
+            echo "Workers with drift: ${{ env.DIFF_WORKERS }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ All workers source code matches Git repository." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat /tmp/diff-results/summary.md >> $GITHUB_STEP_SUMMARY 2>/dev/null || true

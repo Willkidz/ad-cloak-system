@@ -1,0 +1,16 @@
+{
+  "main_module": "cloak-admin-api.js",
+  "compatibility_date": "2024-12-01",
+  "bindings": [
+    {
+      "type": "d1",
+      "name": "DB",
+      "id": "3f7ed41d-1ec6-4519-8b0d-eda22ae9b00c"
+    },
+    {
+      "type": "kv_namespace",
+      "name": "CLOAKER_CONFIG",
+      "namespace_id": "cfca8f5e3aa84d33b889cddfc5d5763c"
+    }
+  ]
+}

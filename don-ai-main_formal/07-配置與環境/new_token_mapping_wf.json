@@ -1,0 +1,124 @@
+{
+  "name": "godview - Token Mapping (Standalone)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "token-mapping-v2",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 0],
+      "id": "tm-webhook-v2",
+      "name": "Token Mapping Webhook",
+      "webhookId": "tm-webhook-v2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id": "t1", "name": "event_type", "value": "={{ $json.body.event_type }}", "type": "string"},
+            {"id": "t2", "name": "token", "value": "={{ $json.body.token }}", "type": "string"},
+            {"id": "t3", "name": "tag", "value": "={{ $json.body.tag }}", "type": "string"},
+            {"id": "t4", "name": "line_id", "value": "={{ $json.body.line_id }}", "type": "string"},
+            {"id": "t5", "name": "line_name", "value": "={{ $json.body.line_name }}", "type": "string"},
+            {"id": "t6", "name": "who", "value": "={{ $json.body.who }}", "type": "string"},
+            {"id": "t7", "name": "ad_code", "value": "={{ $json.body.ad_code }}", "type": "string"},
+            {"id": "t8", "name": "ad_name", "value": "={{ $json.body.ad_name }}", "type": "string"},
+            {"id": "t9", "name": "pixel_id", "value": "={{ $json.body.pixel_id }}", "type": "string"},
+            {"id": "t10", "name": "capi_token", "value": "={{ $json.body.capi_token }}", "type": "string"},
+            {"id": "t11", "name": "fbc", "value": "={{ $json.body.fbc }}", "type": "string"},
+            {"id": "t12", "name": "fbp", "value": "={{ $json.body.fbp }}", "type": "string"},
+            {"id": "t13", "name": "fbclid", "value": "={{ $json.body.fbclid }}", "type": "string"},
+            {"id": "t14", "name": "click_id", "value": "={{ $json.body.click_id }}", "type": "string"},
+            {"id": "t15", "name": "ip_address", "value": "={{ $json.body.ip_address }}", "type": "string"},
+            {"id": "t16", "name": "user_agent", "value": "={{ $json.body.user_agent }}", "type": "string"},
+            {"id": "t17", "name": "timestamp", "value": "={{ $json.body.timestamp }}", "type": "string"},
+            {"id": "t18", "name": "message_text", "value": "={{ $json.body.message_text }}", "type": "string"},
+            {"id": "t19", "name": "pixels", "value": "={{ JSON.stringify($json.body.pixels || []) }}", "type": "string"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [480, 0],
+      "id": "tm-process-v2",
+      "name": "Process Token Data"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "9TFf8tCRvfXRstrS",
+          "mode": "list",
+          "cachedResultName": "godview_events",
+          "cachedResultUrl": "/projects/WlSlUMaN2YhAwzlh/datatables/9TFf8tCRvfXRstrS"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {"keyName": "user_journey_id", "keyValue": "={{ $json.token }}"},
+            {"keyName": "event_type", "keyValue": "={{ $json.event_type }}"}
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "event_type": "={{ $json.event_type }}",
+            "fbid": "={{ $json.fbclid }}",
+            "browser": "={{ $json.fbc }}",
+            "browser_language": "={{ $json.fbp }}",
+            "device_type": "={{ $json.who }}",
+            "project": "={{ $json.ad_code }}",
+            "line_id": "={{ $json.line_id }}",
+            "line_user_id": "={{ $json.tag }}",
+            "page_id": "={{ $json.line_name }}",
+            "page_type": "={{ $json.pixel_id }}",
+            "ip_address": "={{ $json.ip_address }}",
+            "user_agent": "={{ $json.user_agent }}",
+            "button_clicked": "={{ $json.message_text }}",
+            "timestamp": "={{ $json.timestamp }}",
+            "synced_to_sheets": "={{ $json.capi_token }}",
+            "user_journey_id": "={{ $json.token }}",
+            "cid": "={{ $json.ad_code }}",
+            "aid": "={{ $json.pixels }}"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [720, 0],
+      "id": "tm-save-v2",
+      "name": "Save Token Mapping"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\":\"ok\",\"token\":\"{{ $json.user_journey_id }}\"}"
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [960, 0],
+      "id": "tm-respond-v2",
+      "name": "Respond OK"
+    }
+  ],
+  "connections": {
+    "Token Mapping Webhook": {
+      "main": [[{"node": "Process Token Data", "type": "main", "index": 0}]]
+    },
+    "Process Token Data": {
+      "main": [[{"node": "Save Token Mapping", "type": "main", "index": 0}]]
+    },
+    "Save Token Mapping": {
+      "main": [[{"node": "Respond OK", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

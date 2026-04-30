@@ -1,0 +1,14 @@
+關鍵發現：
+LINE 52: "LIFF URL is compatible with universal links on iOS and app links on Android. So if you open a LIFF URL from outside the LINE app, the LIFF browser will open on the LINE app."
+
+意思是：從外部瀏覽器打開 liff.line.me URL，理論上會透過 Universal Link / App Link 直接跳到 LINE App 內的 LIFF browser。
+
+但 LINE 54: "depending on the specifications of the user's OS, even on external browsers such as Safari or Chrome, universal links or app links may not work"
+
+問題：用戶是從 FB 廣告點擊，FB 的 in-app browser (WebView) 不支援 Universal Link，所以無法跳到 LINE App，只能在 WebView 內開啟，導致出現 LINE Login 帳密頁面。
+
+解決方案：
+1. Worker 不直接 302 到 liff.line.me，而是先到一個中間頁面
+2. 中間頁面用 window.location.href 或 <a> 標籤讓用戶「點擊」跳轉到 liff.line.me
+3. 用戶的點擊行為可以觸發 Universal Link（iOS 的 Universal Link 需要用戶互動才能觸發）
+4. 或者用 intent:// scheme (Android) / 直接 line:// scheme 嘗試打開 LINE App

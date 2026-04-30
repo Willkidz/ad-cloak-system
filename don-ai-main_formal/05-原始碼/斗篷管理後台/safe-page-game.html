@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幻境傳說 - RPG 手遊攻略站</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --primary-color: #3b82f6;
+            --accent-color: #fbbf24;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #1e3a8a, #1e40af);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            color: #bfdbfe;
+            font-size: 1.1rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to bottom, #fbbf24, #d97706);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s, box-shadow 0.1s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #extra-content {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 4px 4px 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-list {
+            list-style-type: none;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✦';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            background-color: #020617;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #60a5fa;
+        }
+
+        @media (min-width: 768px) {
+            .btn {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>幻境傳說</h1>
+        <div class="subtitle">最權威的 RPG 手遊攻略與評測中心</div>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>新手入門指南</h2>
+            <p>歡迎來到《幻境傳說》的奇幻世界！作為一名初入大陸的冒險者，選擇合適的職業是成功的第一步。遊戲目前提供戰士、法師、遊俠與牧師四大基礎職業，每個職業都有其獨特的技能樹與轉職路線。</p>
+            <p>在前期，我們建議新手玩家優先完成主線任務，這不僅能快速提升等級，還能解鎖重要的系統功能，如坐騎、寵物與公會系統。記得每天領取登入獎勵，積累資源為後期的裝備強化做準備。</p>
+            
+            <ul class="feature-list">
+                <li>戰士：高防禦、近戰物理輸出，適合新手。</li>
+                <li>法師：強大的範圍魔法傷害，但身板較脆。</li>
+                <li>遊俠：靈活的遠程物理攻擊，具備高爆發。</li>
+                <li>牧師：團隊不可或缺的治療與輔助角色。</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>進階攻略與角色解析</h2>
+            <p>想要在競技場中脫穎而出，或是順利通關高難度副本，深入了解角色的技能搭配與裝備屬性至關重要。點擊下方按鈕，解鎖本期特別企劃的進階攻略內容！</p>
+            
+            <button class="btn" id="reveal-btn" onclick="revealContent()">查看獨家進階攻略</button>
+            
+            <div id="extra-content">
+                <p><strong>【獨家進階攻略：裝備詞條與陣容搭配】</strong></p>
+                <p>在遊戲中後期，裝備的基礎屬性已無法滿足戰鬥需求，玩家需要重點關注裝備的「附加詞條」。對於輸出職業，優先選擇「暴擊率」、「暴擊傷害」與「攻擊力加成」；而坦克職業則應堆疊「生命值」、「防禦力」與「傷害減免」。</p>
+                <p>在陣容搭配方面，標準的五人小隊建議配置為：1名主坦（戰士/聖騎士）、2名輸出（法師/遊俠）、1名治療（牧師）以及1名控制或輔助角色。面對特定Boss時，例如擁有高額物理防禦的「熔岩巨獸」，則應將物理輸出替換為魔法輸出，並攜帶具備「破甲」或「減防」技能的寵物，方能事半功倍。持續關注我們的攻略站，獲取更多實用技巧！</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">隱私政策</a> | 
+            <a href="#">服務條款</a> | 
+            <a href="#">聯絡我們</a>
+        </div>
+        <p>聯絡信箱：contact@fantasy-legend-guide.com</p>
+        <p>&copy; 2023 幻境傳說攻略站. All rights reserved. 本站為非官方愛好者建立之資訊分享平台。</p>
+    </footer>
+
+    <script>
+        function revealContent() {
+            const content = document.getElementById('extra-content');
+            const btn = document.getElementById('reveal-btn');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                btn.textContent = '收起進階攻略';
+                btn.style.background = 'linear-gradient(to bottom, #475569, #334155)';
+            } else {
+                content.style.display = 'none';
+                btn.textContent = '查看獨家進階攻略';
+                btn.style.background = 'linear-gradient(to bottom, #fbbf24, #d97706)';
+            }
+        }
+    </script>
+</body>
+</html>

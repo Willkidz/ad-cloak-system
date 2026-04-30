@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouth AI 系統架構圖</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
+
+  :root {
+    --bg-dark: #0a0e1a;
+    --bg-card: rgba(15, 23, 42, 0.85);
+    --border-glow: rgba(56, 189, 248, 0.3);
+    --accent-cyan: #38bdf8;
+    --accent-purple: #a78bfa;
+    --accent-pink: #f472b6;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --accent-yellow: #fbbf24;
+    --accent-red: #f87171;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(244, 114, 182, 0.06) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+
+  .header .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+
+  .header .tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* Layer */
+  .layer {
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  .layer-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .layer-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .layer-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    font-weight: 300;
+  }
+
+  /* Connector arrows between layers */
+  .connector {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 16px 0;
+    position: relative;
+  }
+
+  .connector .arrow-line {
+    width: 3px;
+    height: 40px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .connector .arrow-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .connector .arrow-line::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+  }
+
+  .connector.cyan .arrow-line::before { background: linear-gradient(to bottom, transparent, var(--accent-cyan)); }
+  .connector.cyan .arrow-line::after { border-top: 10px solid var(--accent-cyan); }
+  .connector.purple .arrow-line::before { background: linear-gradient(to bottom, transparent, var(--accent-purple)); }
+  .connector.purple .arrow-line::after { border-top: 10px solid var(--accent-purple); }
+  .connector.green .arrow-line::before { background: linear-gradient(to bottom, transparent, var(--accent-green)); }
+  .connector.green .arrow-line::after { border-top: 10px solid var(--accent-green); }
+  .connector.pink .arrow-line::before { background: linear-gradient(to bottom, transparent, var(--accent-pink)); }
+  .connector.pink .arrow-line::after { border-top: 10px solid var(--accent-pink); }
+  .connector.orange .arrow-line::before { background: linear-gradient(to bottom, transparent, var(--accent-orange)); }
+  .connector.orange .arrow-line::after { border-top: 10px solid var(--accent-orange); }
+
+  .connector-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(20px, -50%);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    letter-spacing: 1px;
+  }
+
+  /* Input Layer */
+  .input-layer {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(167, 139, 250, 0.12));
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .input-layer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(56, 189, 248, 0.05), transparent, rgba(167, 139, 250, 0.05), transparent);
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .input-layer .content { position: relative; z-index: 1; }
+
+  .input-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+
+  .input-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent-cyan);
+  }
+
+  .input-subtext {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Brain Layer */
+  .brain-layer {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.12), rgba(244, 114, 182, 0.12));
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brain-node {
+    background: var(--bg-card);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 12px;
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .brain-node:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .brain-node-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 6px;
+  }
+
+  .brain-node-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .brain-tasks {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .brain-task-tag {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(167, 139, 250, 0.15);
+    color: var(--accent-purple);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+  }
+
+  /* Memory Layer */
+  .memory-layer {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(56, 189, 248, 0.1));
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .memory-node {
+    background: var(--bg-card);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: 12px;
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .memory-node:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .memory-node-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-bottom: 6px;
+  }
+
+  .memory-node-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .memory-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  .badge-free {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+
+  .badge-paid {
+    background: rgba(251, 146, 60, 0.15);
+    color: var(--accent-orange);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+  }
+
+  /* Tool Layer */
+  .tool-layer {
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.08), rgba(251, 191, 36, 0.08));
+    border: 1px solid rgba(251, 146, 60, 0.2);
+    border-radius: 16px;
+    padding: 24px 20px;
+  }
+
+  .tool-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .tool-category {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: all 0.3s ease;
+  }
+
+  .tool-category:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .tool-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .tool-cat-icon {
+    font-size: 1.1rem;
+  }
+
+  .tool-cat-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .tool-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tool-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .tool-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .tool-item-info {
+    flex: 1;
+  }
+
+  .tool-item-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .tool-item-func {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .tool-item-cost {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .cost-free {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+
+  .cost-paid {
+    background: rgba(251, 146, 60, 0.15);
+    color: var(--accent-orange);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+  }
+
+  .cost-cheap {
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--accent-yellow);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  /* Color coding for categories */
+  .cat-search .tool-cat-title { color: var(--accent-cyan); }
+  .cat-search .tool-cat-header { border-bottom-color: rgba(56, 189, 248, 0.15); }
+
+  .cat-ads .tool-cat-title { color: var(--accent-purple); }
+  .cat-ads .tool-cat-header { border-bottom-color: rgba(167, 139, 250, 0.15); }
+
+  .cat-image .tool-cat-title { color: var(--accent-green); }
+  .cat-image .tool-cat-header { border-bottom-color: rgba(52, 211, 153, 0.15); }
+
+  .cat-video .tool-cat-title { color: var(--accent-pink); }
+  .cat-video .tool-cat-header { border-bottom-color: rgba(244, 114, 182, 0.15); }
+
+  .cat-moderation .tool-cat-title { color: var(--accent-yellow); }
+  .cat-moderation .tool-cat-header { border-bottom-color: rgba(251, 191, 36, 0.15); }
+
+  .cat-gen .tool-cat-title { color: var(--accent-orange); }
+  .cat-gen .tool-cat-header { border-bottom-color: rgba(251, 146, 60, 0.15); }
+
+  .cat-auto .tool-cat-title { color: var(--accent-red); }
+  .cat-auto .tool-cat-header { border-bottom-color: rgba(248, 113, 113, 0.15); }
+
+  .cat-llm .tool-cat-title { color: #c4b5fd; }
+  .cat-llm .tool-cat-header { border-bottom-color: rgba(196, 181, 253, 0.15); }
+
+  /* Output Layer */
+  .output-layer {
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.12), rgba(251, 146, 60, 0.12));
+    border: 1px solid rgba(244, 114, 182, 0.25);
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .output-layer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 180deg, transparent, rgba(244, 114, 182, 0.05), transparent, rgba(251, 146, 60, 0.05), transparent);
+    animation: rotate 25s linear infinite;
+  }
+
+  .output-layer .content { position: relative; z-index: 1; }
+
+  .output-items {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .output-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Tooltip */
+  .tooltip {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 10px;
+    padding: 14px 18px;
+    max-width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+  }
+
+  .tooltip.active { display: block; }
+
+  .tooltip-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 6px;
+  }
+
+  .tooltip-content {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .tooltip-cost {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* Flow animation dots */
+  .flow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    animation: flowDown 2s ease-in-out infinite;
+  }
+
+  @keyframes flowDown {
+    0% { top: 0; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  .pulse { animation: pulse 2s ease-in-out infinite; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 2rem; }
+    .tool-categories { grid-template-columns: 1fr; }
+    .brain-layer, .memory-layer { flex-direction: column; }
+    .brain-node, .memory-node { max-width: 100%; }
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 16px 24px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  /* Token savings badge */
+  .token-save {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    margin-left: 4px;
+  }
+
+  /* Animated border */
+  @keyframes borderGlow {
+    0%, 100% { border-color: rgba(56, 189, 248, 0.2); }
+    50% { border-color: rgba(56, 189, 248, 0.5); }
+  }
+
+  .glow-border {
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>MOUTH AI</h1>
+    <div class="subtitle">一人公司全能 AI 助理 - 系統架構圖</div>
+    <div class="tagline">你只需要動嘴巴，其他全部交給 AI</div>
+  </div>
+
+  <!-- Layer 1: Input -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));">
+        <span>1</span>
+      </div>
+      <div class="layer-title" style="color: var(--accent-cyan);">輸入層 INPUT LAYER</div>
+      <div class="layer-desc">用戶語音/文字指令入口</div>
+    </div>
+    <div class="input-layer glow-border">
+      <div class="content">
+        <div class="input-emoji">&#x1F5E3;</div>
+        <div class="input-text">用戶開口說話</div>
+        <div class="input-subtext">語音指令 / 文字輸入 / 任務描述 → 傳入 Mouth AI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector -->
+  <div class="connector cyan">
+    <div class="arrow-line">
+      <div class="flow-dot" style="background: var(--accent-cyan); left: -1px;"></div>
+    </div>
+    <span class="connector-label">指令解析與任務拆解</span>
+  </div>
+
+  <!-- Layer 2: Brain (Coordinator) -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));">
+        <span>2</span>
+      </div>
+      <div class="layer-title" style="color: var(--accent-purple);">大腦層 COORDINATOR</div>
+      <div class="layer-desc">任務調度與決策中樞</div>
+    </div>
+    <div class="brain-layer">
+      <div class="brain-node" data-tooltip="langgraph" data-title="LangGraph 調度引擎" data-desc="基於圖結構的多步驟任務編排框架，支援條件分支、並行執行和狀態管理。負責將複雜任務拆解為可執行的子任務鏈。" data-cost="開源免費">
+        <div class="brain-node-title">&#x1F9E0; LangGraph 調度</div>
+        <div class="brain-node-desc">圖結構任務編排引擎，負責拆解複雜任務為子任務鏈，支援條件分支與並行執行</div>
+        <div class="brain-tasks">
+          <span class="brain-task-tag">任務拆解</span>
+          <span class="brain-task-tag">條件路由</span>
+          <span class="brain-task-tag">並行調度</span>
+          <span class="brain-task-tag">狀態管理</span>
+        </div>
+      </div>
+      <div class="brain-node" data-tooltip="manus" data-title="Manus AI 調度" data-desc="全能型 AI Agent 平台，具備程式碼執行、瀏覽器操作、檔案管理等能力。作為備用調度器或處理需要多模態能力的任務。" data-cost="訂閱制">
+        <div class="brain-node-title">&#x1F916; Manus AI 調度</div>
+        <div class="brain-node-desc">全能型 AI Agent 平台，具備程式碼執行、瀏覽器操作、檔案管理等多模態能力</div>
+        <div class="brain-tasks">
+          <span class="brain-task-tag">程式碼執行</span>
+          <span class="brain-task-tag">瀏覽器操作</span>
+          <span class="brain-task-tag">檔案管理</span>
+          <span class="brain-task-tag">多模態處理</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector -->
+  <div class="connector purple">
+    <div class="arrow-line">
+      <div class="flow-dot" style="background: var(--accent-purple); left: -1px;"></div>
+    </div>
+    <span class="connector-label">讀取/寫入記憶</span>
+  </div>
+
+  <!-- Layer 3: Memory -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));">
+        <span>3</span>
+      </div>
+      <div class="layer-title" style="color: var(--accent-green);">記憶層 MEMORY LAYER</div>
+      <div class="layer-desc">持久化知識儲存與語義檢索</div>
+    </div>
+    <div class="memory-layer">
+      <div class="memory-node" data-tooltip="d1" data-title="Cloudflare D1" data-desc="基於 SQLite 的無伺服器關聯式資料庫，用於儲存結構化記憶（測試結論、封號分析、競品資料、憑證等）。透過 Worker API 端點進行讀寫。" data-cost="每月 25 億行讀取免費">
+        <div class="memory-node-title">&#x1F4BE; Cloudflare D1</div>
+        <div class="memory-node-desc">持久化結構化記憶：測試結論、封號分析、競品資料、憑證管理、搜尋方法記錄</div>
+        <div>
+          <span class="memory-badge badge-free">免費額度極大</span>
+          <span class="token-save">省 Token 核心</span>
+        </div>
+      </div>
+      <div class="memory-node" data-tooltip="vectorize" data-title="Cloudflare Vectorize" data-desc="向量資料庫服務，用於語義搜尋。將記憶內容轉為向量後，可根據語義相似度檢索最相關的 Top-K 記憶片段，避免載入全部歷史記錄。" data-cost="Workers Paid 方案內含">
+        <div class="memory-node-title">&#x1F50D; Cloudflare Vectorize</div>
+        <div class="memory-node-desc">向量語義搜尋：根據語義相似度檢索 Top-K 最相關記憶，避免載入全部歷史</div>
+        <div>
+          <span class="memory-badge badge-paid">Workers Paid 方案</span>
+          <span class="token-save">省 80%+ Token</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector -->
+  <div class="connector green">
+    <div class="arrow-line">
+      <div class="flow-dot" style="background: var(--accent-green); left: -1px;"></div>
+    </div>
+    <span class="connector-label">調用工具執行任務</span>
+  </div>
+
+  <!-- Layer 4: Tools -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon" style="background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));">
+        <span>4</span>
+      </div>
+      <div class="layer-title" style="color: var(--accent-orange);">工具層 TOOL LAYER</div>
+      <div class="layer-desc">按功能分類的 API 與服務</div>
+    </div>
+    <div class="tool-layer">
+      <div class="tool-categories">
+
+        <!-- Search -->
+        <div class="tool-category cat-search">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F50E;</span>
+            <span class="tool-cat-title">搜尋類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="searchapi" data-title="SearchAPI.io" data-desc="結構化搜尋 API，支援 Meta 廣告庫搜尋。每次任務僅消耗約 14,000 tokens（優化後），相比瀏覽器方案節省 99%。Developer Plan $40/月含 10,000 次搜尋。" data-cost="$40/月">
+              <div class="tool-item-info">
+                <div class="tool-item-name">SearchAPI.io <span class="token-save">省 99% Token</span></div>
+                <div class="tool-item-func">結構化競品廣告搜尋 API（唯一允許的競品搜尋工具）</div>
+              </div>
+              <span class="tool-item-cost cost-paid">$40/月</span>
+            </div>
+            <div class="tool-item" data-tooltip="google-search" data-title="Google Search" data-desc="一般性網路搜尋，用於查找非廣告類資訊、技術文件、市場趨勢等。" data-cost="免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Google Search</div>
+                <div class="tool-item-func">一般性網路搜尋（技術文件、市場趨勢）</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ads -->
+        <div class="tool-category cat-ads">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F4CA;</span>
+            <span class="tool-cat-title">廣告數據類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="meta-marketing" data-title="Meta Marketing API" data-desc="Meta 官方廣告管理 API，用於建立、修改和管理廣告活動。需要開發者帳號和廣告權限。" data-cost="免費（需權限）">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Meta Marketing API</div>
+                <div class="tool-item-func">廣告活動建立、修改與管理</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費</span>
+            </div>
+            <div class="tool-item" data-tooltip="meta-insights" data-title="Meta Insights API" data-desc="Meta 官方數據分析 API，直接查詢聚合指標（CTR、CVR、花費等），避免處理原始報表。預計節省 80%-90% Token。" data-cost="免費（需權限）">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Meta Insights API <span class="token-save">省 80-90% Token</span></div>
+                <div class="tool-item-func">廣告成效聚合數據查詢（CTR、CVR、花費）</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Analysis -->
+        <div class="tool-category cat-image">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F441;</span>
+            <span class="tool-cat-title">圖片分析類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="vision" data-title="Google Cloud Vision API" data-desc="圖像標籤、物體定位、OCR 文字提取和安全搜索。將圖像轉為結構化 JSON 標籤，AI 只需讀取輕量文本。每月前 1,000 單位免費。預計節省 70%-85% Token。" data-cost="1000 單位/月免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Google Cloud Vision API <span class="token-save">省 70-85% Token</span></div>
+                <div class="tool-item-func">圖像標籤、OCR、物體定位 → 輸出 JSON 結構化數據</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費額度</span>
+            </div>
+            <div class="tool-item" data-tooltip="rekognition" data-title="AWS Rekognition" data-desc="亞馬遜圖像和視頻分析服務，功能類似 Google Vision，適合 AWS 生態系統用戶。每月前 1,000 張免費。" data-cost="1000 張/月免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">AWS Rekognition</div>
+                <div class="tool-item-func">圖像與影片分析（備用方案）</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費額度</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Processing -->
+        <div class="tool-category cat-video">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F3AC;</span>
+            <span class="tool-cat-title">影片處理類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="twelvelabs" data-title="Twelve Labs" data-desc="專為影片理解設計的多模態 AI，直接提取語義特徵、生成摘要、場景分類和關鍵幀提取。10 小時免費索引額度。預計節省 75%-95% Token。" data-cost="10hr 免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Twelve Labs <span class="token-save">省 75-95% Token</span></div>
+                <div class="tool-item-func">影片語義分析、摘要生成、場景分類</div>
+              </div>
+              <span class="tool-item-cost cost-cheap">10hr 免費</span>
+            </div>
+            <div class="tool-item" data-tooltip="assemblyai" data-title="AssemblyAI" data-desc="高精度語音轉文字 API，內建音頻智能功能（自動摘要、實體提取、情感分析）。185 小時免費預錄音頻處理。" data-cost="185hr 免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">AssemblyAI</div>
+                <div class="tool-item-func">語音轉文字、自動摘要、情感分析</div>
+              </div>
+              <span class="tool-item-cost cost-cheap">185hr 免費</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Moderation -->
+        <div class="tool-category cat-moderation">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F6E1;</span>
+            <span class="tool-cat-title">文案審核類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="moderation" data-title="OpenAI Moderation API" data-desc="專門檢測有害內容的免費 API，使用 omni-moderation-latest 模型，直接返回各類風險的布林值和置信度分數。完全免費且不計入 API 配額。預計節省 60%-75% Token。" data-cost="完全免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">OpenAI Moderation API <span class="token-save">省 60-75% Token</span></div>
+                <div class="tool-item-func">廣告文案風險預篩（仇恨、暴力、自傷等）</div>
+              </div>
+              <span class="tool-item-cost cost-free">完全免費</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Generation -->
+        <div class="tool-category cat-gen">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F3A8;</span>
+            <span class="tool-cat-title">圖片生成類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="flux" data-title="Replicate FLUX Schnell" data-desc="目前速度最快、成本極低的開源圖像生成模型。透過 Replicate API 調用，可快速批量生成廣告素材。約 $0.003/圖。" data-cost="~$0.003/圖">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Replicate FLUX Schnell <span class="token-save">省 50-60%</span></div>
+                <div class="tool-item-func">高速低成本廣告素材圖片生成</div>
+              </div>
+              <span class="tool-item-cost cost-cheap">~$0.003/圖</span>
+            </div>
+            <div class="tool-item" data-tooltip="dalle" data-title="DALL-E" data-desc="OpenAI 的圖像生成模型，適合需要高品質、精細控制的場景。成本較 FLUX 高，適合重要素材。" data-cost="~$0.04/圖">
+              <div class="tool-item-info">
+                <div class="tool-item-name">DALL-E</div>
+                <div class="tool-item-func">高品質精細圖片生成（重要素材用）</div>
+              </div>
+              <span class="tool-item-cost cost-paid">~$0.04/圖</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Automation -->
+        <div class="tool-category cat-auto">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x2699;</span>
+            <span class="tool-cat-title">自動化類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="n8n" data-title="n8n" data-desc="開源工作流程自動化平台，用於串接各種 API 和服務。支援排程任務、Webhook 觸發、條件邏輯等。自架免費。" data-cost="自架免費">
+              <div class="tool-item-info">
+                <div class="tool-item-name">n8n</div>
+                <div class="tool-item-func">工作流程自動化（排程、Webhook、條件邏輯）</div>
+              </div>
+              <span class="tool-item-cost cost-free">自架免費</span>
+            </div>
+            <div class="tool-item" data-tooltip="cf-workers" data-title="Cloudflare Workers" data-desc="無伺服器邊緣運算平台，用於部署 API 端點、記憶系統 Worker、自動化腳本。每日 10 萬次請求免費。" data-cost="免費額度大">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Cloudflare Workers</div>
+                <div class="tool-item-func">API 端點部署、記憶系統 Worker、邊緣運算</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費額度</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LLM -->
+        <div class="tool-category cat-llm">
+          <div class="tool-cat-header">
+            <span class="tool-cat-icon">&#x1F4A1;</span>
+            <span class="tool-cat-title">LLM 模型類</span>
+          </div>
+          <div class="tool-items">
+            <div class="tool-item" data-tooltip="gpt4o" data-title="GPT-4o-mini" data-desc="OpenAI 的高性價比模型，適合一般任務處理（文案撰寫、數據分析、程式碼生成等）。速度快、成本低。" data-cost="$0.15/1M input">
+              <div class="tool-item-info">
+                <div class="tool-item-name">GPT-4o-mini</div>
+                <div class="tool-item-func">一般任務處理（文案、分析、程式碼）</div>
+              </div>
+              <span class="tool-item-cost cost-cheap">低成本</span>
+            </div>
+            <div class="tool-item" data-tooltip="claude" data-title="Claude" data-desc="Anthropic 的大型語言模型，擅長複雜推理、長文分析和精確指令遵循。適合處理需要深度思考的策略任務。" data-cost="$3/1M input">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Claude</div>
+                <div class="tool-item-func">複雜任務處理（策略推理、長文分析）</div>
+              </div>
+              <span class="tool-item-cost cost-paid">中等成本</span>
+            </div>
+            <div class="tool-item" data-tooltip="gemini" data-title="Gemini" data-desc="Google 的多模態大型語言模型，作為備用 LLM。特別適合需要多模態理解的場景。" data-cost="免費額度">
+              <div class="tool-item-info">
+                <div class="tool-item-name">Gemini</div>
+                <div class="tool-item-func">備用 LLM（多模態理解）</div>
+              </div>
+              <span class="tool-item-cost cost-free">免費額度</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector -->
+  <div class="connector pink">
+    <div class="arrow-line">
+      <div class="flow-dot" style="background: var(--accent-pink); left: -1px;"></div>
+    </div>
+    <span class="connector-label">匯整結果回報</span>
+  </div>
+
+  <!-- Layer 5: Output -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));">
+        <span>5</span>
+      </div>
+      <div class="layer-title" style="color: var(--accent-pink);">輸出層 OUTPUT LAYER</div>
+      <div class="layer-desc">任務完成回報</div>
+    </div>
+    <div class="output-layer">
+      <div class="content">
+        <div class="input-emoji">&#x2705;</div>
+        <div class="input-text" style="color: var(--accent-pink);">任務完成 → 精簡表格回報用戶</div>
+        <div class="output-items">
+          <div class="output-item">&#x1F4CB; 競品分析報告</div>
+          <div class="output-item">&#x1F3A8; 廣告素材</div>
+          <div class="output-item">&#x1F4CA; 數據儀表板</div>
+          <div class="output-item">&#x1F4BB; 程式碼/部署</div>
+          <div class="output-item">&#x1F4DD; 策略建議</div>
+          <div class="output-item">&#x2699; 自動化流程</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background: var(--accent-green);"></div>
+      <span>免費 / 大量免費額度</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background: var(--accent-yellow);"></div>
+      <span>低成本 / 有免費額度</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background: var(--accent-orange);"></div>
+      <span>付費服務</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background: var(--accent-cyan);"></div>
+      <span class="token-save" style="margin-left: 0;">省 Token</span>
+      <span>= 有 Token 節省效果</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-title" id="tooltip-title"></div>
+  <div class="tooltip-content" id="tooltip-content"></div>
+  <div class="tooltip-cost" id="tooltip-cost"></div>
+</div>
+
+<script>
+  // Tooltip logic
+  const tooltip = document.getElementById('tooltip');
+  const tooltipTitle = document.getElementById('tooltip-title');
+  const tooltipContent = document.getElementById('tooltip-content');
+  const tooltipCost = document.getElementById('tooltip-cost');
+
+  const allItems = document.querySelectorAll('[data-tooltip]');
+
+  allItems.forEach(item => {
+    item.addEventListener('mouseenter', (e) => {
+      const title = item.getAttribute('data-title');
+      const desc = item.getAttribute('data-desc');
+      const cost = item.getAttribute('data-cost');
+
+      tooltipTitle.textContent = title;
+      tooltipContent.textContent = desc;
+      tooltipCost.textContent = '費用：' + cost;
+
+      // Determine cost badge color
+      if (cost.includes('免費') || cost.includes('free')) {
+        tooltipCost.className = 'tooltip-cost cost-free';
+      } else if (cost.includes('$0.0') || cost.includes('低成本') || cost.includes('hr')) {
+        tooltipCost.className = 'tooltip-cost cost-cheap';
+      } else {
+        tooltipCost.className = 'tooltip-cost cost-paid';
+      }
+
+      tooltip.classList.add('active');
+    });
+
+    item.addEventListener('mousemove', (e) => {
+      const x = e.clientX + 15;
+      const y = e.clientY + 15;
+
+      // Keep tooltip within viewport
+      const rect = tooltip.getBoundingClientRect();
+      const maxX = window.innerWidth - 340;
+      const maxY = window.innerHeight - 200;
+
+      tooltip.style.left = Math.min(x, maxX) + 'px';
+      tooltip.style.top = Math.min(y, maxY) + 'px';
+    });
+
+    item.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('active');
+    });
+  });
+
+  // Add subtle parallax to flow dots
+  document.addEventListener('scroll', () => {
+    const dots = document.querySelectorAll('.flow-dot');
+    dots.forEach((dot, i) => {
+      const speed = 0.5 + (i * 0.1);
+      dot.style.animationDelay = `${i * 0.3}s`;
+    });
+  });
+
+  // Add click interaction for tool items
+  allItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Brief highlight effect
+      item.style.transition = 'all 0.15s ease';
+      item.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        item.style.transform = '';
+      }, 150);
+    });
+  });
+</script>
+
+</body>
+</html>

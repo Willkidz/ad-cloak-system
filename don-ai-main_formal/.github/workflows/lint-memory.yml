@@ -1,0 +1,205 @@
+name: Lint Memory & Knowledge Base
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-memory:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 檢查 Markdown 文件 YAML Frontmatter
+        continue-on-error: true
+        run: |
+          echo "====================================="
+          echo "📋 檢查一：YAML Frontmatter 格式檢查"
+          echo "====================================="
+          echo ""
+
+          # Fix Chinese path encoding
+          git config core.quotepath false
+
+          # 排除不需要 frontmatter 的文件
+          EXCLUDE_PATTERNS=(
+            "./.github/pull-request-template.md"
+            "./.ai/active-context.md"
+            "./README.md"
+            "./AGENTS.md"
+            "./CHANGELOG.md"
+          )
+
+          HAS_ERROR=false
+          CHECKED=0
+          PASSED=0
+          FAILED=0
+
+          while IFS= read -r -d '' file; do
+            # 檢查是否在排除清單中
+            SKIP=false
+            for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+              if [[ "$file" == "$pattern" ]]; then
+                SKIP=true
+                break
+              fi
+            done
+
+            if [ "$SKIP" = true ]; then
+              echo "⏭️  跳過（已排除）：$file"
+              continue
+            fi
+
+            CHECKED=$((CHECKED + 1))
+
+            # 讀取文件前幾行，檢查是否有 --- 開頭和結尾的 frontmatter 區塊
+            FIRST_LINE=$(head -1 "$file")
+            if [ "$FIRST_LINE" != "---" ]; then
+              echo "❌ 缺少 YAML frontmatter：$file"
+              echo "   第一行應為 '---'，實際為：'$FIRST_LINE'"
+              HAS_ERROR=true
+              FAILED=$((FAILED + 1))
+              continue
+            fi
+
+            # 檢查是否有結尾的 ---（從第二行開始找）
+            CLOSING_LINE=$(tail -n +2 "$file" | grep -n "^---$" | head -1 | cut -d: -f1)
+            if [ -z "$CLOSING_LINE" ]; then
+              echo "❌ YAML frontmatter 未正確關閉：$file"
+              echo "   找不到結尾的 '---'"
+              HAS_ERROR=true
+              FAILED=$((FAILED + 1))
+              continue
+            fi
+
+            PASSED=$((PASSED + 1))
+          done < <(find . -name "*.md" -not -path "./.git/*" -print0)
+
+          echo ""
+          echo "📊 Frontmatter 檢查結果：共 $CHECKED 個文件，✅ $PASSED 個通過，❌ $FAILED 個失敗"
+          echo ""
+
+          if [ "$HAS_ERROR" = true ]; then
+            echo "⚠️  有文件缺少標準 YAML frontmatter，請參考 01-核心原則/doc-standards-spec.md 補齊。"
+            exit 1
+          else
+            echo "✅ 所有文件的 YAML frontmatter 格式正確！"
+          fi
+
+      - name: 檢查 truth-table.md 是否有重複 Key
+        continue-on-error: true
+        run: |
+          echo "========================================="
+          echo "📋 檢查二：truth-table.md 重複 Key 檢查"
+          echo "========================================="
+          echo ""
+
+          TRUTH_TABLE="00-系統索引/truth-table.md"
+
+          if [ ! -f "$TRUTH_TABLE" ]; then
+            echo "❌ 找不到 $TRUTH_TABLE"
+            exit 1
+          fi
+
+          # 提取表格中的 Key（第一欄），排除表頭和分隔線
+          # 表格格式：| Key | Value | Source |
+          KEYS=$(grep "^|" "$TRUTH_TABLE" | grep -v "^| :---" | grep -v "^| 項目" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
+
+          TOTAL=$(echo "$KEYS" | wc -l)
+          UNIQUE=$(echo "$KEYS" | sort -u | wc -l)
+
+          echo "📊 表格共 $TOTAL 個 Key，去重後 $UNIQUE 個"
+          echo ""
+
+          if [ "$TOTAL" -ne "$UNIQUE" ]; then
+            echo "❌ 發現重複的 Key！以下 Key 出現了多次："
+            echo "$KEYS" | sort | uniq -d | while read -r dup; do
+              COUNT=$(echo "$KEYS" | grep -cxF "$dup")
+              echo "   🔴 「$dup」出現了 $COUNT 次"
+            done
+            echo ""
+            echo "⚠️  truth-table.md 中的 Key（第一欄）必須唯一，請修正重複項目。"
+            exit 1
+          else
+            echo "✅ truth-table.md 中所有 Key 均唯一，無重複！"
+          fi
+
+      - name: 檢查 Markdown 內部連結是否有效
+        continue-on-error: true
+        run: |
+          echo "========================================"
+          echo "📋 檢查三：Markdown 內部連結有效性檢查"
+          echo "========================================"
+          echo ""
+
+          # Fix Chinese path encoding
+          git config core.quotepath false
+
+          HAS_ERROR=false
+          CHECKED=0
+          BROKEN=0
+
+          while IFS= read -r -d '' file; do
+            FILE_DIR=$(dirname "$file")
+
+            # 提取所有相對路徑的 Markdown 連結：[text](./path) 或 [text](../path)
+            # 排除 http/https 開頭的外部連結
+            LINKS=$(grep -oP '\[.*?\]\(\K\.\.?/[^ )#]+' "$file" 2>/dev/null || true)
+
+            if [ -z "$LINKS" ]; then
+              continue
+            fi
+
+            while IFS= read -r link; do
+              CHECKED=$((CHECKED + 1))
+
+              # URL decode（處理中文路徑的 percent-encoding）
+              DECODED_LINK=$(python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$link" 2>/dev/null || echo "$link")
+
+              # 解析實際路徑
+              TARGET="$FILE_DIR/$DECODED_LINK"
+
+              # 標準化路徑
+              RESOLVED=$(realpath -m "$TARGET" 2>/dev/null || echo "$TARGET")
+
+              if [ ! -e "$RESOLVED" ]; then
+                echo "❌ 失效連結：$file"
+                echo "   連結目標：$link"
+                echo "   解析路徑：$RESOLVED"
+                echo ""
+                HAS_ERROR=true
+                BROKEN=$((BROKEN + 1))
+              fi
+            done <<< "$LINKS"
+          done < <(find . -name "*.md" -not -path "./.git/*" -print0)
+
+          echo "📊 連結檢查結果：共檢查 $CHECKED 個內部連結，❌ $BROKEN 個失效"
+          echo ""
+
+          if [ "$HAS_ERROR" = true ]; then
+            echo "⚠️  發現失效的內部連結，請修正指向不存在文件的連結。"
+            exit 1
+          else
+            echo "✅ 所有內部連結均指向有效文件！"
+          fi
+
+      - name: 輸出檢查摘要
+        if: always()
+        run: |
+          echo "## 📋 知識庫格式檢查摘要" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**檢查時間**：$(TZ='Asia/Taipei' date '+%Y-%m-%d %H:%M:%S') (台灣時間)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 檢查項目 | 說明 |" >> $GITHUB_STEP_SUMMARY
+          echo "| :--- | :--- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Frontmatter 格式 | 檢查所有 .md 文件是否具備標準 YAML frontmatter |" >> $GITHUB_STEP_SUMMARY
+          echo "| Key 唯一性 | 檢查 truth-table.md 表格第一欄是否有重複 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 內部連結有效性 | 檢查 Markdown 中的相對路徑連結是否指向存在的文件 |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> 此檢查為 **warning** 等級，不會阻擋 merge。詳細結果請查看上方各步驟的輸出。" >> $GITHUB_STEP_SUMMARY

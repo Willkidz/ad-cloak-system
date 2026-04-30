@@ -1,0 +1,106 @@
+﻿service_id,name,platform,service_type,category,rate_twd,rate_usd,min,max,refill,cancel,dripfeed,currency
+180,Line@官方社群人數（NT$239/50個）,LINE,Other,Line@官方社群人數,4780.0,149.375,50,4300,No,No,No,TWD
+163,全球粉絲專頁追蹤500個（NT$650）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,650.0,20.3125,1,1,No,No,No,TWD
+38,全球粉絲專頁追蹤1000個（NT$1000）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,1000.0,31.25,1,1,No,No,No,TWD
+194,全球粉絲專頁追蹤1500個（NT$1430）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,1430.0,44.6875,1,1,No,No,No,TWD
+164,全球粉絲專頁追蹤3000個（NT$2800）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,2800.0,87.5,1,1,No,No,No,TWD
+165,全球粉絲專頁追蹤5000個（NT$4200）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,4200.0,131.25,1,1,No,No,No,TWD
+166,全球粉絲專頁追蹤10000個（NT$7600）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,7600.0,237.5,1,1,No,No,No,TWD
+299,全球粉絲專頁追蹤20000個（NT$14400）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,14400.0,450.0,1,1,No,No,No,TWD
+167,全球粉絲專頁追蹤30000個（NT$19800）,Facebook,Followers/Subscribers,Facebook粉絲專頁追蹤,19800.0,618.75,1,1,No,No,No,TWD
+26,🔥台灣真人貼文讚(高品質穩定)✰推薦（NT$90/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1800.0,56.25,50,1400,No,No,No,TWD
+235,台灣真人貼文讚【表情讚】－心+哈+哇綜合表情（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,500,No,No,No,TWD
+31,台灣真人貼文讚【表情讚】－心（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+236,台灣真人貼文讚【表情讚】－加油（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+27,台灣真人貼文讚【表情讚】－哈（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+28,台灣真人貼文讚【表情讚】－哇（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+29,台灣真人貼文讚【表情讚】－哭（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+30,台灣真人貼文讚【表情讚】－怒（NT$95/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1900.0,59.375,50,300,No,No,No,TWD
+25,台灣貼文讚［非真人］（NT$70/50個）,Facebook,Likes/Reactions,Facebook貼文讚,1400.0,43.75,50,9000,No,No,No,TWD
+24,『全球』貼文讚（NT$36/100個）,Facebook,Likes/Reactions,Facebook貼文讚,360.0,11.25,100,10000,No,No,No,TWD
+245,『全球』貼文表情－心（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+250,『全球』貼文表情－加油（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+246,『全球』貼文表情－哈（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+247,『全球』貼文表情－哇（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+248,『全球』貼文表情－哭（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+249,『全球』貼文表情－怒（NT$48/100個）,Facebook,Likes/Reactions,Facebook貼文讚,480.0,15.0,100,500000,No,No,No,TWD
+33,台灣真人【貼文留言】（NT$51/3則）,Facebook,Comments,Facebook貼文留言,17000.0,531.25,3,450,No,No,No,TWD
+237,『全球』貼文留言	（NT$47/5則）,Facebook,Comments,Facebook貼文留言,9400.0,293.75,10,650,No,No,No,TWD
+320,Facebook【貼文分享數】－大量便宜刷數字（NT$81/100個）,Facebook,Shares,Facebook【其他】服務,810.0,25.3125,100,4000,No,No,No,TWD
+70,Facebook【貼文分享】－台灣（NT$81/3個）,Facebook,Shares,Facebook【其他】服務,27000.0,843.75,3,500,No,No,No,TWD
+32,Facebook【留言讚】－台灣（NT$81/30個）,Facebook,Likes/Reactions,Facebook【其他】服務,2700.0,84.375,30,1200,No,No,No,TWD
+73,Facebook【社團成員人數】（NT$65/100個）,Facebook,Other,Facebook【其他】服務,650.0,20.3125,1000,50000,No,No,No,TWD
+36,Facebook【影片播放次數】（NT$68/1000次）,Facebook,Views/Plays,Facebook【其他】服務,68.0,2.125,1000,4800000,No,No,No,TWD
+97,Facebook【粉專推薦評論】－台灣（NT$135/3則）,Facebook,Reviews/Ratings,Facebook【其他】服務,45000.0,1406.25,3,160,No,No,No,TWD
+195,直播【單場Ａ】30分鐘（NT$15/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,290.0,9.0625,50,4000,No,No,No,TWD
+196,直播【單場Ａ】60分鐘（NT$29/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,580.0,18.125,50,4000,No,No,No,TWD
+197,直播【單場Ａ】90分鐘（NT$44/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,870.0,27.1875,50,4000,No,No,No,TWD
+198,直播【單場Ａ】120分鐘（NT$58/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,1160.0,36.25,50,4000,No,No,No,TWD
+199,直播【單場Ａ】150分鐘（NT$73/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,1450.0,45.3125,50,4000,No,No,No,TWD
+200,直播【單場Ａ】180分鐘（NT$86/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,1720.0,53.75,50,4000,No,No,No,TWD
+201,直播【單場Ａ】210分鐘（NT$100/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,2000.0,62.5,50,4000,No,No,No,TWD
+202,直播【單場Ａ】240分鐘（NT$113/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,2260.0,70.625,50,4000,No,No,No,TWD
+321,直播【單場Ａ】270分鐘	（NT$127/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,2540.0,79.375,50,1000,No,No,No,TWD
+322,直播【單場Ａ】300分鐘	（NT$140/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ａ系統】,2800.0,87.5,50,1000,No,No,No,TWD
+77,直播【單場】30分鐘（穩定性高）（NT$37/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,730.0,22.8125,50,17000,No,No,No,TWD
+78,直播【單場】60分鐘（穩定性高）（NT$71/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,1410.0,44.0625,50,17000,No,No,No,TWD
+79,直播【單場】90分鐘（穩定性高）（NT$104/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,2070.0,64.6875,50,17000,No,No,No,TWD
+80,直播【單場】120分鐘（穩定性高）（NT$139/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,2780.0,86.875,50,17000,No,No,No,TWD
+81,直播【單場】150分鐘（穩定性高）（NT$170/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,3400.0,106.25,50,17000,No,No,No,TWD
+82,直播【單場】180分鐘（穩定性高）（NT$195/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,3900.0,121.875,50,17000,No,No,No,TWD
+83,直播【單場】240分鐘（穩定性高）（NT$255/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,5100.0,159.375,50,17000,No,No,No,TWD
+325,直播【單場】360分鐘（穩定性高）（NT$379/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高,7580.0,236.875,50,50000,No,No,No,TWD
+276,直播【單場】30分鐘（穩定性高/擬真慢速進場）	（NT$42/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,840.0,26.25,50,12000,No,No,No,TWD
+277,直播【單場】60分鐘（穩定性高/擬真慢速進場）	（NT$77/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,1530.0,47.8125,50,12000,No,No,No,TWD
+278,直播【單場】90分鐘（穩定性高/擬真慢速進場）	（NT$111/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,2220.0,69.375,50,12000,No,No,No,TWD
+279,直播【單場】120分鐘（穩定性高/擬真慢速進場）（NT$149/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,2970.0,92.8125,50,12000,No,No,No,TWD
+298,直播【單場】150分鐘（穩定性高/擬真慢速進場）（NT$178/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,3560.0,111.25,50,12000,No,No,No,TWD
+281,直播【單場】180分鐘（穩定性高/擬真慢速進場）（NT$207/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,4140.0,129.375,50,12000,No,No,No,TWD
+282,直播【單場】210分鐘（穩定性高/擬真慢速進場）（NT$235/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,4690.0,146.5625,50,12000,No,No,No,TWD
+283,直播【單場】240分鐘（穩定性高/擬真慢速進場）（NT$275/50人）,Facebook,Live Stream Viewers,Facebook直播人數【Ｂ系統】 ✯推薦/穩定性高/擬真慢速進場,5490.0,171.5625,50,12000,No,No,No,TWD
+98,Instagram台灣粉絲【普通品質】（NT$192/100個）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,1920.0,60.0,100,9000,No,No,No,TWD
+328,Instagram台灣粉絲【高品質】(女生帳號佔多數)	（NT$200/50個）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,4000.0,125.0,50,9000,No,No,No,TWD
+182,Instagram台灣真人粉絲【真人帳號】（NT$105/5個）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,21000.0,656.25,5,450,No,No,No,TWD
+127,Instagram全球粉絲（NT$57/100個）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,570.0,17.8125,100,1000000,No,No,No,TWD
+67,Instagram全球真實粉絲2000個（NT$1900）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,1900.0,59.375,1,1,No,No,No,TWD
+110,Instagram全球真實粉絲5000個（NT$4900）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,4900.0,153.125,1,1,No,No,No,TWD
+109,Instagram全球真實粉絲10000個（NT$9500）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,9500.0,296.875,1,1,No,No,No,TWD
+68,Instagram全球真實粉絲20000個（NT$16000）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,16000.0,500.0,1,1,No,No,No,TWD
+329,Instagram全球真實粉絲50000個（NT$38000）,Instagram,Followers/Subscribers,Instagram粉絲追蹤,38000.0,1187.5,1,1,No,No,No,TWD
+62,【快速】🔥Instagram全球[真人]讚(單篇照片按讚)（NT$300/100個）,Instagram,Likes/Reactions,Instagram 貼文按讚,300.0,9.375,100,60000,No,No,No,TWD
+178,Instagram台灣一般讚(單篇照片按讚)（NT$48/100個）,Instagram,Likes/Reactions,Instagram 貼文按讚,480.0,15.0,100,20000,No,No,No,TWD
+40,Instagram全球一般讚(單篇照片按讚)（NT$28/100個）,Instagram,Likes/Reactions,Instagram 貼文按讚,280.0,8.75,100,60000,No,No,No,TWD
+91,Instagram台灣華人客製化留言（NT$90/5則）,Instagram,Likes/Reactions,Instagram留言/留言讚,18000.0,562.5,5,300,No,No,No,TWD
+90,Instagram台灣華人隨機留言（NT$65/5則）,Instagram,Likes/Reactions,Instagram留言/留言讚,13000.0,406.25,5,300,No,No,No,TWD
+327,Instagram全球客製化留言（NT$140/10則）,Instagram,Likes/Reactions,Instagram留言/留言讚,14000.0,437.5,10,20000,No,No,No,TWD
+318,Instagram全球指定留言按讚（NT$27/30個）,Instagram,Likes/Reactions,Instagram留言/留言讚,900.0,28.125,30,20000,No,No,No,TWD
+42,Instagram影片觀看次數（NT$25/1000個）,Instagram,Views/Plays,Instagram【觀看次數】(影片/限時動態),25.0,0.78125,1000,100000000,No,No,No,TWD
+74,Instagram 限時動態-觀看次數（NT$45/1000個）,Instagram,Views/Plays,Instagram【觀看次數】(影片/限時動態),45.0,1.40625,1000,7000,No,No,No,TWD
+319,Instagram文章分享數（NT$100/100個）,Instagram,Shares,Instagram【分享/轉發】文章數,1000.0,31.25,100,1000000,No,No,No,TWD
+326,Instagram文章轉發數（NT$48/20個）,Instagram,Shares,Instagram【分享/轉發】文章數,2400.0,75.0,20,100000,No,Yes,No,TWD
+260,IG直播【單場】30分鐘 (瞬間入場)（NT$35/50人）,Instagram,Live Stream Viewers,Instagram直播人數,700.0,21.875,50,50000,No,No,No,TWD
+261,IG直播【單場】60分鐘 (瞬間入場)（NT$70/50人）,Instagram,Live Stream Viewers,Instagram直播人數,1400.0,43.75,50,50000,No,No,No,TWD
+262,IG直播【單場】90分鐘 (瞬間入場)（NT$105/50人）,Instagram,Live Stream Viewers,Instagram直播人數,2100.0,65.625,50,50000,No,No,No,TWD
+263,IG直播【單場】120分鐘 (瞬間入場)（NT$140/50人）,Instagram,Live Stream Viewers,Instagram直播人數,2800.0,87.5,50,50000,No,No,No,TWD
+264,IG直播【單場】180分鐘 (瞬間入場)（NT$210/50人）,Instagram,Live Stream Viewers,Instagram直播人數,4200.0,131.25,50,50000,No,No,No,TWD
+265,IG直播【單場】360分鐘 (瞬間入場)（NT$420/50人）,Instagram,Live Stream Viewers,Instagram直播人數,8400.0,262.5,50,50000,No,No,No,TWD
+43,Youtube影片觀看次數（NT$249/1000個）,YouTube,Views/Plays,Youtube系列,249.0,7.78125,1000,800000,No,No,No,TWD
+284,Youtube影片觀看次數【兩萬】以上（NT$3700/2萬個）,YouTube,Views/Plays,Youtube系列,185.0,5.78125,20000,20000000,No,No,No,TWD
+45,Youtube自定義留言(中文帳號)（NT$180/10則）,YouTube,Comments,Youtube系列,18000.0,562.5,10,80,No,No,No,TWD
+46,Youtube隨機留言(日文漢字帳號)（NT$120/10則）,YouTube,Comments,Youtube系列,12000.0,375.0,10,250,No,No,No,TWD
+125,Youtube影片按「讚」（NT$70/50個）,YouTube,Likes/Reactions,Youtube系列,1400.0,43.75,50,130000,No,Yes,No,TWD
+308,short短影片觀看次數(NT$1950/10000個),YouTube,Views/Plays,Youtube系列,195.0,6.09375,25000,10000000,No,No,No,TWD
+220,Youtube直播觀看人數30分鐘（NT$51/50人）,YouTube,Live Stream Viewers,Youtube直播人數,1020.0,31.875,50,500000,No,No,No,TWD
+221,Youtube直播觀看人數60分鐘	（NT$101/50人）,YouTube,Live Stream Viewers,Youtube直播人數,2020.0,63.125,50,500000,No,No,No,TWD
+219,Youtube直播觀看人數90分鐘（NT$150/50人）,YouTube,Live Stream Viewers,Youtube直播人數,3000.0,93.75,50,500000,No,No,No,TWD
+222,Youtube直播觀看人數120分鐘（NT$195/50人）,YouTube,Live Stream Viewers,Youtube直播人數,3900.0,121.875,50,500000,No,No,No,TWD
+232,Youtube直播觀看人數150分鐘（NT$240/50人）,YouTube,Live Stream Viewers,Youtube直播人數,4800.0,150.0,50,500000,No,No,No,TWD
+233,Youtube直播觀看人數180分鐘（NT$285/50人）,YouTube,Live Stream Viewers,Youtube直播人數,5700.0,178.125,50,500000,No,No,No,TWD
+234,Youtube直播觀看人數360分鐘（NT$490/50人）,YouTube,Live Stream Viewers,Youtube直播人數,9800.0,306.25,50,500000,No,No,No,TWD
+304,TikTok全球粉絲（NT$42/100個）,TikTok,Followers/Subscribers,TikTok 粉絲 | 按讚 | 觀看次數 | 留言,420.0,13.125,100,60000,No,No,No,TWD
+303,TikTok全球愛心讚（NT$30/100個）,TikTok,Followers/Subscribers,TikTok 粉絲 | 按讚 | 觀看次數 | 留言,300.0,9.375,100,10000000,No,Yes,No,TWD
+302,TikTok影片觀看次數（NT$30/1000個）,TikTok,Followers/Subscribers,TikTok 粉絲 | 按讚 | 觀看次數 | 留言,30.0,0.9375,1000,200000,No,No,No,TWD
+305,TikTok全球客製化留言（NT$150/10則）,TikTok,Followers/Subscribers,TikTok 粉絲 | 按讚 | 觀看次數 | 留言,15000.0,468.75,10,40000,No,No,No,TWD
+297,Threads台灣華人粉絲（NT$420/50個）,Threads,Followers/Subscribers,Threads 粉絲 | 按讚｜留言,840.0,26.25,50,1000,No,No,No,TWD
+267,Threads台灣讚（NT$59/100個）,Threads,Followers/Subscribers,Threads 粉絲 | 按讚｜留言,590.0,18.4375,100,1000,No,No,No,TWD
+268,Threads台灣客製化留言（NT$95/5則）,Threads,Followers/Subscribers,Threads 粉絲 | 按讚｜留言,19000.0,593.75,5,1000,No,No,No,TWD

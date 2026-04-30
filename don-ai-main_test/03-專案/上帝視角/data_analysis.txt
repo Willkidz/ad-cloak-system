@@ -1,0 +1,69 @@
+數據分析結果
+=============
+
+【3月消耗表欄位映射】
+A: 人員 (L/ALL)
+B: 類型 (D/BF/S)
+C: 落地頁 (URL)
+D: TAG (N2001/BF01/AS01~AS10/BF02) ← 這就是 code
+E: ads (廣告ID)
+F: 素材名稱
+G: 廣告帳戶
+H: BM ID
+I: 日消
+J: 卡
+K: 狀態
+L: 卡總充值
+M: 廣告總消耗
+N: 待付款
+O: 預付餘額 (Row1=3/1開始的日期)
+P: 總計 (Row1=3/2)
+Q: 2月
+R: 3月
+S~: 每日消耗 (Row1 header = 8/1, 8/2... 但實際是日期)
+
+注意：n8n Calculate Stats 中 code 取的是 row[8] (日消)，不是 row[3] (TAG)
+這就是為什麼成效頁出現 "100", "50" 這種數字而不是 AS01, BF01
+
+【n8n 事件數據統計】
+總事件: 323筆
+- token_mapping: 270 (點擊產生的token)
+- redirect_click: 14
+- line_friend_added: 11 (多數是測試)
+- token_matched: 16 (真正有回傳token的)
+- landing_page_interaction: 10
+
+token_matched 分佈:
+- BF01: 13筆 (全部同一個 @678eohsd LINE帳號)
+- LS03: 2筆
+- 01: 1筆 (可能是 AX01 的 code 錯誤)
+
+token_mapping 分佈:
+- BF01: 46筆 (最多點擊)
+- 空字串: 88筆 (早期測試)
+- X: 9筆 (測試)
+- 01: 5筆
+- AX01: 2筆
+
+line_friend_added:
+- 11筆，但多數是測試帳號
+- project 欄位都是 null 或 "godview"，沒有按 code 分組
+
+【關鍵發現】
+1. n8n Calculate Stats 的 code 取錯欄位（row[8]=日消，不是 row[3]=TAG）
+2. line_friend_added 事件沒有 project/code 資訊，無法歸因到哪個廣告
+3. token_matched 有 project 欄位，可以歸因
+4. 目前真實數據只有 BF01 有明顯的 token_matched 記錄
+5. AS系列消耗都是0，所以還沒有真正的成效數據
+
+【成效表設計需求】
+用戶要看的核心指標：
+1. 添加成本 = 消耗 / 添加數（這是最重要的）
+2. 人員實際添加 vs 系統抓取 = 準確率
+3. 按廣告/素材排名
+
+數據來源：
+- 消耗：3月消耗表 → 按 TAG(D欄) 取 R欄(3月總消耗) 或每日消耗
+- 系統添加：n8n token_matched 事件按 project 分組
+- 人員實際添加：需要手動填入（人員在LINE後台看到的真實數字）
+- 素材：3月消耗表 F欄

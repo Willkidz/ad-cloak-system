@@ -1,0 +1,21 @@
+name = "cloak-admin-api"
+main = "cloak-admin-api.js"
+compatibility_date = "2024-01-01"
+account_id = "61f1eb800e48d2cf41ed9ddacf01581b"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "godview-clicks"
+database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
+
+[[kv_namespaces]]
+binding = "CLOAKER_CONFIG"
+id = "cfca8f5e3aa84d33b889cddfc5d5763c"
+
+[env.staging]
+name = "cloak-admin-api-staging"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "godview-clicks-staging"
+database_id = "a94ce480-39e7-48a5-ae90-9c58510be191"

@@ -1,0 +1,268 @@
+{
+  "name": "上帝視角_CAPI Health Check",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://godview.app.n8n.cloud/webhook/admin-api?resource=ad_config&action=list",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-admin-key",
+              "value": "godview2026"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {}
+      },
+      "id": "fetch-config",
+      "name": "Fetch Ad Config",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build unique pixel+token pairs to test\nconst rows = $input.first().json.rows || [];\nconst seen = new Map();\n\nfor (const row of rows) {\n  if (!row.pixel || !row.token) continue;\n  const key = `${row.pixel}|${row.token.slice(-20)}`;\n  if (!seen.has(key)) {\n    seen.set(key, {\n      pixel: row.pixel,\n      token: row.token,\n      type: row.type || 'unknown',\n      codes: [row.code]\n    });\n  } else {\n    seen.get(key).codes.push(row.code);\n  }\n}\n\n// Output each unique pair as a separate item\nconst results = [];\nfor (const [key, val] of seen) {\n  results.push({\n    json: {\n      pixel: val.pixel,\n      token: val.token,\n      type: val.type,\n      codes: val.codes.join(','),\n      label: val.type === 'master' ? `主像素(${val.codes[0]})` : `廣告像素(${val.codes.join('/')})`\n    }\n  });\n}\n\nreturn results;"
+      },
+      "id": "build-check-list",
+      "name": "Build Check List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v25.0/{{ $json.pixel }}/events?access_token={{ $json.token }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    {\n      \"event_name\": \"PageView\",\n      \"event_time\": {{ Math.floor(Date.now() / 1000) }},\n      \"action_source\": \"website\",\n      \"event_source_url\": \"https://healthcheck.freshpathlab.com\",\n      \"user_data\": {\n        \"client_ip_address\": \"127.0.0.1\",\n        \"client_user_agent\": \"HealthCheck/1.0\"\n      }\n    }\n  ],\n  \"test_event_code\": \"HEALTH_CHECK\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "test-capi",
+      "name": "Test CAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Collect all results and build report\nconst items = $input.all();\nconst checkList = $('Build Check List').all();\nconst results = [];\nlet hasFailure = false;\n\nfor (let i = 0; i < items.length; i++) {\n  const resp = items[i].json;\n  const config = checkList[i]?.json || {};\n  const ok = resp.events_received ? true : false;\n  const errorMsg = resp.error ? resp.error.message : '';\n  \n  if (!ok) hasFailure = true;\n  \n  results.push({\n    label: config.label || 'unknown',\n    pixel: config.pixel || '',\n    type: config.type || '',\n    codes: config.codes || '',\n    status: ok ? '✅ OK' : '❌ FAIL',\n    error: errorMsg,\n    events_received: resp.events_received || 0\n  });\n}\n\n// Build LINE notification message\nconst now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });\nlet msg = `🔍 CAPI 健康檢查 ${now}\\n`;\nmsg += `━━━━━━━━━━━━━━━━\\n`;\n\nconst failures = results.filter(r => r.status.includes('FAIL'));\nconst successes = results.filter(r => r.status.includes('OK'));\n\nif (failures.length === 0) {\n  msg += `✅ 全部正常 (${successes.length}/${results.length})\\n`;\n  for (const r of results) {\n    msg += `  ${r.status} ${r.label}\\n`;\n  }\n} else {\n  msg += `⚠️ ${failures.length} 個異常！\\n\\n`;\n  msg += `❌ 失敗：\\n`;\n  for (const r of failures) {\n    msg += `  ${r.label}\\n`;\n    msg += `  像素: ${r.pixel}\\n`;\n    msg += `  錯誤: ${r.error}\\n\\n`;\n  }\n  if (successes.length > 0) {\n    msg += `✅ 正常 (${successes.length})：\\n`;\n    for (const r of successes) {\n      msg += `  ${r.label}\\n`;\n    }\n  }\n}\n\nreturn [{\n  json: {\n    has_failure: hasFailure,\n    results: results,\n    message: msg,\n    failure_count: failures.length,\n    success_count: successes.length,\n    total: results.length\n  }\n}];"
+      },
+      "id": "build-report",
+      "name": "Build Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": ""
+          },
+          "conditions": [
+            {
+              "id": "has-failure",
+              "leftValue": "={{ $json.has_failure }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "check-failure",
+      "name": "Has Failure?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1320, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://notify-api.line.me/api/notify",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $('Build Report').first().json.notify_token || $env.LINE_NOTIFY_TOKEN || 'PLACEHOLDER' }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "=message={{ encodeURIComponent($('Build Report').first().json.message) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "notify-failure",
+      "name": "LINE Notify Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// No failure - just log\nconst report = $('Build Report').first().json;\nreturn [{\n  json: {\n    status: 'all_ok',\n    message: report.message,\n    checked_at: new Date().toISOString(),\n    total: report.total\n  }\n}];"
+      },
+      "id": "log-ok",
+      "name": "Log OK",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1540, 400]
+    },
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [220, 500]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours": {
+      "main": [
+        [
+          {
+            "node": "Fetch Ad Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Test": {
+      "main": [
+        [
+          {
+            "node": "Fetch Ad Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Ad Config": {
+      "main": [
+        [
+          {
+            "node": "Build Check List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Check List": {
+      "main": [
+        [
+          {
+            "node": "Test CAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test CAPI": {
+      "main": [
+        [
+          {
+            "node": "Build Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Report": {
+      "main": [
+        [
+          {
+            "node": "Has Failure?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Failure?": {
+      "main": [
+        [
+          {
+            "node": "LINE Notify Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

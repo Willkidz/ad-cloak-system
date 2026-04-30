@@ -1,0 +1,23 @@
+火鳥落地頁域名對應表（從截圖記錄）：
+
+廣告名稱 | 主題 | 客服連結子域名 | 落地頁域名
+AS-05 | 爆分王-LINE | mb/cb/jb/lb.freshpathlab.com/?a=MS05/CS05/JS05/LS05 | uoyittshop
+AS-04 | 爆分王-LINE | ms/cs/js/ls.freshpathlab.com/?a=MS04/CS04/JS04/LS04 | kikilokkoyz
+AS-03 | 爆分王-LINE | ms/cs/js/ls.freshpathlab.com/?a=CS03/JS03/LS03 | yugihocoxyz
+AS-02 | 爆分王-LINE | ms/cs/js/ls.freshpathlab.com/?a=MS02/CS02/JS02/LS02 | blxghjkshop
+JD01 | 翡翠-LINE | lin.ee/sWSLAjQ | lmjpukshop
+AB01 | 莊家剋星-LINE | lin.ee/6Nz2LiD 等 | indorolostore
+AX01 | 獨角仙-LINE | lin.ee/kFjS819 等 | kcghostxyz
+N1801 | 蘆甘丹-LINE | lin.ee/qohF2QX | coffeeklcsite
+N1401 | 洪金豹-LINE | lin.ee/lIOzt8Y | jacktyushop
+N2001 | 蘇主金-LINE | n20.freshpathlab.com/?a=N2001 | hamapuxyz
+N2201 | 阿奇體育-LINE | lin.ee/hN7lsKt | hansunspace
+BF01 | 博富-活動01 | bf.freshpathlab.com/?a=BF01 | azmmkstore
+AS-01 | 爆分王-LINE | ms/cs/js/ls.freshpathlab.com/?a=MS01/CS01/JS01/LS01 | glressshop
+
+關鍵發現：
+- 落地頁域名都是獨立域名（非 freshpathlab.com）
+- AS 系列客服連結用 ms/cs/js/ls 子域名
+- AB01/AX01/JD01/N18/N14 用 lin.ee 短連結（不經過 Worker）
+- BF01/N2001 用 freshpathlab.com 子域名
+- 按鈕 gotolink() 跳轉目標就是客服連結

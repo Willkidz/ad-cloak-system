@@ -1,0 +1,31 @@
+LINE URL Scheme 關鍵發現
+========================
+
+1. 加好友的正確格式：
+   https://line.me/R/ti/p/{Percent-encoded LINE ID}
+   例如：https://line.me/R/ti/p/%40linedevelopers
+   
+   注意：LINE ID 必須做 percent encoding，@ 要變成 %40
+
+2. 開啟聊天室的格式（oaMessage）：
+   https://line.me/R/oaMessage/{Percent-encoded LINE ID}/?{text}
+   
+   這個格式會打開與官方帳號的聊天室並預填文字
+
+3. N2001 跳轉的URL：
+   https://line.me/R/oaMessage/%40sucking888/?我要領取專屬優惠 MDA6W
+   
+   問題分析：
+   - 如果 @sucking888 這個LINE官方帳號被封禁或不存在 → 會顯示「無法找到該用戶」
+   - 如果LINE伺服器暫時問題 → 會顯示「伺服器連線失敗」
+
+4. 可能原因：
+   a. LINE官方帳號 @sucking888 已被封禁/停用
+   b. LINE ID 輸入錯誤（不是正確的LINE ID）
+   c. LINE官方帳號好友上限已滿
+   d. 網路問題（但兩個都出錯，不太可能只是網路）
+   e. LINE URL scheme 格式問題
+
+5. 「伺服器連線失敗」vs「無法找到該用戶」：
+   - 「伺服器連線失敗」：通常是LINE app端的網路問題，或LINE伺服器暫時無法處理請求
+   - 「無法找到該用戶」：明確表示該LINE ID不存在或已被封禁

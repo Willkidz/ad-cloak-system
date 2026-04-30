@@ -1,0 +1,140 @@
+# Don AI 知識庫
+
+> don-ai 是一個基於 Cloudflare Workers、D1、N8N 與 React/Vite 的 AI 共用知識庫與自動化系統控制中心。核心目標是管理斗篷系統（Shadow Cloak）、上帝視角歸因系統及相關自動化工作流，並作為 AI 助手的持久化記憶庫。技術棧涵蓋邊緣計算（Cloudflare Workers）、資料庫（D1）、前端（React 19 + TypeScript + Vite + Tailwind CSS v4 + shadcn/ui）、自動化（N8N）與 CI/CD（GitHub Actions）。所有知識按「用途」與「變動頻率」分層管理，AI 助手透過本文件作為唯一入口進行導航。
+
+> AI 全局入口地圖 — 最後更新：2026-03-31
+
+## 核心記憶（.ai/）
+
+- [.ai/memory.md](.ai/memory.md): 專案核心記憶 — 專案概述、編碼規範、架構決策摘要、系統狀態快照
+- [.ai/active-context.md](.ai/active-context.md): 活躍上下文 — 當前任務、最近變更軌跡、下一步計畫
+- [.ai/system-patterns.md](.ai/system-patterns.md): 系統架構模式 — 技術架構、設計模式、關鍵技術決策
+- [.ai/decision-log.md](.ai/decision-log.md): 架構決策記錄 (ADR) — 重要決策的背景、方案與影響（MADR 標準）
+- [.ai/error-log.md](.ai/error-log.md): 錯誤學習日誌 — 踩過的坑與解決方案（含已驗證規則區）
+- [.ai/pending-rules.md](.ai/pending-rules.md): 待驗證規則草稿區 — AI 從錯誤中提煉的規則草稿，經 7 天金絲雀試用
+- [.ai/prompts/debug-prompt.md](.ai/prompts/debug-prompt.md): Debug 基礎模板 — 防執著偏差的結構化除錯流程（增強版見 skills/）
+
+## 目錄結構
+
+### 00-系統索引/（7 個文件）
+
+- [llms.txt](00-系統索引/llms.txt): AI 全局入口地圖（本文件）
+- [系統全貌與快速上手.md](00-%E7%B3%BB%E7%B5%B1%E7%B4%A2%E5%BC%95/sys-overview.md): 系統全貌與快速上手指南（新 Agent 必讀）
+- [tags.yaml](00-系統索引/tags.yaml): 受控標籤詞彙表
+- [通用指令.md](00-%E7%B3%BB%E7%B5%B1%E7%B4%A2%E5%BC%95/common-cmd.md): AI 通用工作指令 v2.6 — 四大核心機制、四大 SOP、三層邊界、條件式動態載入
+- [_index.md](00-系統索引/_index.md): 系統索引目錄索引
+- [truth-table.md](00-系統索引/truth-table.md): 系統硬事實表 — 經過驗證的系統硬事實，遇矛盾時以此為最終裁定
+- [tag-integrity-analysis.md](00-系統索引/tag-integrity-analysis.md): 標籤完整性分析
+
+### 01-核心原則/（15 個文件）
+
+- [_index.md](01-核心原則/_index.md): 核心原則目錄索引
+- [ai-work-spec.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/ai-work-spec.md): AI 工作規範
+- [security-and-safety-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/security-and-safety-rules.md): 安全與防護規則
+- [quality-and-testing-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/quality-and-testing-rules.md): 品質標準與測試規則
+- [workflow-and-communication-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/workflow-and-communication-rules.md): 工作流程與溝通規則
+- [cost-performance-optimization-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/cost-performance-optimization-rules.md): 成本與效能優化規則
+- [deploy-and-version-spec.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/deploy-and-version-spec.md): 部署與版本管理規範
+- [doc-standards-spec.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/doc-standards-spec.md): 文件標準與命名規範
+- [project-specific-specs.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/project-specific-specs.md): 專案特定技術規範
+- [dependency-and-tool-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/dependency-and-tool-rules.md): 依賴管理與工具評估規範
+- [industry-best-practices-rules.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/industry-best-practices-rules.md): 業界最佳實踐規則
+- [mouth-ai-cmd.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/mouth-ai-cmd.md): Mouth AI 指令系統
+- [skill-index.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/skill-index.md): gws CLI 最佳實踐
+- [cross-project-rule-submission-spec.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/cross-project-rule-submission-spec.md): 跨專案 AI 規則提交機制 — 標準化 JSON 格式、Webhook 流程、金絲雀試用期
+- [rule-compliance-evals.md](01-%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87/rule-compliance-evals.md): 規則合規性評估
+
+### 02-動態記憶/（3 個文件）
+
+- [_index.md](02-動態記憶/_index.md): 動態記憶索引
+- [對話精華.md](02-%E5%8B%95%E6%85%8B%E8%A8%98%E6%86%B6/chat-highlights-memory.md): 對話精華
+- [想法與規劃.md](02-%E5%8B%95%E6%85%8B%E8%A8%98%E6%86%B6/ideas-plan-memory.md): 想法與規劃
+
+> ℹ️ D1知識庫完整匯出已移至 [09-歸檔/02-動態記憶/d1-kb-export-memory.md](09-%E6%AD%B8%E6%AA%94/02-%E5%8B%95%E6%85%8B%E8%A8%98%E6%86%B6/d1-kb-export-memory.md)（manus-memory D1 已廢棄，ADR-003）
+
+### 03-專案/（5 個專案）
+
+#### 上帝視角/（102 個文件）
+
+代表文件：Manus 專案指令、N8N Workflow 清單、line-redirect 測試記錄、「上帝視角」專案狀態報告等。詳見 [_index.md](03-專案/上帝視角/_index.md)。
+
+#### 廣為人知/（48 個文件）
+
+代表文件：Manus 專案指令、Facebook 廣告策略、競品分析等。詳見 [_index.md](03-專案/廣為人知/_index.md)。
+
+#### 斗篷管理後台/（71 個文件）
+
+代表文件：技術開發規格書、隱者斗篷部署指令、開源斗篷功能對照表、自建火鳥級斗篷深度解析等。詳見 [_index.md](03-專案/斗篷管理後台/_index.md)。
+
+#### 全行銷/（56 個文件）
+
+詳見 [_index.md](03-專案/全行銷/_index.md)。
+
+#### 斗影知識/（2 個文件）
+
+抖影內容研究與知識管理系統，正式入口為 `https://tuvral.store`，架構為 Cloudflare CDN + Contabo VPS + Nginx + FastAPI + SQLite。詳見 [_index.md](03-專案/斗影知識/_index.md)。
+
+### 04-資源與參考/（13 個文件）
+
+已於 2026-03-28 完成深度整理。**2026-03-31 清理：刪除 6 個空殼指引文件、重複的抖影知識/ 子目錄、sms_platforms_all.txt（已遷移至 don-tools/08-數據與知識庫/）。工具選型與通用資源類文件已遷移至 [don-tools](https://github.com/laoqin1689/don-tools)。**
+**快速入口**：[資源摘要總覽.md](04-%E8%B3%87%E6%BA%90%E8%88%87%E5%8F%83%E8%80%83/resources-summary.md)（AI 日常讀此即可掌握全局）
+保留文件：AI記憶系統架構、AI Agent 開發實踐、Meta 廣告整合分析、斗篷系統與流量過濾、落地頁追蹤與 AI 生成、API Schema 同步規範、Cloudflare 技術規格等。詳見 [_index.md](04-資源與參考/_index.md)。
+
+### 05-原始碼/（108 個文件）
+
+- [worker-mapping.md](05-原始碼/worker-mapping.md): 7 個 Worker 的 Git 路徑對應表（另有 1 個已廢棄）
+- 子目錄：上帝視角/（84 個）、斗篷管理後台/（12 個）、廣為人知/（4 個）、其他/（1 個）、抖影知識/（3 個）
+- 詳見 [_index.md](05-原始碼/_index.md)
+
+### 06-SOP流程/（10 個文件）
+
+- [README.md](06-SOP流程/README.md): SOP 存放說明與通用模板
+- [_index.md](06-SOP流程/_index.md): SOP 流程目錄索引
+- [部署流程SOP.md](06-SOP%E6%B5%81%E7%A8%8B/deploy-sop.md): 部署流程與 CI/CD SOP（已整合 01-核心原則/部署流程規範）
+- [驗收Checklist.md](06-SOP%E6%B5%81%E7%A8%8B/acceptance-checklist.md): 部署驗收 Checklist
+- [Pre-commit自檢清單.md](06-SOP%E6%B5%81%E7%A8%8B/pre-commit-checklist.md): 提交前自檢清單
+- [domain-add-sop.md](06-SOP流程/domain-add-sop.md): 新增域名操作手冊
+- [incident-response-sop.md](06-SOP流程/incident-response-sop.md): 事件回應 SOP
+- [knowledge-base-review-sop.md](06-SOP流程/knowledge-base-review-sop.md): 知識庫審查 SOP
+- [post-mortem-sop.md](06-SOP流程/post-mortem-sop.md): 事後檢討 SOP
+- [sop-new-rule.md](06-SOP流程/sop-new-rule.md): 新增規則 SOP
+
+### 07-配置與環境/（13 個文件）
+
+- [服務清單.md](07-%E9%85%8D%E7%BD%AE%E8%88%87%E7%92%B0%E5%A2%83/service-list-config.md): Cloudflare、Contabo、N8N 等服務清單
+- [認證資訊彙整.md](07-%E9%85%8D%E7%BD%AE%E8%88%87%E7%92%B0%E5%A2%83/auth-info-config.md): 認證資訊彙整
+- [N8N工作流結構.md](07-%E9%85%8D%E7%BD%AE%E8%88%87%E7%92%B0%E5%A2%83/n8n-workflow-arch.md): N8N 工作流結構
+- D1 配置與表結構相關文件
+- 詳見 [_index.md](07-配置與環境/_index.md)
+
+### 08-任務追蹤/（5 個文件）
+
+- [HANDOFF.md](08-任務追蹤/HANDOFF.md): 任務交接文檔模板
+- [版本紀錄.md](08-%E4%BB%BB%E5%8B%99%E8%BF%BD%E8%B9%A4/project-changelog.md): 版本紀錄
+- [評估紀錄.md](08-%E4%BB%BB%E5%8B%99%E8%BF%BD%E8%B9%A4/project-evaluation-log.md): 評估紀錄
+- [shadow-cloak-changelog.md](08-任務追蹤/shadow-cloak-changelog.md): Shadow Cloak 變更記錄
+- 詳見 [_index.md](08-任務追蹤/_index.md)
+
+### 09-歸檔/（107 個文件）
+
+已歸檔的過時文件與已整合文件（預設排除在 AI 搜索範圍外）。2026-03-28 新增 43 個來自 04-資源與參考/ 的已整合文件。2026-03-31 歸檔 4 個 deprecated 文件（含 d1-kb-export-memory.md 及 3 個廣為人知 cmd）。詳見 [_index.md](09-歸檔/_index.md)。
+
+### skills/（按需掛載的專業技能模組）
+
+- [systematic-debugging.md](skills/systematic-debugging.md): 系統性除錯流程（增強版）— 封裝 SOP 3 + debug_prompt 的完整除錯技能
+- [skill-template.md](skills/skill-template.md): 新增技能的標準模板
+- 詳見 [_index.md](skills/_index.md)
+
+## 使用指南
+
+1. AI 助手首次進入時，先讀取本文件了解全局結構（L0 層）
+2. 讀取 `.ai/active-context.md` 了解當前任務狀態
+3. 根據任務需求，進入對應資料夾的 `_index.md` 查看詳細索引（L1 層）
+4. 只對確認需要的文件讀取全文（L2 層）
+5. 遵循 `01-核心原則/` 中的所有規範
+6. 重要發現和決策記錄到 `.ai/` 目錄與 `02-動態記憶/`
+
+## 統計
+
+- 總文件數：588+
+- 最後更新：2026-03-31

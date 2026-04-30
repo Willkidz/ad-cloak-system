@@ -1,0 +1,10 @@
+[{
+  "task_date": "2026-03-15",
+  "project": "上帝視角",
+  "task_title": "系統架構重構 - Code結構定案、欄位精簡、偵測率升級",
+  "summary": "1.Code結構定案：採用[導向][項目][序號]格式(如AS01=全部人員+S項目+第1條廣告)，一個code=一條廣告=一個素材。2.ad_config DataTable重建(新ID:vILi9V1mv3ouo6EM)，欄位：code/pixel/token，已新增AS01測試資料。3.刪除4個廢棄DataTable(line_config_old/project_config/godview_conversion_report/godview_ad_status)。4.成效分頁欄位從16欄精簡為14欄(A~N)，移除人員和項目欄位。5.偵測率驗證區升級：從bf/n20兩行改為C/J/L/M四行按人員統計，公式自動計算偵測率。6.Token Attribution停用自動回覆，成為安靜的歸因記錄器。7.Sheets Report移除padStart補零和自動填寫廣告帳戶ID/人員/素材。8.Google Sheets成效分頁標題列已透過臨時webhook寫入完成。",
+  "key_decisions": "1.n8n=後台(配置中心)，Sheets=前台(營運儀表板)。2.n8n不需要廣告帳戶ID，廣告帳戶ID由人手動填寫在Sheets。3.歸因靠預設訊息Token比對，n8n不回覆不干預。4.偵測率跟著區間走，推廣人員統計真實添加數報給廣告人員填寫。5.Code已包含項目+導向資訊，人員和項目欄位可移除。",
+  "credentials": "ad_config DataTable ID: vILi9V1mv3ouo6EM (舊ID ICxZmq8e0vPZHX5j 已刪除)。line_config ID: 1VvB8jijHE5GXbv6。godview_events ID: 9TFf8tCRvfXRstrS。Google Sheets ID: 1Zs1bZf7tOL7clOK-qQUQ8HeNqjlMwUV9ZzqXV4N0f1I。",
+  "next_steps": "1.確認Google Sheets成效分頁寫入正確。2.端到端測試歸因流程(鏈結點擊→預設訊息→n8n歸因→Sheets更新)。3.提供Meta Pixel ID和CAPI Access Token完成ad_config配置。4.清理非上帝視角前綴的n8n工作流程(如有需要)。",
+  "version": "v7"
+}]

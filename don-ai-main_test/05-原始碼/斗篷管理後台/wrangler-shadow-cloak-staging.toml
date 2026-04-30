@@ -1,0 +1,13 @@
+name = "shadow-cloak-staging"
+account_id = "61f1eb800e48d2cf41ed9ddacf01581b"
+main = "shadow-cloak.js"
+compatibility_date = "2024-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "godview-clicks-staging"
+database_id = "594f8569-ad3c-40c0-ac7c-8b691f9d7885"
+
+[[kv_namespaces]]
+binding = "CLOAKER_CONFIG"
+id = "40f192e8fc514af1b6a55eff8f63bbff"

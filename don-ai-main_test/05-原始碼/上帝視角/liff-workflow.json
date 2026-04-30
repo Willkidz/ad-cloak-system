@@ -1,0 +1,74 @@
+{
+  "name": "上帝視角_LIFF Attribution",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "liff-attribution",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-liff",
+      "name": "LIFF Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\":\"ok\",\"user_id\":\"{{ $json.body.user_id }}\"}",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://godview.app.n8n.cloud/webhook/token-mapping",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event_type: 'liff_attribution', token: $json.body.token, tag: $json.body.tag, line_id: $json.body.line_id, ad_code: $json.body.ad_code, user_id: $json.body.user_id, display_name: $json.body.display_name, fbclid: $json.body.fbclid, fbc: $json.body.fbc, fbp: $json.body.fbp, timestamp: $json.body.timestamp, liff_timestamp: $json.body.liff_timestamp }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "save-attribution",
+      "name": "Save Attribution Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [540, 300]
+    }
+  ],
+  "connections": {
+    "LIFF Webhook": {
+      "main": [
+        [
+          {
+            "node": "Save Attribution Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Attribution Data": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

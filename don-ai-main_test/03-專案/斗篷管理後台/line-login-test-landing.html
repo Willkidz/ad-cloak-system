@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE Login 測試 - 斗篷系統</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00c300 0%, #00a800 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 195, 0, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .line-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .status-box {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .status-box .label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .status-box .value {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .status-box .value:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            border: 1px solid #cfc;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 LINE Login 測試</h1>
+            <p>斗篷系統 - 精準歸因流程驗證</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+
+        <div class="info-box">
+            <strong>📋 測試流程：</strong><br>
+            1. 輸入或生成 Visitor ID (vid)<br>
+            2. 點擊「聯絡我們」按鈕<br>
+            3. 進行 LINE Login 授權<br>
+            4. 查看成功頁面
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="vid">Visitor ID (vid)</label>
+                <input 
+                    type="text" 
+                    id="vid" 
+                    name="vid" 
+                    placeholder="例如：vid_abc123 或留空自動生成"
+                    value=""
+                >
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="generateVid()">
+                    🔄 生成 VID
+                </button>
+                <button type="button" class="btn btn-primary" onclick="startLineLogin()">
+                    <svg class="line-logo" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                    </svg>
+                    聯絡我們
+                </button>
+            </div>
+        </form>
+
+        <div class="status-box">
+            <div class="label">📊 當前配置</div>
+            <div class="value">
+                <strong>Channel ID:</strong> {LINE_LOGIN_CHANNEL_ID}<br>
+                <strong>Callback URL:</strong> {LINE_LOGIN_CALLBACK_URL}<br>
+                <strong>Scope:</strong> openid profile
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💡 提示：需要在 LINE Developers Console 設定 Callback URL</p>
+            <p><a href="https://developers.line.biz/console/" target="_blank">前往 LINE Developers Console →</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 環境變數配置
+        const CONFIG = {
+            CHANNEL_ID: '{LINE_LOGIN_CHANNEL_ID}',
+            CALLBACK_URL: '{LINE_LOGIN_CALLBACK_URL}',
+            SCOPE: 'openid profile'
+        };
+
+        // 生成隨機 VID
+        function generateVid() {
+            const vid = 'vid_' + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+            document.getElementById('vid').value = vid;
+            showSuccess(`✅ 已生成 VID: ${vid}`);
+        }
+
+        // 開始 LINE Login 流程
+        function startLineLogin() {
+            const vidInput = document.getElementById('vid').value.trim();
+            let vid = vidInput;
+
+            // 如果沒有輸入 VID，自動生成
+            if (!vid) {
+                vid = 'vid_' + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+                document.getElementById('vid').value = vid;
+            }
+
+            // 驗證配置
+            if (CONFIG.CHANNEL_ID === '{LINE_LOGIN_CHANNEL_ID}' || 
+                CONFIG.CALLBACK_URL === '{LINE_LOGIN_CALLBACK_URL}') {
+                showError('❌ 錯誤：請先設定 LINE_LOGIN_CHANNEL_ID 和 LINE_LOGIN_CALLBACK_URL 環境變數');
+                return;
+            }
+
+            // 構建授權 URL
+            const state = vid; // 使用 vid 作為 state 參數
+            const authUrl = new URL('https://access.line.me/oauth2/v2.1/authorize');
+            authUrl.searchParams.append('response_type', 'code');
+            authUrl.searchParams.append('client_id', CONFIG.CHANNEL_ID);
+            authUrl.searchParams.append('redirect_uri', CONFIG.CALLBACK_URL);
+            authUrl.searchParams.append('state', state);
+            authUrl.searchParams.append('scope', CONFIG.SCOPE);
+            authUrl.searchParams.append('bot_prompt', 'normal');
+
+            console.log('🔗 授權 URL:', authUrl.toString());
+            console.log('📊 VID:', vid);
+            console.log('🔐 State:', state);
+
+            // 跳轉到 LINE Login
+            window.location.href = authUrl.toString();
+        }
+
+        // 顯示錯誤訊息
+        function showError(message) {
+            const errorBox = document.getElementById('errorMessage');
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+            setTimeout(() => {
+                errorBox.style.display = 'none';
+            }, 5000);
+        }
+
+        // 顯示成功訊息
+        function showSuccess(message) {
+            const successBox = document.getElementById('successMessage');
+            successBox.textContent = message;
+            successBox.style.display = 'block';
+            setTimeout(() => {
+                successBox.style.display = 'none';
+            }, 5000);
+        }
+
+        // 頁面載入時檢查配置
+        window.addEventListener('load', function() {
+            console.log('📋 LINE Login 測試頁面已載入');
+            console.log('⚙️ 配置:', CONFIG);
+
+            // 如果配置不完整，顯示警告
+            if (CONFIG.CHANNEL_ID === '{LINE_LOGIN_CHANNEL_ID}') {
+                showError('⚠️ 警告：LINE_LOGIN_CHANNEL_ID 未設定，請檢查環境變數');
+            }
+            if (CONFIG.CALLBACK_URL === '{LINE_LOGIN_CALLBACK_URL}') {
+                showError('⚠️ 警告：LINE_LOGIN_CALLBACK_URL 未設定，請檢查環境變數');
+            }
+        });
+
+        // 支援 Enter 鍵提交
+        document.getElementById('loginForm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                startLineLogin();
+            }
+        });
+    </script>
+</body>
+</html>

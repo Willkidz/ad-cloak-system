@@ -1,0 +1,44 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Strip Manus Runtime Scripts
+        run: |
+          python3 -c "
+          import re
+          file_path = 'dist/public/index.html'
+          with open(file_path, 'r+') as f:
+              html = f.read()
+              html = re.sub(r'<script id=\"manus-runtime\">.*?</script>', '', html, flags=re.DOTALL)
+              html = re.sub(r'<script src=\"/__manus__/debug-collector\.js\" defer></script>', '', html)
+              html = re.sub(r'<script\s+defer\s+src=\"https://manus-analytics\.com/umami\"[^>]*></script>', '', html)
+              f.seek(0)
+              f.write(html)
+              f.truncate()
+          "
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler@3 pages deploy dist/public --project-name=cloak-admin-frontend --commit-dirty=true

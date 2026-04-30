@@ -1,0 +1,33 @@
+關鍵發現：
+
+#128 記憶：火鳥斗篷結構
+- 落地頁(ryinb.site) → 分流頁(ini.html?id=XXX) → Worker(freshpathlab.com)
+- gotolink() 跳轉到 ini.html?id=XXX（分流頁），不是直接跳 Worker
+- 分流頁再根據 id 跳轉到對應 Worker URL
+
+#189 記憶：火鳥連結格式
+- 火鳥連結格式：https://mb.freshpathlab.com/?a=MS05
+- 但截圖顯示 AB01/AX01 用 lin.ee 短連結
+
+#193 記憶：火鳥源碼結構
+- gotolink() 由火鳥隱藏注入
+- PageView 由火鳥自動發到產品像素
+- Purchase 由 gotolink() 觸發發到產品像素
+- 可在 </body> 前加自訂 JS
+
+#180 記憶：組別同步
+- AB01→JB01/CB01/MB01/LB01
+- AX01→JX01/CX01/MX01/LX01
+- 這些子域名都有 DNS + Worker route
+
+結論：
+- AB01/AX01 截圖中用 lin.ee 是因為火鳥設定的客服連結是 lin.ee 短連結
+- 但 Config API 已有 jb/cb/mb/lb 和 jx/cx/mx/lx 的 Worker 路由
+- 用戶之前說過要統一用 freshpathlab.com 格式
+- AB01/AX01 應該也改成 freshpathlab.com 格式（如 mb.freshpathlab.com/?a=MB01）
+
+火鳥落地頁 JS 問題：
+- 落地頁域名是獨立域名（uoyittshop 等），不是 freshpathlab.com
+- gotolink() 跳的是 ini.html（分流頁），不是直接跳 Worker
+- 所以 JS 無法從 gotolink 目標連結取得 freshpathlab.com 子域名
+- 需要從 ini.html 的 id 參數或其他方式判斷產品

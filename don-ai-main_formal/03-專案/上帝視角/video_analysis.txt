@@ -1,0 +1,24 @@
+影片分析記錄
+============
+
+影片1: -7358436733272914.mp4
+- 落地頁域名: kikilokk.xyz
+- 流程: FB廣告 → kikilokk.xyz（LINE QR Code頁面）→ 點擊「無須掃碼點擊加入」→ 跳轉到LINE
+- 錯誤: LINE顯示「伺服器連線失敗 - LINE無法使用！請確認網路連線狀態。」
+- 問題: LINE加好友連結指向的LINE官方帳號可能有問題，或LINE URL scheme有誤
+
+影片2: 2537803851807671165.mp4
+- 落地頁域名: hamapu.xyz
+- 流程: FB廣告 → hamapu.xyz（LINE QR Code頁面）→ 點擊「無須掃碼點擊加入」→ 跳轉到LINE
+- 錯誤: LINE顯示「無法找到該用戶」
+- 問題: LINE加好友連結指向的帳號不存在或已被封禁
+
+兩個問題的共同點:
+1. 都是從落地頁跳轉到LINE時出錯
+2. 落地頁本身正常顯示（QR Code + 加入按鈕）
+3. 問題出在LINE加好友的URL上
+
+需要調查:
+1. kikilokk.xyz 和 hamapu.xyz 的落地頁中，LINE加好友連結指向哪裡
+2. 這些LINE帳號是否正常
+3. 是否是我們的Worker代碼生成了錯誤的LINE連結

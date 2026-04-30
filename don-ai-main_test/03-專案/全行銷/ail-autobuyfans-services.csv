@@ -1,0 +1,342 @@
+﻿service_id,name,platform,service_type,category,rate_twd,rate_usd,min,max,refill,cancel,dripfeed,currency
+5,Line 群組人數,Other,Other,Line,5040.0,157.5,100,600,No,No,No,TWD
+7,Line 社群人數「審核社群」,Other,Other,Line,8220.0,256.875,50,800,No,No,No,TWD
+8,line 社群/群組 已讀包月,Other,Packages,Line,3000.0,93.75,1,1,No,No,No,TWD
+11,Discord 成員數 (離線成員、總成員) ♲保固1個月,Discord,Other,Discord,720.0,22.5,500,4500,No,No,No,TWD
+12,Discord 成員數 (包月上線成員) ♲保固1個月,Discord,Packages,Discord,1070.0,33.4375,500,4500,No,No,No,TWD
+13,💾 雲端硬碟搬家,Other,Other,Drive,1500.0,46.875,50,1000000000,No,No,No,TWD
+19,IG追蹤 (👨全球帳號，掉粉率偏高，♲保固30天）,Instagram,Followers/Subscribers,Instagram,70.0,2.1875,10,1000000,No,No,No,TWD
+27,YouTube 觀看次數 真實觀看 (♲ 30天),YouTube,Views/Plays,Youtube,80.0,2.5,10000,10000000,No,No,No,TWD
+41,Facebook 臉書 貼文讚(台灣帳號)(30天保固),Facebook,Likes/Reactions,Facebook,1710.0,53.4375,10,15000,No,No,No,TWD
+42,Facebook 臉書粉絲專頁 追蹤＋按讚 伺服器1 (快速啟動),Facebook,Followers/Subscribers,Facebook,50.0,1.5625,10,250000,No,No,No,TWD
+49,Instagram IG 直播觀看數 非洲,Instagram,Views/Plays,Instagram,1170.0,36.5625,100,15000,No,No,No,TWD
+50,DCard 文章留言,Dcard,Comments,DCard,64000.0,2000.0,5,50,No,No,No,TWD
+53,DCard 代發文,Dcard,Other,DCard,150000.0,4687.5,1,20,No,No,No,TWD
+55,Instagram IG Reel 短影片 按讚,Instagram,Likes/Reactions,Instagram,40.0,1.25,50,10000,No,No,No,TWD
+56,TikTok 追蹤 世界追蹤 快速訂單 (30天自動補單),TikTok,Followers/Subscribers,TikTok,150.0,4.6875,10,100000,No,No,No,TWD
+58,DCard 文章按讚,Dcard,Likes/Reactions,DCard,21000.0,656.25,5,200,No,No,No,TWD
+65,TikTok 追蹤 世界追蹤 快速完成 (無保固),TikTok,Followers/Subscribers,TikTok,70.0,2.1875,50,300000,No,No,No,TWD
+70,Threads 真人按讚  (無保固),Threads,Likes/Reactions,Threads,60.0,1.875,10,1000,No,No,No,TWD
+72,Threads貼文轉發 全球真實粉絲分享、轉貼 可提高觸及率（無保固）,Threads,Followers/Subscribers,Threads,200.0,6.25,10,20000,No,No,No,TWD
+75,IG追蹤 (👨全球帳號，♲保固120天）,Instagram,Followers/Subscribers,Instagram,50.0,1.5625,10,10000000,No,No,No,TWD
+79,Line 社群人數 一般社群「指定名稱」,Other,Other,Line,8770.0,274.0625,50,500,No,No,No,TWD
+80,IG追蹤 (👨全球帳號，♲保固180天）,Instagram,Followers/Subscribers,Instagram,30.0,0.9375,1,10000000,No,No,No,TWD
+81,Line 社群人數 審核社群 「指定名稱」,Other,Other,Line,9040.0,282.5,50,500,No,No,No,TWD
+82,YouTube 追蹤 全球粉絲 (♲ 30天),YouTube,Followers/Subscribers,Youtube,210.0,6.5625,50,100000,No,No,No,TWD
+88,YouTube 觀看次數 (♲ 180天),YouTube,Views/Plays,Youtube,150.0,4.6875,50,2147483647,No,No,No,TWD
+89,Youtube 「Shorts」 觀看 (♲ 30天),YouTube,Views/Plays,Youtube,40.0,1.25,50,2000000,No,No,No,TWD
+90,Youtube 觀看時數 60分鐘影片 (♲ 30天),YouTube,Views/Plays,Youtube,1340.0,41.875,10,4000,No,No,No,TWD
+92,Youtube Shorts 短影片 按讚 (♲ 30天),YouTube,Likes/Reactions,Youtube,50.0,1.5625,10,1000000,No,No,No,TWD
+93,YouTube 追蹤 全球粉絲 (♲ 180天),YouTube,Followers/Subscribers,Youtube,560.0,17.5,20,100000,No,No,No,TWD
+95,X 按讚＋送少量轉推（同帳號）（♲無保固，不掉）,Twitter/X,Likes/Reactions,X (Twitter),610.0,19.0625,10,50,No,No,No,TWD
+96,X 按讚＋轉推＋留言（同帳號，留言隨機＠三個用戶）（♲無保固，不掉）,Twitter/X,Likes/Reactions,X (Twitter),1760.0,55.0,30,500,No,No,No,TWD
+101,Instagram 按讚 (👨亞洲帳號，♲保固60天）,Instagram,Likes/Reactions,Instagram,120.0,3.75,10,1000,No,No,No,TWD
+116,Instagram IG Reel 短影片 觀看次數,Instagram,Views/Plays,Instagram,10.0,0.3125,100,100000000,No,No,No,TWD
+117,Instagram IG Reel 短影片 觀看次數(一天內可完成大單量),Instagram,Views/Plays,Instagram,10.0,0.3125,1000,100000000,No,No,No,TWD
+136,Telegram 群組成員 （♲保固180天）,Telegram,Other,Telegram,30.0,0.9375,10,300000,No,No,No,TWD
+138,Telegram 頻道成員 （♲保固30天）,Telegram,Other,Telegram,20.0,0.625,10,300000,No,No,No,TWD
+139,Telegram 頻道成員 有頭像 好品質成員（♲ 無保固）,Telegram,Other,Telegram,60.0,1.875,500,100000,No,No,No,TWD
+140,Telegram 頻道未來50則訊息 自動好的emoji＋自由觀看次數 [👍 ❤️ 🔥 🎉 😁],Telegram,Views/Plays,Telegram,260.0,8.125,20,2000000,No,No,No,TWD
+141,Google 店家評價五星（五星+評論） [🇺🇸美國帳號],Google,Reviews/Ratings,Google,244500.0,7640.625,1,5000,No,No,No,TWD
+148,YouTube 觀看次數 「可增加觀看時數」（無保固）,YouTube,Views/Plays,Youtube,40.0,1.25,50,7000000,No,No,No,TWD
+168,Twitch 追蹤 全球粉絲 [15天自動補單],Twitch,Followers/Subscribers,Twitch,40.0,1.25,100,500000,No,No,No,TWD
+169,TikTok 世界粉 觀看＋儲存,TikTok,Views/Plays,TikTok,10.0,0.3125,5000,1000000,No,No,No,TWD
+174,Instagram 限時動態 觀看次數 [所有限動]  [外國粉絲] – 伺服器2,Instagram,Followers/Subscribers,Instagram,10.0,0.3125,100,15000,No,No,No,TWD
+175,Youtube 影片按讚 (♲ 360天),YouTube,Likes/Reactions,Youtube,80.0,2.5,10,75000,No,No,No,TWD
+176,Instagram 按讚 (👨中文帳號，♲保固30天）,Instagram,Likes/Reactions,Instagram,190.0,5.9375,20,10000,No,No,No,TWD
+177,bilibili 追蹤 (👨全球帳號，♲保固30天）,Other,Followers/Subscribers,嗶哩嗶哩 BiliBili,900.0,28.125,10,1000,No,No,No,TWD
+178,LinkedIn 追蹤 [60天保固],LinkedIn,Followers/Subscribers,Linkedin,1210.0,37.8125,1,3000,No,No,No,TWD
+179,Facebook 世界粉隨機留言 高品質帳號 [保固30天],Facebook,Comments,Facebook,1350.0,42.1875,1,10000,No,No,No,TWD
+181,Facebook 台灣粉專按讚 [保固30天],Facebook,Likes/Reactions,Facebook,2450.0,76.5625,1,100000,No,No,No,TWD
+182,Facebook 台灣貼文表情按讚 [爱心❤️],Facebook,Likes/Reactions,Facebook,1960.0,61.25,5,1000,No,No,No,TWD
+183,Facebook 臉書 貼文讚 影片貼文 [無保固],Facebook,Likes/Reactions,Facebook,40.0,1.25,50,500000,No,No,No,TWD
+184,LinkedIn 按讚 [60天保固],LinkedIn,Likes/Reactions,Linkedin,830.0,25.9375,1,20000,No,No,No,TWD
+185,LinkedIn 領英 轉發貼文 [保固90天],LinkedIn,Other,Linkedin,1360.0,42.5,1,10000,No,No,No,TWD
+186,Discord 頻道訊息回應 每日40則 一個禮拜280+則,Discord,Other,Discord,3670.0,114.6875,1,1,No,No,No,TWD
+187,Discord 頻道訊息回應 每日80則 一個禮拜560+則,Discord,Other,Discord,6420.0,200.625,1,1,No,No,No,TWD
+188,Discord 頻道訊息回應 每日120則 一個禮拜840+則,Discord,Other,Discord,9410.0,294.0625,1,1,No,No,No,TWD
+189,Discord 頻道訊息回應 每日240則 一個禮拜1680+則,Discord,Other,Discord,14670.0,458.4375,1,1,No,No,No,TWD
+190,Discord 頻道訊息回應 每日40則 一個月1200+則,Discord,Other,Discord,18340.0,573.125,1,1,No,No,No,TWD
+191,Discord 頻道訊息回應 每日80則 一個月2400+則,Discord,Other,Discord,33010.0,1031.5625,1,1,No,No,No,TWD
+192,Discord 頻道訊息回應 每日120則 一個月3600+則,Discord,Other,Discord,48410.0,1512.8125,1,1,No,No,No,TWD
+193,Discord 頻道訊息回應 每日240則 一個月7200+則,Discord,Other,Discord,77020.0,2406.875,1,1,No,No,No,TWD
+194,Facebook 臉書 貼文讚 照片貼文 [無保固],Facebook,Likes/Reactions,Facebook,40.0,1.25,30,20000,No,No,No,TWD
+196,Youtube 「Shorts」 觀看 (♲ 90天),YouTube,Views/Plays,Youtube,50.0,1.5625,100,5000000,No,No,No,TWD
+201,Pinterest 追蹤 [保固30天],Pinterest,Followers/Subscribers,Pinterest,610.0,19.0625,20,10000,No,No,No,TWD
+202,小紅書 全球粉絲 關注 訂閱,Xiaohongshu,Followers/Subscribers,小紅書,4500.0,140.625,50,30000,No,No,No,TWD
+205,FB 臉書 直播人数 停留240分鐘 – 伺服器3 （0-5分鐘啟動）,Facebook,Other,Facebook,760.0,23.75,20,1000,No,No,No,TWD
+206,1個月 返鏈結 Backlink [Dofollow]  2-7天開始,Website Traffic,Website Traffic,Web Traffic,240.0,7.5,1,1,No,No,No,TWD
+207,3個月 返鏈結 Backlink [Dofollow] 2-7天開始,Website Traffic,Website Traffic,Web Traffic,660.0,20.625,1,1,No,No,No,TWD
+208,6個月 返鏈結 Backlink [Dofollow] 2-7天開始,Website Traffic,Website Traffic,Web Traffic,1170.0,36.5625,1,1,No,No,No,TWD
+212,Tiktok 幣代儲,TikTok,Other,TikTok,470.0,14.6875,5000,1000000,No,No,No,TWD
+213,FB 臉書 直播人数 停留180分鐘 – 伺服器2 （0-5分鐘啟動）,Facebook,Other,Facebook,590.0,18.4375,20,1000,No,No,No,TWD
+214,FB 臉書 直播人数 停留30分鐘 （0-5分鐘啟動）,Facebook,Other,Facebook,100.0,3.125,20,1000,No,No,No,TWD
+218,X 亞洲頭貼追隨 (日本 / 韓國 / 香港)(♲保固: 30 天),Twitter/X,Other,X (Twitter),2200.0,68.75,100,50000,No,No,No,TWD
+219,X 客製化留言（區塊鏈頭像帳號）（無保固）,Twitter/X,Comments,X (Twitter),1530.0,47.8125,3,1000,No,No,No,TWD
+220,X 按讚＋轉推＋留言（同帳號，客製化留言）（♲無保固，不掉）,Twitter/X,Likes/Reactions,X (Twitter),1830.0,57.1875,20,1000,No,No,No,TWD
+221,X 追蹤 NFT頭貼女性帳號 （♲無保固）,Twitter/X,Followers/Subscribers,X (Twitter),1530.0,47.8125,100,100000,No,No,No,TWD
+222,X 客製化留言（區塊鏈頭像帳號）（♲保固100天）,Twitter/X,Comments,X (Twitter),3900.0,121.875,10,200,No,No,No,TWD
+223,X 客製化留言（🇯🇵日本帳號）（無保固）,Twitter/X,Comments,X (Twitter),2450.0,76.5625,10,250,No,No,No,TWD
+224,Instagram 亞洲按讚 (👨80%華人帳號，♲保固30天）,Instagram,Likes/Reactions,Instagram,370.0,11.5625,10,4000,No,No,No,TWD
+225,Instagram 亞洲按讚 (👨50%華人帳號，90%有貼文）（保固30天）,Instagram,Likes/Reactions,Instagram,240.0,7.5,10,1000000,No,No,No,TWD
+226,Instagram 亞洲帳號 客製化留言 (90%港澳台帳號) （♲30天保固）,Instagram,Comments,Instagram,2930.0,91.5625,5,1000,No,No,No,TWD
+227,YouTube 觀看次數 🇹🇼台灣觀看 (♲ 30天),YouTube,Views/Plays,Youtube,280.0,8.75,500,100000,No,No,No,TWD
+228,YouTube 觀看次數 🇹🇼台灣觀看 (♲ 30天) - 伺服器2,YouTube,Views/Plays,Youtube,250.0,7.8125,500,100000,No,No,No,TWD
+229,YouTube 觀看次數 🇭🇰香港觀看 (♲ 30天),YouTube,Views/Plays,Youtube,270.0,8.4375,500,100000,No,No,No,TWD
+230,YouTube 觀看次數 🇲🇾馬來西亞觀看 (♲ 30天),YouTube,Views/Plays,Youtube,260.0,8.125,500,100000,No,No,No,TWD
+231,Telegram 群組PREMIUM成員 （♲保固7天）,Telegram,Other,Telegram,120.0,3.75,100,30000,No,No,No,TWD
+232,PTT代發文 (台灣真人帳號),Taiwan Forums,Accounts,PTT,364000.0,11375.0,1,10,No,No,No,TWD
+233,PTT貼文留言 (台灣真人帳號),Taiwan Forums,Comments,PTT,105000.0,3281.25,5,100,No,No,No,TWD
+244,Facebook 臉書 貼文讚(土耳其帳號)(超快速完成)(♲30天保固),Facebook,Likes/Reactions,Facebook,270.0,8.4375,10,25000,No,No,No,TWD
+251,Facebook 群組成員 世界粉絲（♲15天保固）,Facebook,Followers/Subscribers,Facebook,40.0,1.25,50,100000,No,No,No,TWD
+252,Facebook 🇹🇼台灣帳號 客製化 留言服務,Facebook,Comments,Facebook,40000.0,1250.0,5,150,No,No,No,TWD
+253,Facebook 🇹🇼台灣帳號 任何版面(除私密社團) 發文服務,Facebook,Accounts,Facebook,225000.0,7031.25,1,10,No,No,No,TWD
+254,DCard 代發文 指定男女/指定是否用學校帳號,Dcard,Accounts,DCard,200000.0,6250.0,1,20,No,No,No,TWD
+255,DCard 文章留言 （指定發文者留言/回覆留言）,Dcard,Comments,DCard,74000.0,2312.5,1,50,No,No,No,TWD
+257,Facebook 臉書 圖片貼文、影片貼文讚(世界粉絲)(快速完成)(♲30天保固),Facebook,Followers/Subscribers,Facebook,200.0,6.25,10,40000,No,No,No,TWD
+276,Mobile01 代發文,Taiwan Forums,Other,Mobile01,300000.0,9375.0,1,20,No,No,No,TWD
+277,Mobile01 文章留言,Taiwan Forums,Comments,Mobile01,90000.0,2812.5,5,50,No,No,No,TWD
+278,FB 臉書 直播人数 停留60分鐘 – 伺服器3 （0-5分鐘啟動）,Facebook,Other,Facebook,200.0,6.25,20,1000,No,No,No,TWD
+279,FB 臉書 直播人数 停留90分鐘,Facebook,Other,Facebook,290.0,9.0625,20,1000,No,No,No,TWD
+280,FB 臉書 直播人数 停留120分鐘,Facebook,Other,Facebook,390.0,12.1875,20,1000,No,No,No,TWD
+281,FB 臉書 直播人数 停留150分鐘,Facebook,Other,Facebook,490.0,15.3125,20,1000,No,No,No,TWD
+282,FB 臉書 直播人数 停留300分鐘,Facebook,Other,Facebook,1700.0,53.125,20,20000,No,No,No,TWD
+283,FB 臉書 直播人数 停留360分鐘,Facebook,Other,Facebook,2350.0,73.4375,20,20000,No,No,No,TWD
+284,Discord 離線成員、總人數 世界粉絲 有頭像 [保固30天],Discord,Followers/Subscribers,Discord,270.0,8.4375,50,1000,No,No,No,TWD
+286,Instagram 🇺🇸 AI 成長套餐 [每月套餐] [~1K 追蹤者/月],Instagram,Followers/Subscribers,Instagram,2020.0,63.125,1,1,No,No,No,TWD
+287,Instagram 🇺🇸 AI 成長套餐 [每月套餐] [~3K 追蹤者/月],Instagram,Followers/Subscribers,Instagram,4340.0,135.625,1,1,No,No,No,TWD
+288,Instagram 🇺🇸 AI 成長套餐 [每月套餐] [~5K 追蹤者/月],Instagram,Followers/Subscribers,Instagram,6720.0,210.0,1,1,No,No,No,TWD
+289,Spotify Premium 播放 [♻️保固365天],Spotify,Views/Plays,Spotify,20.0,0.625,1000,100000000,No,No,No,TWD
+290,Facebook 🇺🇸美國用戶 文章分享 [30天保固],Facebook,Shares,Facebook,670.0,20.9375,5,5000,No,No,No,TWD
+291,Facebook 影片觀看[無保固] - 伺服器2,Facebook,Views/Plays,Facebook,10.0,0.3125,500,100000000,No,No,No,TWD
+295,YouTube 觀看次數 單日可跑5k~15K觀看 (♲ 360天),YouTube,Views/Plays,Youtube,50.0,1.5625,100,10000000,No,No,No,TWD
+296,👍🏻Youtube 「Shorts」 觀看 (♲ 365天),YouTube,Views/Plays,Youtube,50.0,1.5625,100,10000000,No,No,No,TWD
+297,TikTok 影片按讚 世界粉絲 (無保固),TikTok,Followers/Subscribers,TikTok,10.0,0.3125,10,100000,No,No,No,TWD
+300,🇹🇼Facebook 普通台灣貼文留言 (速度:正常),Facebook,Comments,Facebook,16170.000000000002,505.3125,1,2000,No,No,No,TWD
+301,🇹🇼Facebook 頂級台灣貼文留言 (速度:正常),Facebook,Comments,Facebook,26960.0,842.5,1,10000,No,No,No,TWD
+302,🇹🇼Instagram 普通台灣粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram,650.0,20.3125,10,200000,No,No,No,TWD
+303,🇹🇼Instagram 普通台灣粉絲 (速度:慢速),Instagram,Followers/Subscribers,Instagram,650.0,20.3125,10,200000,No,No,No,TWD
+304,🇹🇼Instagram 普通台灣粉絲 (全女性)(速度:快速),Instagram,Followers/Subscribers,Instagram,860.0,26.875,50,15000,No,No,No,TWD
+305,🇹🇼Instagram 高級台灣粉絲 (速度:快速) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,4850.0,151.5625,10,6000,No,No,No,TWD
+306,🇹🇼Instagram 高級台灣粉絲 (速度:慢速) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,4850.0,151.5625,10,6000,No,No,No,TWD
+307,🇹🇼Instagram 頂級台灣粉絲 (速度:快速) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,6470.0,202.1875,10,6100,No,No,No,TWD
+308,🇹🇼Instagram 頂級台灣粉絲 (全男性)(速度:快速) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,8630.0,269.6875,10,2400,No,No,No,TWD
+309,🇹🇼Instagram 頂級台灣粉絲 (全女性)(速度:快速) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,8630.0,269.6875,10,3400,No,No,No,TWD
+310,🇹🇼Instagram 真人台灣粉絲 (純追蹤) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,8630.0,269.6875,10,6100,No,No,No,TWD
+311,🇹🇼Instagram 真人台灣粉絲 (純追蹤)(全男性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,10780.0,336.875,10,2400,No,No,No,TWD
+312,🇹🇼Instagram 真人台灣粉絲 (純追蹤)(全女性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,10780.0,336.875,10,3400,No,No,No,TWD
+313,🇹🇼Instagram 真人台灣粉絲 (低互動) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,16170.000000000002,505.3125,10,5000,No,No,No,TWD
+314,🇹🇼Instagram 真人台灣粉絲 (低互動)(全男性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,21560.0,673.75,10,1700,No,No,No,TWD
+315,🇹🇼Instagram 真人台灣粉絲 (低互動)(全女性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,21560.0,673.75,10,2300,No,No,No,TWD
+316,🇹🇼Instagram 真人台灣粉絲 (高互動) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,37740.0,1179.375,10,500,No,No,No,TWD
+317,🇹🇼Instagram 真人台灣粉絲 (高互動)(全男性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,43130.0,1347.8125,10,200,No,No,No,TWD
+318,🇹🇼Instagram 真人台灣粉絲 (高互動)(全女性) 可追蹤私密帳號,Instagram,Followers/Subscribers,Instagram,43130.0,1347.8125,10,300,No,No,No,TWD
+319,🇹🇼Threads 普通台灣粉絲 (速度:快速),Threads,Followers/Subscribers,Threads,860.0,26.875,20,5000,No,No,No,TWD
+320,🇹🇼Facebook 頂級台灣貼文讚 (速度:1天內),Facebook,Likes/Reactions,Facebook,5390.0,168.4375,20,15000,No,No,No,TWD
+321,🇹🇼Facebook 普通台灣貼文讚 (速度:正常),Facebook,Likes/Reactions,Facebook,3230.0,100.9375,10,100000,No,No,No,TWD
+322,🇹🇼 Facebook 普通台灣 粉絲專頁讚及追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook,4310.0,134.6875,10,100000,No,No,No,TWD
+323,🇹🇼Facebook 頂級台灣 粉絲專頁讚及追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook,8630.0,269.6875,50,10000,No,No,No,TWD
+325,🇹🇼Facebook 頂級台灣 社團粉絲 (速度:正常),Facebook,Followers/Subscribers,Facebook,21560.0,673.75,50,4000,No,No,No,TWD
+326,🇹🇼Facebook 真人台灣 社團粉絲 (速度:正常),Facebook,Followers/Subscribers,Facebook,26960.0,842.5,50,4000,No,No,No,TWD
+327,IG追蹤 (👨全球帳號，♲保固30天）,Instagram,Followers/Subscribers,Instagram,300.0,9.375,10,500000,No,No,No,TWD
+330,👍🏻YouTube 自訂留言 世界高品質帳號 快速啟動 (♲ 360天),YouTube,Comments,Youtube,1370.0,42.8125,1,500,No,No,No,TWD
+331,👍🏻YouTube shorts 自訂留言 世界高品質帳號 快速啟動 (♲ 360天),YouTube,Comments,Youtube,1110.0,34.6875,1,500,No,No,No,TWD
+332,👍🏻X 按讚（♲30天，不掉）,Twitter/X,Likes/Reactions,X (Twitter),370.0,11.5625,10,10000,No,No,No,TWD
+333,👍🏻X 文章轉推 世界粉絲 （♲保固30天）,Twitter/X,Followers/Subscribers,X (Twitter),470.0,14.6875,10,10000,No,No,No,TWD
+337,👍🏻TikTok直播觀看 [包30天] [10分鐘內上，每天不限次数，不限時常]⚡️,TikTok,Views/Plays,TikTok,306470.0,9577.1875,10,10000,No,No,No,TWD
+339,👍🏻Pinterest 追蹤 [保固30天],Pinterest,Followers/Subscribers,Pinterest,240.0,7.5,20,10000,No,No,No,TWD
+346,👍🏻TikTok 直播 觀看人數 [停留240分鐘],TikTok,Live Stream Viewers,TikTok,11110.0,347.1875,100,5000,No,No,No,TWD
+347,👍🏻TikTok 直播 觀看人數 [停留300分鐘],TikTok,Live Stream Viewers,TikTok,13890.0,434.0625,100,5000,No,No,No,TWD
+348,👍🏻TikTok 直播 觀看人數 [停留360分鐘],TikTok,Live Stream Viewers,TikTok,16660.0,520.625,100,5000,No,No,No,TWD
+349,👍🏻TikTok 直播 觀看人數 [停留24小時],TikTok,Live Stream Viewers,TikTok,54990.0,1718.4375,100,5000,No,No,No,TWD
+350,👍🏻Linkedin 貼文留言 (USA) 隨機留言 ♲保固365天,LinkedIn,Comments,Linkedin,2450.0,76.5625,5,5000,No,No,No,TWD
+351,👍🏻Linkedin 貼文留言 (USA) 自訂留言 ♲保固365天,LinkedIn,Comments,Linkedin,3260.0,101.875,5,1000,No,No,No,TWD
+352,👍🏻Instagram 按讚+曝光+觸及 (👨全球帳號，♲保固30天）,Instagram,Views/Plays,Instagram,80.0,2.5,5,30000,No,No,No,TWD
+353,👍🏻Instagram 貼文留言 ⭐️針對內容回覆⭐️ (👨全球高品質帳號，♲保固30天）,Instagram,Comments,Instagram,12320.0,385.0,5,2500,No,No,No,TWD
+357,👍🏻 X 客製化留言（🇨🇳中國帳號）（無保固）,Twitter/X,Comments,X (Twitter),1530.0,47.8125,3,1000,No,No,No,TWD
+358,X 書籤（無保固）世界粉絲,Twitter/X,Followers/Subscribers,X (Twitter),100.0,3.125,10,500,No,No,No,TWD
+359,👍🏻🇨🇳 Telegram 頻道成員 中國粉絲（♲ 無保固）,Telegram,Followers/Subscribers,Telegram,50.0,1.5625,500,200000,No,No,No,TWD
+360,👍🏻 Telegram 頻道成員 英文粉絲（♲ 無保固）,Telegram,Followers/Subscribers,Telegram,60.0,1.875,500,100000,No,No,No,TWD
+361,👍🏻Telegram 訊息觀看次數（過去50則貼文）（無保固）,Telegram,Views/Plays,Telegram,10.0,0.3125,10,5000000,No,No,No,TWD
+362,👍🏻YouTube 追蹤 全球粉絲 (♲ 180天),YouTube,Followers/Subscribers,Youtube,150.0,4.6875,50,200000,No,No,No,TWD
+366,Instagram IG 分享 ♲無保固 — 伺服器2,Instagram,Shares,Instagram,10.0,0.3125,10,1000000,No,No,No,TWD
+370,FB 臉書 直播人数 停留60分鐘 – 伺服器4 （0-5分鐘啟動）,Facebook,Other,Facebook,90.0,2.8125,20,20000,No,No,No,TWD
+371,Youtube 直播 觀看人數 [停留240分鐘]  ⭐️斷播可重新加入,YouTube,Live Stream Viewers,Youtube,90.0,2.8125,50,400000,No,No,No,TWD
+372,Youtube 直播 觀看人數 [停留15分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,10.0,0.3125,50,500000,No,No,No,TWD
+373,Youtube 直播 觀看人數 [停留30分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,20.0,0.625,50,500000,No,No,No,TWD
+374,Youtube 直播 觀看人數 [停留60分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,40.0,1.25,50,500000,No,No,No,TWD
+375,Youtube 直播 觀看人數 [停留90分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,60.0,1.875,50,500000,No,No,No,TWD
+376,Youtube 直播 觀看人數 [停留120分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,80.0,2.5,50,500000,No,No,No,TWD
+377,Youtube 直播 觀看人數 [停留180分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,120.0,3.75,50,500000,No,No,No,TWD
+378,Youtube 直播 觀看人數 [停留240分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,160.0,5.0,50,500000,No,No,No,TWD
+379,Youtube 直播 觀看人數 [停留360分鐘] — 伺服器2,YouTube,Live Stream Viewers,Youtube,240.0,7.5,50,500000,No,No,No,TWD
+380,Youtube 直播 觀看人數 [停留720分鐘/12小時] — 伺服器2,YouTube,Live Stream Viewers,Youtube,480.0,15.0,50,500000,No,No,No,TWD
+381,Youtube 直播 觀看人數 [停留1440分鐘/24小時] — 伺服器2,YouTube,Live Stream Viewers,Youtube,960.0,30.0,50,500000,No,No,No,TWD
+382,Youtube 直播 觀看人數 [停留7天] — 伺服器2,YouTube,Live Stream Viewers,Youtube,6730.0,210.3125,50,500000,No,No,No,TWD
+383,Youtube 直播 觀看人數 [停留15天] — 伺服器2,YouTube,Live Stream Viewers,Youtube,14420.0,450.625,50,500000,No,No,No,TWD
+384,Youtube 直播 觀看人數 [停留30天] — 伺服器2,YouTube,Live Stream Viewers,Youtube,28840.0,901.25,50,500000,No,No,No,TWD
+385,Facebook 世界粉 客製留言 東南亞帳號 [保固30天],Facebook,Comments,Facebook,340.0,10.625,10,10000000,No,No,No,TWD
+387,FB 臉書 直播人数 停留120分鐘 – 伺服器2 （0-5分鐘啟動）,Facebook,Other,Facebook,160.0,5.0,20,20000,No,No,No,TWD
+388,Instagram IG 分享 ♲無保固 — 伺服器3,Instagram,Shares,Instagram,10.0,0.3125,50,100000,No,No,No,TWD
+390,FB 臉書 直播人数 停留240分鐘 – 伺服器4 （0-5分鐘啟動）,Facebook,Other,Facebook,350.0,10.9375,20,20000,No,No,No,TWD
+391,FB 臉書 直播人数 停留180分鐘 – 伺服器3 （0-5分鐘啟動）,Facebook,Other,Facebook,260.0,8.125,20,20000,No,No,No,TWD
+401,Instagram 貼文圖片全部下載 （儲存至個人提供之雲端硬碟）,Instagram,Other,下載服務,300.0,9.375,1,1,No,No,No,TWD
+402,Instagram reels 影片 全部下載 （儲存至個人提供之雲端硬碟）,Instagram,Other,下載服務,300.0,9.375,1,1,No,No,No,TWD
+404,Instagram 貼文圖片全部下載 （提供雲端硬碟連結讓個人下載）,Instagram,Other,下載服務,500.0,15.625,1,1,No,No,No,TWD
+405,Instagram reels 影片 全部下載 （提供雲端硬碟連結讓個人下載）,Instagram,Other,下載服務,500.0,15.625,1,1,No,No,No,TWD
+406,各平台影片下載 （儲存至個人提供之雲端硬碟）,Other,Other,下載服務,51000.0,1593.75,1,1000,No,No,No,TWD
+407,各平台影片下載 （提供雲端硬碟連結讓個人下載）,Other,Other,下載服務,101000.0,3156.25,1,1000,No,No,No,TWD
+409,👍🏻Threads 貼文按讚 亞洲粉絲 ♲30天,Threads,Followers/Subscribers,Threads,4000.0,125.0,5,30,No,No,No,TWD
+410,👍🏻Threads 貼文按讚+分享 亞洲粉絲 ♲30天,Threads,Followers/Subscribers,Threads,6000.0,187.5,5,30,No,No,No,TWD
+411,👍🏻Threads 貼文分享 亞洲粉絲 ♲30天,Threads,Followers/Subscribers,Threads,4000.0,125.0,5,30,No,No,No,TWD
+412,👍🏻Threads 貼文留言 亞洲粉絲 ♲30天,Threads,Followers/Subscribers,Threads,40000.0,1250.0,5,30,No,No,No,TWD
+414,👍🏻 Threads Followers 繁體華人 追蹤 (30天保固),Threads,Followers/Subscribers,Threads,760.0,23.75,10,1000,No,No,No,TWD
+415,👍🏻Threads 貼文按讚 世界粉絲 少掉 不補,Threads,Followers/Subscribers,Threads,300.0,9.375,10,5000,No,No,No,TWD
+416,Threads 全球粉絲 追蹤(無保固),Threads,Followers/Subscribers,Threads,300.0,9.375,10,5000,No,No,No,TWD
+417,👍🏻Threads 貼文按讚 亞洲粉絲 ♲30天 - 伺服器2,Threads,Followers/Subscribers,Threads,590.0,18.4375,10,1000,No,No,No,TWD
+418,wordpress 部落格 架站服務,Other,Other,架站服務,1000.0,31.25,1,1,No,No,No,TWD
+419,（簡易版）粉絲自助下單網站 架站服務,Other,Followers/Subscribers,架站服務,1000.0,31.25,1,1,No,No,No,TWD
+420,👍🏻 Facebook 自動直播觀看數（3天｜無限分鐘｜每日3篇貼文）,Facebook,Views/Plays,Facebook,8800.0,275.0,50,10000,No,No,No,TWD
+421,👍🏻 Facebook 自動直播觀看數（7天｜無限分鐘｜每日3篇貼文）,Facebook,Views/Plays,Facebook,20540.0,641.875,50,10000,No,No,No,TWD
+422,👍🏻 Facebook 自動直播觀看數（30天｜無限分鐘｜每日3篇貼文）,Facebook,Views/Plays,Facebook,88020.0,2750.625,50,10000,No,No,No,TWD
+424,👍🏻TikTok 直播 觀看人數 [停留30分鐘]- 伺服器2,TikTok,Live Stream Viewers,TikTok,1100.0,34.375,50,500,No,No,No,TWD
+426,👍🏻TikTok 直播 觀看人數 [停留60分鐘]- 伺服器2,TikTok,Live Stream Viewers,TikTok,2200.0,68.75,50,500,No,No,No,TWD
+427,👍🏻TikTok 直播 觀看人數 [停留90分鐘]- 伺服器2,TikTok,Live Stream Viewers,TikTok,3300.0,103.125,50,500,No,No,No,TWD
+428,👍🏻TikTok 直播 觀看人數 [停留120分鐘]- 伺服器2,TikTok,Live Stream Viewers,TikTok,4400.0,137.5,50,500,No,No,No,TWD
+429,🇹🇼Instagram 普通台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram,540.0,16.875,20,50000,No,No,No,TWD
+430,🇹🇼Instagram 高級台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram,1080.0,33.75,20,6000,No,No,No,TWD
+431,🇹🇼Instagram 高級台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram,1620.0,50.625,30,3000,No,No,No,TWD
+432,🇹🇼Instagram 高級台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram,1620.0,50.625,30,4200,No,No,No,TWD
+433,🇹🇼Instagram 頂級台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram,2160.0,67.5,10,6000,No,No,No,TWD
+434,🇹🇼Instagram 頂級台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram,2700.0,84.375,10,2100,No,No,No,TWD
+435,🇹🇼Instagram 頂級台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram,2700.0,84.375,10,3400,No,No,No,TWD
+436,🇹🇼Instagram 真人台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram,3770.0,117.8125,10,6000,No,No,No,TWD
+437,🇹🇼Instagram 真人台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram,5390.0,168.4375,10,2100,No,No,No,TWD
+438,🇹🇼Instagram 真人台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram,5390.0,168.4375,10,3400,No,No,No,TWD
+446,🇹🇼Instagram 頂級台灣貼文留言+讚 (相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,21560.0,673.75,1,6000,No,No,No,TWD
+447,🇹🇼Instagram 頂級台灣貼文留言+讚 (全男性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,26960.0,842.5,1,2100,No,No,No,TWD
+448,🇹🇼Instagram 頂級台灣貼文留言+讚 (全女性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,26960.0,842.5,1,3400,No,No,No,TWD
+449,🇹🇼Instagram 真人台灣貼文留言+讚 (相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,26960.0,842.5,1,6000,No,No,No,TWD
+450,🇹🇼Instagram 真人台灣貼文留言+讚 (全男性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,32350.0,1010.9375,1,2100,No,No,No,TWD
+451,🇹🇼Instagram 真人台灣貼文留言+讚 (全女性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,Instagram,32350.0,1010.9375,1,3400,No,No,No,TWD
+452,🇹🇼Threads 頂級台灣粉絲 (速度:正常),Threads,Followers/Subscribers,Threads,6470.0,202.1875,20,4000,No,No,No,TWD
+453,🇹🇼Threads 真人台灣粉絲 (速度:正常),Threads,Followers/Subscribers,Threads,8630.0,269.6875,20,4000,No,No,No,TWD
+454,🇹🇼Threads 普通台灣串文讚 (速度:正常),Threads,Likes/Reactions,Threads,650.0,20.3125,20,2000,No,No,No,TWD
+456,🇹🇼Threads 真人台灣串文讚 (速度:正常),Threads,Likes/Reactions,Threads,3770.0,117.8125,15,4000,No,No,No,TWD
+457,🇹🇼Threads 普通台灣串文留言 (速度:正常),Threads,Comments,Threads,10780.0,336.875,1,1000,No,No,No,TWD
+458,🇹🇼Threads 頂級台灣串文留言 (速度:正常),Threads,Comments,Threads,16170.000000000002,505.3125,1,1000,No,No,No,TWD
+459,Line 官方帳號好友 (不封鎖) – 伺服器5,LINE,Accounts,Line,3920.0,122.5,100,4000,No,No,No,TWD
+460,Line 社群人數「一般社群」🇹🇼台灣名稱– 伺服器2（可與「伺服器1」、「伺服器2」疊加人數）,Other,Other,Line,5610.0,175.3125,100,300,No,No,No,TWD
+462,Line 官方帳號好友 (不封鎖) - 伺服器1,LINE,Accounts,Line,3960.0,123.75,100,1000,No,No,No,TWD
+463,Line 社群人數「一般社群」– 伺服器1,Other,Other,Line,5360.0,167.5,50,800,No,No,No,TWD
+470,Line 官方帳號好友 (封鎖),LINE,Accounts,Line,5930.0,185.3125,50,1000,No,No,No,TWD
+471,DouYin 抖音 粉絲 1000~100000,TikTok,Followers/Subscribers,DY 抖音,1050.0,32.8125,1000,100000,No,No,No,TWD
+472,DouYin 抖音 粉絲500粉【包200有效粉】,TikTok,Followers/Subscribers,DY 抖音,900.0,28.125,1,1,No,No,No,TWD
+473,DouYin 抖音 【1000包500有效粉】,TikTok,Other,DY 抖音,1350.0,42.1875,1000,100000,No,No,No,TWD
+474,👍🏻YouTube 觀看次數 單日可跑8k~10K觀看 (♲ 360天),YouTube,Views/Plays,Youtube,40.0,1.25,100,1000000,No,No,No,TWD
+477,📝(備用) Instagram 頂級台灣粉絲,Instagram,Followers/Subscribers,Instagram,7390.0,230.9375,40,9000,No,No,No,TWD
+478,📝(備用) Instagram 真人台灣粉絲,Instagram,Followers/Subscribers,Instagram,9860.0,308.125,40,9000,No,No,No,TWD
+479,📝(備用) Instagram 頂級台灣讚,Instagram,Likes/Reactions,Instagram,2460.0,76.875,10,9000,No,No,No,TWD
+480,📝(備用) Instagram 真人台灣讚,Instagram,Likes/Reactions,Instagram,4310.0,134.6875,10,9000,No,No,No,TWD
+481,📝(備用) Instagram 頂級台灣貼文留言,Instagram,Comments,Instagram,16170.000000000002,505.3125,1,9000,No,No,No,TWD
+482,📝(備用) Instagram 真人台灣貼文留言,Instagram,Comments,Instagram,21560.0,673.75,1,9000,No,No,No,TWD
+484,YouTube 追蹤 全球粉絲 [♲ 30 天],YouTube,Followers/Subscribers,Youtube,200.0,6.25,100,50000,No,No,No,TWD
+485,👍🏻YouTube 追蹤 全球粉絲 (♲ 30天),YouTube,Followers/Subscribers,Youtube,1420.0,44.375,50,25000,No,No,No,TWD
+486,👍🏻YouTube 觀看次數 單日可跑8k~15K觀看 (♲ 360天),YouTube,Views/Plays,Youtube,70.0,2.1875,100,10000000,No,No,No,TWD
+488,(備用) Facebook直播人数 (60分鐘),Facebook,Other,Facebook,390.0,12.1875,20,20000,No,No,No,TWD
+489,(備用) Facebook直播人数 (30分鐘),Facebook,Other,Facebook,200.0,6.25,20,20000,No,No,No,TWD
+490,(備用) Facebook直播人数 (90分鐘),Facebook,Other,Facebook,590.0,18.4375,20,20000,No,No,No,TWD
+491,FB 臉書 直播人数 停留300分鐘 – 伺服器2 （0-5分鐘啟動）,Facebook,Other,Facebook,430.0,13.4375,20,20000,No,No,No,TWD
+492,👍🏻 TikTok 粉絲 世界粉 (卡單機率約 30%，但不卡單時速度非常快),TikTok,Followers/Subscribers,TikTok,170.0,5.3125,10,100000,No,No,No,TWD
+493,👍🏻 TikTok 粉絲 世界粉 [真人帶作品 - 3000-5000/天 - 不補] [推薦下單] [不卡單],TikTok,Followers/Subscribers,TikTok,280.0,8.75,10,500000,No,No,No,TWD
+495,👍🏻 Instagram 100% 土耳其帳號 reel按讚 | 快速 3K/hr,Instagram,Likes/Reactions,Instagram,60.0,1.875,10,100000,No,No,No,TWD
+496,👍🏻 🇰🇷YouTube 自訂留言 「韓國」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2090.0,65.3125,5,10000,No,No,No,TWD
+497,👍🏻🇰🇷 YouTube shorts 自訂留言 「韓國」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2220.0,69.375,5,10000,No,No,No,TWD
+498,Twitch 直播人数 停留15分鐘,Twitch,Other,Twitch,20.0,0.625,10,10000,No,No,No,TWD
+499,Twitch 直播人数 停留60分鐘,Twitch,Other,Twitch,90.0,2.8125,10,10000,No,No,No,TWD
+500,Twitch 直播人数 停留90分鐘,Twitch,Other,Twitch,130.0,4.0625,10,10000,No,No,No,TWD
+501,Twitch 直播人数 停留120分鐘,Twitch,Other,Twitch,180.0,5.625,10,10000,No,No,No,TWD
+502,Twitch 直播人数 停留150分鐘,Twitch,Other,Twitch,660.0,20.625,10,50000,No,No,No,TWD
+503,Twitch 直播人数 停留180分鐘,Twitch,Other,Twitch,270.0,8.4375,10,10000,No,No,No,TWD
+504,Twitch 直播人数 停留210分鐘,Twitch,Other,Twitch,920.0,28.75,10,50000,No,No,No,TWD
+505,Twitch 直播人数 停留240分鐘,Twitch,Other,Twitch,320.0,10.0,10,10000,No,No,No,TWD
+506,Twitch 直播人数 停留270分鐘,Twitch,Other,Twitch,1180.0,36.875,10,50000,No,No,No,TWD
+507,Twitch 直播人数 停留300分鐘,Twitch,Other,Twitch,1310.0,40.9375,10,50000,No,No,No,TWD
+508,Twitch 直播人数 停留330分鐘,Twitch,Other,Twitch,1450.0,45.3125,10,50000,No,No,No,TWD
+509,Twitch 直播人数 停留6小時,Twitch,Other,Twitch,540.0,16.875,10,10000,No,No,No,TWD
+510,Twitch 直播人数 停留7小時,Twitch,Other,Twitch,1840.0,57.5,10,50000,No,No,No,TWD
+511,Twitch 直播人数 停留8小時,Twitch,Other,Twitch,2100.0,65.625,10,50000,No,No,No,TWD
+512,Twitch 直播人数 停留12小時,Twitch,Other,Twitch,1070.0,33.4375,10,10000,No,No,No,TWD
+513,Twitch 直播人数 停留24小時,Twitch,Other,Twitch,2150.0,67.1875,10,10000,No,No,No,TWD
+514,Line 社群人數「一般社群」🇯🇵日本名稱– 伺服器2（可與「伺服器1」、「伺服器2」疊加人數）,Other,Other,Line,5610.0,175.3125,100,300,No,No,No,TWD
+516,IG追蹤 (👨全球帳號，♲保固30天）2025/09/23,Instagram,Followers/Subscribers,Instagram,180.0,5.625,10,1000000,No,No,No,TWD
+517,IG追蹤 (👨全球帳號，♲保固30天）－伺服器2｜2025/09/23,Instagram,Followers/Subscribers,Instagram,50.0,1.5625,10,10000000,No,No,No,TWD
+518,👍🏻 🇯🇵YouTube 自訂留言 「日本」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2090.0,65.3125,5,10000,No,No,No,TWD
+519,👍🏻 🇯🇵YouTube shorts 自訂留言 「日本」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2220.0,69.375,5,10000,No,No,No,TWD
+520,👍🏻 🇻🇳YouTube 自訂留言 「越南」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2090.0,65.3125,5,10000,No,No,No,TWD
+521,👍🏻 🇻🇳YouTube shorts 自訂留言 「越南」帳號 快速啟動 (♲ 90天),YouTube,Comments,Youtube,2220.0,69.375,5,10000,No,No,No,TWD
+522,👍🏻TikTok 直播 觀看人數 [停留15分鐘],TikTok,Live Stream Viewers,TikTok,1350.0,42.1875,50,20000,No,No,No,TWD
+523,👍🏻TikTok 直播 觀看人數 [停留30分鐘],TikTok,Live Stream Viewers,TikTok,2700.0,84.375,50,20000,No,No,No,TWD
+524,👍🏻TikTok 直播 觀看人數 [停留60分鐘],TikTok,Live Stream Viewers,TikTok,5400.0,168.75,50,20000,No,No,No,TWD
+525,👍🏻TikTok 直播 觀看人數 [停留90分鐘],TikTok,Live Stream Viewers,TikTok,8100.0,253.125,50,20000,No,No,No,TWD
+526,👍🏻TikTok 直播 觀看人數 [停留120分鐘],TikTok,Live Stream Viewers,TikTok,10800.0,337.5,50,20000,No,No,No,TWD
+527,👍🏻TikTok 直播 觀看人數 [停留180分鐘],TikTok,Live Stream Viewers,TikTok,16200.0,506.25,50,20000,No,No,No,TWD
+528,👍🏻TikTok 直播 觀看人數 [停留240分鐘],TikTok,Live Stream Viewers,TikTok,21600.0,675.0,50,20000,No,No,No,TWD
+529,👍🏻TikTok 直播 觀看人數 [停留300分鐘],TikTok,Live Stream Viewers,TikTok,26990.0,843.4375,50,20000,No,No,No,TWD
+530,👍🏻TikTok 直播 觀看人數 [停留360分鐘],TikTok,Live Stream Viewers,TikTok,32390.0,1012.1875,50,20000,No,No,No,TWD
+531,TikTok 追蹤 [高質量帶頭像 - 下單要排隊，正常可跑，一天1-5k粉絲],TikTok,Followers/Subscribers,TikTok,100.0,3.125,50,100000,No,No,No,TWD
+532,TikTok 粉絲 [高質量真人粉 - 0-1小時啟動 - 1萬/天 - 不補] [掉粉：0-10%+]穩定推薦,TikTok,Followers/Subscribers,TikTok,210.0,6.5625,10,200000,No,No,No,TWD
+536,Facebook 臉書粉絲專頁/個人頁面 追蹤 ｜美國用戶｜♲ 30天保固,Facebook,Followers/Subscribers,Facebook,180.0,5.625,50,50000,No,No,No,TWD
+537,X 追蹤 老帳號 （♲保固30天）,Twitter/X,Followers/Subscribers,X (Twitter),640.0,20.0,100,100000,No,No,No,TWD
+539,Threads 串文瀏覽量 (速度:正常),Threads,Other,Threads,540.0,16.875,500,10000,No,No,No,TWD
+540,🇹🇼Threads 頂級台灣粉絲 (速度:快速),Threads,Followers/Subscribers,Threads,6470.0,202.1875,10,3300,No,No,No,TWD
+541,🇹🇼Threads 頂級台灣粉絲 (全男性)(速度:快速),Threads,Followers/Subscribers,Threads,7550.0,235.9375,20,300,No,No,No,TWD
+542,🇹🇼Threads 頂級台灣粉絲 (全女性)(速度:快速),Threads,Followers/Subscribers,Threads,7550.0,235.9375,20,3000,No,No,No,TWD
+543,🇹🇼Threads 頂級台灣串文讚 (速度:正常),Threads,Likes/Reactions,Threads,2160.0,67.5,15,4000,No,No,No,TWD
+544,🇹🇼Threads 頂級台灣串文讚 (速度:快速),Threads,Likes/Reactions,Threads,2160.0,67.5,20,3300,No,No,No,TWD
+545,🇹🇼Threads 頂級台灣串文讚 (全男性)(速度:快速),Threads,Likes/Reactions,Threads,2700.0,84.375,20,300,No,No,No,TWD
+546,🇹🇼Threads 頂級台灣串文讚 (全女性)(速度:快速),Threads,Likes/Reactions,Threads,2700.0,84.375,20,3000,No,No,No,TWD
+547,🇹🇼Threads 真人台灣串文留言 (速度:正常),Threads,Comments,Threads,21560.0,673.75,1,1000,No,No,No,TWD
+548,Telegram 華人群組粉絲 (速度:正常),Telegram,Followers/Subscribers,Telegram,320.0,10.0,500,200000,No,No,No,TWD
+549,Youtube 🇹🇼台灣頻道訂閱 (速度:正常),YouTube,Followers/Subscribers,Youtube,30810.0,962.8125,50,200,No,No,No,TWD
+550,小紅書 真人華人粉絲關注  (速度:正常),Xiaohongshu,Followers/Subscribers,小紅書,8630.0,269.6875,100,10000,No,No,No,TWD
+551,小紅書 真人華人作品讚  (速度:正常),Xiaohongshu,Likes/Reactions,小紅書,3770.0,117.8125,50,10000,No,No,No,TWD
+552,小紅書 真人華人作品觀看+曝光  (速度:正常),Xiaohongshu,Views/Plays,小紅書,140.0,4.375,500,100000,No,No,No,TWD
+553,小紅書 真人華人作品收藏  (速度:正常),Xiaohongshu,Saves,小紅書,10780.0,336.875,10,300,No,No,No,TWD
+554,Instagram 貼文按讚（廣告流量｜無保固｜啟動 1 小時內）,Instagram,Likes/Reactions,Instagram,120.0,3.75,50,50000,No,No,No,TWD
+555,Youtube 台灣影片留言 (速度:正常),YouTube,Comments,Youtube,37740.0,1179.375,1,200,No,No,No,TWD
+556,Instagram reel按讚（♻️180天保固｜ 1 小時內開始｜每日最高跑 5K｜最多下單量 1 萬）,Instagram,Likes/Reactions,Instagram,20.0,0.625,10,4000000,No,No,No,TWD
+557,Instagram 貼文按讚（高級版｜♻️90天保固｜1小時內開始｜最多下單量30000）,Instagram,Likes/Reactions,Instagram,160.0,5.0,5,30000,No,No,No,TWD
+558,Instagram reel按讚（高級版｜♻️90天保固｜1小時內開始｜最多下單量30000）,Instagram,Likes/Reactions,Instagram,170.0,5.3125,5,30000,No,No,No,TWD
+559,Instagram 貼文按讚（♻️180天保固｜ 1 小時內開始｜每日最高跑 5K｜最多下單量 1 萬）,Instagram,Likes/Reactions,Instagram,20.0,0.625,10,4000000,No,No,No,TWD
+560,Logo 動畫設計（客製化品牌動效｜高解析輸出｜支援多平台格式｜專業動畫化製作）,Design/Dev Services,Other,設計服務,2000.0,62.5,1,1,No,No,No,TWD
+562,👍🏻 Instagram  reel按讚 | 快速,Instagram,Likes/Reactions,Instagram,70.0,2.1875,10,8000,No,No,No,TWD
+563,👍🏻 Instagram reel按讚 | 快速 - 伺服器2,Instagram,Likes/Reactions,Instagram,30.0,0.9375,10,50000,No,No,No,TWD
+564,Google 頂級台灣五星評論 (速度:正常),Google,Reviews/Ratings,Google,107820.0,3369.375,1,500,No,No,No,TWD
+565,Google 頂級台灣五星評論 (全男性)(速度:正常),Google,Reviews/Ratings,Google,215650.0,6739.0625,1,500,No,No,No,TWD
+566,Google 頂級台灣五星評論 (全女性)(速度:正常),Google,Reviews/Ratings,Google,215650.0,6739.0625,1,500,No,No,No,TWD
+567,Google 頂級台灣五星評論 (速度:正常)｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,161740.0,5054.375,1,500,No,No,No,TWD
+568,Google 頂級台灣五星評論 (全男性)(速度:正常) ｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,269560.0,8423.75,1,500,No,No,No,TWD
+569,Google 頂級台灣五星評論 (全女性)(速度:正常) ｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,269560.0,8423.75,1,500,No,No,No,TWD
+570,Google 真人台灣五星評論 (速度:正常),Google,Reviews/Ratings,Google,107820.0,3369.375,1,500,No,No,No,TWD
+571,Google 真人台灣五星評論 (全男性)(速度:正常),Google,Reviews/Ratings,Google,215650.0,6739.0625,1,500,No,No,No,TWD
+572,Google 真人台灣五星評論 (全女性)(速度:正常),Google,Reviews/Ratings,Google,215650.0,6739.0625,1,500,No,No,No,TWD
+573,Google 真人台灣五星評論 (速度:正常) ｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,161740.0,5054.375,1,500,No,No,No,TWD
+574,Google 真人台灣五星評論 (全男性)(速度:正常) ｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,323470.0,10108.4375,1,500,No,No,No,TWD
+575,Google 真人台灣五星評論 (全女性)(速度:正常)｜保固｜一個月內保固一次,Google,Reviews/Ratings,Google,323470.0,10108.4375,1,500,No,No,No,TWD
+576,👍🏻👍🏻 Instagram reel按讚 | 快速 - 伺服器3,Instagram,Likes/Reactions,Instagram,30.0,0.9375,10,300000,No,No,No,TWD
+577,👍🏻 Instagram reel按讚 | 快速 - 伺服器4,Instagram,Likes/Reactions,Instagram,50.0,1.5625,10,40000,No,No,No,TWD
+578,👍🏻👍🏻Instagram 貼文按讚｜15分內開始｜世界粉絲,Instagram,Followers/Subscribers,Instagram,20.0,0.625,10,300000,No,No,No,TWD
+579,Facebook 臉書粉絲專頁 追蹤（粉專只有追蹤按鈕的頁面）,Facebook,Followers/Subscribers,Facebook,50.0,1.5625,100,500000,No,No,No,TWD
+580,基礎 SEO 優化方案（請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,2450.0,76.5625,1,1,No,No,No,TWD
+581,中級 SEO 優化方案（請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,4280.0,133.75,1,1,No,No,No,TWD
+582,高級 SEO 優化方案（請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,6110.0,190.9375,1,1,No,No,No,TWD
+583,頂級 SEO 優化方案（請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,12230.0,382.1875,1,1,No,No,No,TWD
+584,基礎公關發稿方案（媒體曝光｜品牌曝光｜請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,4280.0,133.75,1,1,No,No,No,TWD
+585,中級公關發稿方案（媒體曝光｜品牌曝光｜請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,6110.0,190.9375,1,1,No,No,No,TWD
+586,高級公關發稿方案（媒體曝光｜品牌曝光｜請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,9470.0,295.9375,1,1,No,No,No,TWD
+587,頂級公關發稿方案（媒體曝光｜品牌曝光｜請詳閱服務說明）,Website Traffic,Website Traffic,Web Traffic,73350.0,2292.1875,1,1,No,No,No,TWD
+588,Instagram 貼文轉發（⛔無保固｜1小時內開始｜每日最高跑5萬｜最多下單量10萬）,Instagram,Other,Instagram,480.0,15.0,10,100000,No,No,No,TWD
+589,Instagram 貼文轉發（⛔無保固｜1小時內開始｜速度依系統分配｜最多下單量1萬）,Instagram,Other,Instagram,20.0,0.625,1,10000,No,No,No,TWD
+590,Instagram 客製留言（台灣地區｜⛔無保固｜0–8小時內開始｜速度依系統分配）,Instagram,Comments,Instagram,3080.0,96.25,1,50,No,No,No,TWD
+591,Line 官方帳號好友 (不封鎖) 請以10的倍數下單 - 伺服器4 [快速啟動，當日到隔天內運行],LINE,Accounts,Line,3810.0,119.0625,100,4000,No,No,No,TWD

@@ -1,0 +1,83 @@
+{
+  "name": "douyin-knowledge-webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "douyin-knowledge",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        },
+        "httpMethod": "POST"
+      },
+      "name": "Douyin Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "douyin-knowledge-webhook-v1",
+      "id": "0f4dc278-1d43-4be5-94d4-77829bb90281"
+    },
+    {
+      "parameters": {
+        "jsCode": "const req = $input.first().json;\nconst body = req.body || {};\nconst payload = {};\nif (typeof body.url === 'string' && body.url.trim()) {\n  payload.url = body.url.trim();\n}\nif (Array.isArray(body.urls)) {\n  const cleaned = body.urls.filter(v => typeof v === 'string' && v.trim()).map(v => v.trim());\n  if (cleaned.length) payload.urls = cleaned;\n}\nif (!payload.url && !payload.urls) {\n  return [{ json: { _status: 400, _body: { error: 'Request body must contain url or urls' } } }];\n}\ntry {\n  const resp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: 'http://109.123.230.100:8787/process',\n    headers: {\n      'Content-Type': 'application/json',\n      'Authorization': 'Bearer douyin-knowledge-service-token-20260330'\n    },\n    body: JSON.stringify(payload)\n  });\n  const data = typeof resp === 'string' ? JSON.parse(resp) : resp;\n  return [{ json: { _status: 200, _body: data } }];\n} catch (e) {\n  let details = null;\n  if (e.response && e.response.body) {\n    details = e.response.body;\n  }\n  return [{ json: { _status: 500, _body: { error: e.message, details } } }];\n}"
+      },
+      "name": "Process Video",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "c7bbf374-a96c-4e8b-b6a8-ec4c85a87d9c"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json._body) }}",
+        "options": {
+          "responseCode": "={{ $json._status }}"
+        }
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "id": "3f77914b-5a62-48f2-a0e5-bf0fa07365ad"
+    }
+  ],
+  "connections": {
+    "Douyin Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Video": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

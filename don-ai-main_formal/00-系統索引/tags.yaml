@@ -1,0 +1,486 @@
+# Don AI 受控標籤詞彙表 (Controlled Vocabulary) v2.0
+# 所有 Markdown 文件的 YAML frontmatter 中的 tags 必須從此表選擇
+# 規則：全小寫英文 kebab-case，每個文件 2-6 個標籤
+# 維護日期：2026-03-29
+
+# ============================================================
+# 文件類型 (type 欄位，單選)
+# ============================================================
+type:
+  - project-doc    # 專案相關文件（位於 03-專案）
+  - concept        # 概念解釋、理論知識（位於 04-資源與參考）
+  - snippet        # 可重用的代碼片段（位於 04-資源與參考）
+  - sop            # 標準操作流程（位於 06-SOP流程）
+  - log            # 日誌、會議記錄、動態記憶（位於 02-動態記憶）
+  - rule           # 系統規則、原則（位於 01-核心原則）
+  - search-result  # 搜索結果整理（位於 04-資源與參考）
+
+# ============================================================
+# 狀態標籤 (status 欄位，單選)
+# ============================================================
+status:
+  - active         # 使用中
+  - draft          # 草稿
+  - archived       # 已歸檔
+  - urgent         # 緊急
+  - blocked        # 被阻擋
+  - needs-review   # 需要審查
+
+# ============================================================
+# 技術棧 (tech-stack) — 13 個
+# ============================================================
+tech-stack:
+  - cloudflare           # Cloudflare 平台總稱
+  - cloudflare-workers   # Cloudflare Workers 邊緣計算
+  - cloudflare-pages     # Cloudflare Pages 靜態託管
+  - cloudflare-d1        # Cloudflare D1 資料庫
+  - cloudflare-kv        # Cloudflare KV 鍵值存儲
+  - n8n                  # N8N 自動化平台
+  - react                # React 前端框架
+  - typescript           # TypeScript 語言
+  - javascript           # JavaScript 語言
+  - hono                 # Hono Web 框架
+  - tailwindcss          # TailwindCSS 樣式框架
+  - vite                 # Vite 建構工具
+  - python               # Python 語言
+
+# ============================================================
+# 平台與服務 (platform) — 7 個
+# ============================================================
+platform:
+  - facebook             # Facebook / Meta 平台
+  - meta-ads             # Meta 廣告系統（含 Ads Manager）
+  - google-sheets        # Google Sheets
+  - line                 # LINE 平台（含 OA、Bot、LIFF）
+  - telegram             # Telegram 平台
+  - github               # GitHub 平台
+  - github-actions       # GitHub Actions CI/CD
+
+# ============================================================
+# 專案 (project) — 8 個
+# ============================================================
+project:
+  - godview              # 上帝視角歸因系統
+  - cloak-admin          # 斗篷管理後台
+  - shadow-cloak         # 隱者斗篷反向代理
+  - known                # 廣為人知專案
+  - firebird             # 火鳥專案
+  - line-redirect        # LINE 重定向 Worker
+  - money-page           # Money Page
+  - safe-page            # 安全頁
+  - douyin-knowledge     # 抖影知識系統
+
+# ============================================================
+# 功能領域 (domain) — 15 個
+# ============================================================
+domain:
+  - frontend             # 前端開發
+  - backend              # 後端開發
+  - api                  # API 開發與整合
+  - database             # 資料庫相關（非特指 D1 時使用）
+  - dns                  # DNS 設定與域名管理
+  - deployment           # 部署與發佈
+  - ci-cd                # 持續整合 / 持續部署
+  - security             # 安全性
+  - monitoring           # 監控與告警
+  - testing              # 測試
+  - automation           # 自動化
+  - ui-ux                # UI/UX 設計
+  - architecture         # 系統架構
+  - infrastructure       # 基礎設施
+  - serverless           # 無伺服器架構
+
+# ============================================================
+# 廣告與行銷 (advertising) — 10 個
+# ============================================================
+advertising:
+  - advertising          # 廣告總稱
+  - cloaking             # 斗篷技術
+  - pixel                # 像素追蹤（ADS / BC 像素）
+  - capi                 # Conversions API（伺服器端事件）
+  - attribution          # 歸因分析
+  - ad-creative          # 廣告素材與創意
+  - landing-page         # 著陸頁 / 素材中心
+  - conversion           # 轉換優化
+  - audience-targeting   # 受眾定向
+  - ad-compliance        # 廣告合規
+
+# ============================================================
+# 業務領域 (business) — 6 個
+# ============================================================
+business:
+  - smm-panel            # SMM Panel 業務
+  - gambling             # 博弈相關
+  - pricing              # 定價分析
+  - market-research      # 市場研究
+  - competitor-analysis  # 競品分析
+  - supplier-analysis    # 供應商分析
+
+# ============================================================
+# 文件性質 (doc-type) — 14 個
+# ============================================================
+doc-type:
+  - sop                  # 標準操作流程
+  - checklist            # 檢查清單
+  - troubleshooting      # 問題排除 / Debug
+  - configuration        # 配置設定
+  - reference            # 參考資料
+  - analysis             # 分析報告
+  - guidelines           # 指南規範
+  - index                # 索引文件
+  - memory               # AI 記憶文件
+  - changelog            # 變更記錄
+  - todo                 # 待辦事項
+  - roadmap              # 路線圖
+  - incident             # 事件報告
+  - skills               # 技能模組
+
+# ============================================================
+# AI 與工具 (ai-tools) — 5 個
+# ============================================================
+ai-tools:
+  - ai-agent             # AI Agent
+  - manus                # Manus AI
+  - cursor               # Cursor IDE
+  - prompt-engineering   # 提示詞工程
+  - rag                  # RAG 檢索增強生成
+
+# ============================================================
+# 工作流程 (workflow) — 11 個
+# ============================================================
+workflow:
+  - workflow             # 工作流程
+  - webhook              # Webhook
+  - data-collection      # 數據收集
+  - reporting            # 報告
+  - credentials          # 認證資訊
+  - token-saving         # Token 節省
+  - version-control      # 版本控制
+  - documentation        # 文檔管理
+  - knowledge-base       # 知識庫
+  - collaboration        # 協作
+  - planning             # 規劃
+
+# ============================================================
+# 同義詞映射表 (Synonym Map)
+# 格式：非標準標籤 → 標準標籤
+# 當文件中使用了左側標籤時，應替換為右側的標準標籤
+# ============================================================
+synonyms:
+  # --- cloudflare 相關 ---
+  cloudflare-worker: cloudflare-workers
+  workers: cloudflare-workers
+  worker: cloudflare-workers
+  cf-workers: cloudflare-workers
+  cloudflare-api: cloudflare
+  edge-computing: cloudflare-workers
+  pages: cloudflare-pages
+  kv: cloudflare-kv
+  d1: cloudflare-d1
+  d1-database: cloudflare-d1
+  wrangler: cloudflare-workers
+  worker-route: cloudflare-workers
+
+  # --- 專案同義詞 ---
+  proj-cloak-admin: cloak-admin
+  admin: cloak-admin
+  dashboard: cloak-admin
+  cloak: cloaking
+  firebird-alignment: firebird
+  firebird-ad-system: firebird
+  freshpathlab: known
+  gotolink: known
+
+  # --- 平台同義詞 ---
+  meta: facebook
+  meta-pixel: pixel
+  facebook-pixel: pixel
+  bc-pixel: pixel
+  pixel-tracking: pixel
+  meta-capi: capi
+  conversions-api: capi
+  business-center: facebook
+  facebook-ads: meta-ads
+  instagram-stories: meta-ads
+  ads-manager: meta-ads
+  advantage-plus: meta-ads
+  graph-api: facebook
+  line-oa: line
+  line-bot: line
+  LINE-bot: line
+  line-id: line
+  line-webhook: webhook
+  line_config: line
+  line-config: line
+  liff: line
+  telegram-bot: telegram
+  github-sync: github-actions
+  gitops: github-actions
+  git: version-control
+
+  # --- 功能領域同義詞 ---
+  frontend-development: frontend
+  backend-development: backend
+  api-integration: api
+  api-spec: api
+  api-reference: api
+  api-design: api
+  api-analysis: api
+  rest-api: api
+  endpoints: api
+  api-keys: credentials
+  api-key: credentials
+  api-token: credentials
+  access-token: credentials
+  token-management: credentials
+  dns-config: dns
+  dns-setup: dns
+  dns-issue: dns
+  domain-management: dns
+  domain-config: dns
+  domain-resolve: dns
+  domain-strategy: dns
+  domain-reputation: dns
+  domain: dns
+  subdomain: dns
+  ssl: dns
+  deploy: deployment
+  release: deployment
+  rollback: deployment
+  staging: deployment
+  production: deployment
+  initialization: deployment
+  delivery: deployment
+  cicd: ci-cd
+  UI: ui-ux
+  UI/UX: ui-ux
+  ui-analysis: ui-ux
+  ui-design: ui-ux
+  white-theme: ui-ux
+  system-architecture: architecture
+  security-architecture: architecture
+  agent-architecture: architecture
+  code-design: architecture
+  system: architecture
+  security-verification: security
+  security-audit: security
+  cyber-security: security
+  anti-detection: security
+  ip-restriction: security
+  rate-limiting: security
+  traffic-filtering: security
+  blacklist: security
+  safety: security
+  e2e-testing: testing
+  testing-report: testing
+  qa: testing
+  verification: testing
+  quality: testing
+  ab-testing: testing
+  n8n-workflow: n8n
+  tailwind: tailwindcss
+  shadcn-ui: react
+  tanstack-query: react
+  ant-design-pro: react
+  refine: react
+  react-admin: react
+  zod: typescript
+  schema: typescript
+  validation: typescript
+  es-modules: javascript
+
+  # --- 廣告與行銷同義詞 ---
+  time-attribution: attribution
+  attribution-optimization: attribution
+  attribution-logic: attribution
+  attribution-gap: attribution
+  token-attribution: attribution
+  tag-mapping: attribution
+  fbclid: attribution
+  sha256: attribution
+  complete-registration: conversion
+  lead-event: conversion
+  conversion-optimization: conversion
+  conversion-funnel: conversion
+  follow-event: conversion
+  lead: conversion
+  cpa: conversion
+  ad-optimization: advertising
+  advertising-strategy: advertising
+  campaign-management: advertising
+  campaign-structure: advertising
+  campaign-edit: advertising
+  budget-allocation: advertising
+  placement-optimization: advertising
+  ad-list: advertising
+  ad-config: advertising
+  ad_code: advertising
+  ad-code: advertising
+  google-ads: advertising
+  seo: advertising
+  ad-fraud: ad-compliance
+  audit-evasion: ad-compliance
+  platform-policy: ad-compliance
+  compliance: ad-compliance
+  creative-center: ad-creative
+  creative-testing: ad-creative
+  creative-spec: ad-creative
+  creative-log: ad-creative
+  creative-research: ad-creative
+  creative-analysis: ad-creative
+  creative-strategy: ad-creative
+  ad-design: ad-creative
+  video-production: ad-creative
+  content-marketing: ad-creative
+  content-strategy: ad-creative
+  copywriting: ad-creative
+  short-video: ad-creative
+  reels-ads: ad-creative
+  audience-network: audience-targeting
+  material-center: landing-page
+  template: landing-page
+  template-demo: landing-page
+  template-engine: landing-page
+  cloak-logs: cloaking
+  cloak_logs: cloaking
+  detection-rate: cloaking
+  cold-start: cloaking
+  reverse-proxy: cloaking
+  traffic-splitting: cloaking
+  traffic-management: cloaking
+  traffic-flow: cloaking
+  fingerprinting: cloaking
+  ad-cloaking: cloaking
+  bot-detection: cloaking
+  redirect: cloaking
+  redirect-logic: cloaking
+  destination: cloaking
+  ad-pixel: pixel
+  pixel-injection: pixel
+  pageview: pixel
+  dynamic-injection: pixel
+  event-tracking: pixel
+
+  # --- 業務同義詞 ---
+  gambling-ads: gambling
+  gambling-analysis: gambling
+  gambling-marketing: gambling
+  gambling-design: gambling
+  gambling-market: gambling
+  game-providers: gambling
+  slot-games: gambling
+  game-mechanics: gambling
+  player-psychology: gambling
+  full-marketing: smm-panel
+  taiwan-local: smm-panel
+  ail: smm-panel
+  product-analysis: market-research
+  market-investigation: market-research
+  market-trend: market-research
+  competitive-research: competitor-analysis
+  competitor-intelligence: competitor-analysis
+  competitor-monitoring: competitor-analysis
+  feature-matrix: competitor-analysis
+  vendor-list: supplier-analysis
+  ad-spy: competitor-analysis
+
+  # --- 文件性質同義詞 ---
+  SOP: sop
+  pre-commit: checklist
+  quality-gate: checklist
+  review: checklist
+  debug: troubleshooting
+  bugfix: troubleshooting
+  bug-fix: troubleshooting
+  bug-report: troubleshooting
+  diagnosis: troubleshooting
+  reflection: troubleshooting
+  lead-missing: troubleshooting
+  config: configuration
+  fallback-config: configuration
+  environment: configuration
+  source-code: reference
+  open-source: reference
+  mapping: reference
+  resources: reference
+  search-analysis: analysis
+  source-code-analysis: analysis
+  website-analysis: analysis
+  feature-mapping: analysis
+  risk-analysis: analysis
+  code-analysis: analysis
+  system-analysis: analysis
+  technical-evaluation: analysis
+  performance: analysis
+  evaluation: analysis
+  optimization: analysis
+  rules: guidelines
+  best-practices: guidelines
+  best-practice: guidelines
+  convention: guidelines
+  standards: guidelines
+  methodology: guidelines
+  coding-standards: guidelines
+  code-quality: guidelines
+  overview: index
+  summary: index
+  memory-bank: memory
+  active-context: memory
+  ai-memory: memory
+  archive: changelog
+  archival: changelog
+  version-history: changelog
+  versioning: changelog
+  version: changelog
+  task: todo
+  project-management: planning
+  project-progress: planning
+  project-brief: planning
+  project-handover: planning
+  design-plan: planning
+  feature-spec: planning
+  feature-update: planning
+  milestone: planning
+  progress-report: planning
+  decision-log: planning
+  decisions: planning
+  development-plan: planning
+  incident-response: incident
+  incident-report: incident
+  post-mortem: incident
+  rca: incident
+
+  # --- AI 工具同義詞 ---
+  AI: ai-agent
+  ai: ai-agent
+  ai-tools: ai-agent
+  ai-generation: ai-agent
+  multi-agent: ai-agent
+  manus-runtime: manus
+  manus-memory: manus
+  manus-cmd: manus
+
+  # --- 工作流程同義詞 ---
+  data-scraping: data-collection
+  data-integration: data-collection
+  crawler: data-collection
+  data-flow: data-collection
+  data-pipeline: data-collection
+  execution-log: reporting
+  ad-log: reporting
+  log-management: reporting
+  metrics: reporting
+  execution: automation
+  token-saving: token-saving
+  token-cost: token-saving
+  cost-optimization: token-saving
+  naming-convention: documentation
+  naming: documentation
+  metadata: documentation
+  frontmatter: documentation
+  yaml: documentation
+  kebab-case: documentation
+  maintenance: knowledge-base
+  communication: collaboration
+  handoff: collaboration
+  project: planning

@@ -1,0 +1,21 @@
+Config API 結構分析：
+
+1. MASTER_PIXEL_MAP: 硬編碼在 Build Config 裡，key 是 tag (cs/js/ls/ms/cb/jb/lb/mb/cx/jx/lx/mx/n18/n14/n22)
+2. LINE_MAP: 從 DataTable (lineResp) 讀取，key 是 tag
+3. AD_MAP: 從 DataTable (adResp) 讀取，key 是 ad_code，值是 { pixels: [{pixel, token}] }
+
+現有 MASTER_PIXEL_MAP 的分組：
+- 爆分(cs/js/ls/ms): pixel 1059815113881250
+- 莊家剋星(cb/jb/lb/mb): pixel 629682249831836
+- 獨角仙(cx/jx/lx/mx): pixel 1996956134550764
+- 蕭甘丹(n18): pixel 1536783794086440
+- 洪金豹(n14): pixel 1684363839598393
+- 阿奇體育(n22): pixel 2038340907023537
+
+ad_config 是從 DataTable 讀的，不是硬編碼。
+需要查 DataTable 的結構。
+
+AS01=JS01=CS01=MS01=LS01 的邏輯：
+- AS 是爆分的 ad_code 前綴
+- JS/CS/MS/LS 是不同 tag（不同 LINE OA）
+- 同一個帳戶的不同 tag 共用像素和權杖

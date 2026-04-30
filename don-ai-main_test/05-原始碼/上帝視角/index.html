@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+body{margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#06c755;font-family:sans-serif;color:#fff}
+.loader{text-align:center}
+.spinner{width:40px;height:40px;border:4px solid rgba(255,255,255,.3);border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+p{font-size:16px;margin:0}
+</style>
+</head>
+<body>
+<div class="loader">
+<div class="spinner"></div>
+<p>正在為您導向...</p>
+</div>
+<script>
+const LIFF_ID = '2009129136-lUm2n85A';
+const WEBHOOK_URL = 'https://godview.app.n8n.cloud/webhook/liff-attribution';
+
+// LINE OA mapping (tag prefix -> LINE ID)
+const LINE_OA_MAP = {
+  'cx':'@697jsdma','jx':'@652ahjmy','lx':'@128hxyvp','mx':'@525euwsy',
+  'cs':'@999hqlmk','js':'@935bicyi','ls':'@849rldxt','ms':'@001qlmgf',
+  'bf':'@678eohsd',
+  'cb':'@bn56','jb':'@448nzdkf','lb':'@bn58','mb':'@734xzzse',
+  'jd':'@520ufhmw',
+  'n14':'@416nbqjl','n15':'@745jaffa','n16':'@751tggmd','n17':'@106tndmh',
+  'n18':'@013rgbjl','n19':'@536uhfpf','n20':'@348ikfwm','n21':'@075cocov',
+  'n22':'@659jgxlp'
+};
+
+async function main() {
+  try {
+    await liff.init({ liffId: LIFF_ID });
+
+    // Get URL params
+    const params = new URLSearchParams(window.location.search);
+    const tag = params.get('tag') || params.get('a') || '';
+    const fbc = params.get('fbc') || params.get('fbclid') || '';
+    const fbp = params.get('fbp') || '';
+
+    // Determine LINE OA from tag
+    const tagPrefix = tag.replace(/[0-9]/g, '').toLowerCase();
+    const lineId = LINE_OA_MAP[tagPrefix] || '@075cocov';
+
+    if (liff.isLoggedIn()) {
+      // Get user profile
+      const profile = await liff.getProfile();
+      const userId = profile.userId;
+      const displayName = profile.displayName || '';
+
+      // Check friendship
+      let isFriend = false;
+      try {
+        const friendship = await liff.getFriendship();
+        isFriend = friendship.friendFlag;
+      } catch(e) {}
+
+      // Send attribution data to n8n (non-blocking)
+      const payload = {
+        userId, displayName, tag, fbc, fbp, lineId, isFriend,
+        timestamp: new Date().toISOString(),
+        source: 'liff'
+      };
+
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
+      // Redirect to LINE OA
+      if (isFriend) {
+        // Already friend, go to chat
+        window.location.href = 'https://line.me/R/oaMessage/' + encodeURIComponent(lineId) + '/?%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3';
+      } else {
+        // Not friend, go to add friend page
+        window.location.href = 'https://line.me/R/ti/p/' + encodeURIComponent(lineId);
+      }
+    } else {
+      // Not logged in, redirect to LINE Login
+      liff.login({
+        redirectUri: window.location.href
+      });
+    }
+  } catch (err) {
+    // Fallback: redirect to LINE OA directly
+    const params = new URLSearchParams(window.location.search);
+    const tag = params.get('tag') || params.get('a') || '';
+    const tagPrefix = tag.replace(/[0-9]/g, '').toLowerCase();
+    const lineId = LINE_OA_MAP[tagPrefix] || '@075cocov';
+    window.location.href = 'https://line.me/R/ti/p/' + encodeURIComponent(lineId);
+  }
+}
+
+main();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+LINE 跳轉錯誤分析報告
+========================
+
+影片1 (kikilokk.xyz / AS04)：LINE顯示「伺服器連線失敗」
+影片2 (hamapu.xyz / N2001)：LINE顯示「無法找到該用戶」
+
+=== N2001 跳轉分析 ===
+N2001 的跳轉URL已確認：
+https://line.me/R/oaMessage/@sucking888/?我要領取專屬優惠 MDA6W
+
+使用的是 oaMessage scheme（開啟聊天室+預填訊息）
+LINE ID: @sucking888
+
+=== 錯誤原因分析 ===
+
+【「無法找到該用戶」的可能原因】（N2001/hamapu.xyz）
+1. LINE官方帳號 @sucking888 已被封禁/停用
+   - LINE會因為違規而封禁官方帳號
+   - 封禁後，所有指向該帳號的URL都會顯示「無法找到該用戶」
+   
+2. LINE ID 不正確
+   - 如果 @sucking888 不是正確的LINE官方帳號ID
+   - 需要確認LINE Official Account Manager中的實際ID
+
+3. 帳號已被刪除
+   - 如果該官方帳號已被手動刪除
+
+【「伺服器連線失敗」的可能原因】（AS04/kikilokk.xyz）
+1. LINE app端的網路問題
+   - 但如果只有這個連結有問題，其他正常，則排除網路因素
+
+2. URL格式錯誤
+   - 如果跳轉URL的格式不符合LINE URL scheme規範
+   - 例如：LINE ID沒有正確percent encoding
+   - 例如：使用了已棄用的 line:// scheme
+
+3. LINE官方帳號被暫時限制
+   - 帳號被暫時凍結但尚未完全封禁
+
+4. 跳轉URL指向的LINE帳號不存在
+   - 某些情況下LINE會回傳「伺服器連線失敗」而非「找不到用戶」
+
+=== LINE URL Scheme 正確格式（根據官方文件）===
+
+加好友：https://line.me/R/ti/p/%40{LINE_ID}
+開聊天：https://line.me/R/oaMessage/%40{LINE_ID}/?{預填文字}
+
+重要：LINE ID 中的 @ 必須 percent encode 為 %40
+
+=== 建議排查步驟 ===
+1. 確認 AS04 和 N2001 對應的LINE官方帳號是否仍然存活
+2. 確認跳轉URL中的LINE ID是否正確
+3. 如果帳號被封，需要更換LINE官方帳號並更新D1中的設定

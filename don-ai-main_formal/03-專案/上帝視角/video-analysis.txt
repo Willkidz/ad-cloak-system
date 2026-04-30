@@ -1,0 +1,16 @@
+影片分析：
+- Frame 1: FB Messenger 對話中貼了 n21.freshpathlab.com/?a=N2101 連結
+- Frame 4-8: Messenger in-app browser 打開，白屏（gv-liff Worker 載入中）
+- Frame 9-13: 跳到 access.line.me LINE Login 帳密頁面
+
+問題：Messenger in-app browser 中，LIFF SDK 的 liff.login() 觸發 LINE Login OAuth，
+但 Messenger WebView 不支援 Universal Link，所以無法跳到 LINE App，
+只能在 WebView 內顯示 LINE Login 網頁版（帳密登入頁）。
+
+這跟之前 Telegram 的問題一樣。FB Messenger 的 in-app browser = WebView = 不支援 Universal Link。
+
+但用戶之前說「FB可以正常跳轉」— 那次可能是從 FB App（動態消息/廣告）點的，不是從 Messenger。
+FB App 和 FB Messenger 的 in-app browser 行為可能不同。
+或者那次是因為 iOS 的 SFSafariViewController 而非 WKWebView。
+
+結論：LIFF 方案在任何 in-app browser (Messenger/Telegram/某些FB場景) 都會失敗。

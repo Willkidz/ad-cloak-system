@@ -1,0 +1,53 @@
+n8n Calculate Stats 需要修正的欄位映射：
+
+=== 新版3月消耗表欄位 (0-indexed) ===
+Row 1 (headerRow = spendRows[0]):
+  0-13: 標題和空白
+  14+: 日期 (3/1, 3/2, ...)
+
+Row 2 (spendRows[1]): header labels
+  0: 人員, 1: 類型, 2: 落地頁, 3: TAG, 4: ads, 5: 素材名稱
+  6: 廣告帳戶, 7: 日消, 8: 卡, 9: 廣告狀態, 10: 權杖狀態
+  11: 卡總充值, 12: 廣告總消耗, 13: 待付款
+  14: 預付餘額, 15: 總計, 16: 2月, 17: 3月
+  18+: 日期消耗 (但Row1從14開始是日期)
+
+=== 需要修正的代碼 ===
+
+1. 第43行: const rawCode = row[8] → row[3]  (TAG在D欄=index 3)
+2. 第45行: adInfo mapping:
+   舊: accountId: row[2], person: row[9], status: row[7], material: row[3], project: row[10]
+   新: accountId: row[6], person: row[0], status: row[9], material: row[5], project: row[3]
+3. 第42行: if (!row || !row[2]) continue → if (!row || !row[3]) continue (用TAG判斷有效行)
+4. dateColStart: 保持12不變？不對...
+
+等等，headerRow = spendRows[1]，但日期在Row1 (spendRows[0])
+代碼裡 headerRow = spendRows[1]，但 Row1 才有日期
+需要改 headerRow = spendRows[0]
+
+不對，再看一次：
+const headerRow = spendRows[1] || [];
+const dateColStart = 12;
+
+spendRows[1] = ["人員","類型","落地頁","TAG","ads","素材名稱","廣告帳戶","日消","卡","廣告狀態","權杖狀態","卡總充值","廣告總消耗","待付款","預付餘額","總計","2月","3月","8/1"]
+
+日期格式是 "8/1" 不是 "3/1"... 等等那是第19個元素
+
+spendRows[0] = ["廣告消耗追蹤 - 2026年3月","","","","","","","","","","","","","","3/1","3/2","3/3","3/4","3/5",...]
+
+所以日期在 Row 0 (spendRows[0]) 從 index 14 開始
+但代碼用的是 headerRow = spendRows[1]，dateColStart = 12
+
+舊版 spendRows[1] 的 index 12 以後可能就是日期了（因為舊版有BM ID欄，少了權杖狀態欄）
+
+修正方案：
+- headerRow 改用 spendRows[0]（Row 1 有日期）
+- dateColStart 改為 14（日期從O列開始）
+- 或者保持 headerRow = spendRows[1]，但 dateColStart 需要找到第一個日期格式的欄位
+
+最安全的做法：headerRow = spendRows[0], dateColStart = 14
+
+5. 第137行同樣: const code = String(row[8] || '').trim() → row[3]
+
+=== 成效表寫入也需要更新 ===
+現在成效表結構完全不同了，writePayloads 需要重寫

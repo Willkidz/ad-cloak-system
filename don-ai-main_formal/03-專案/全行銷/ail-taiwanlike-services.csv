@@ -1,0 +1,168 @@
+﻿service_id,name,platform,service_type,category,rate_twd,rate_usd,min,max,refill,cancel,dripfeed
+1,Instagram 普通台灣粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),600.0,18.75,10,200000,No,No,No
+2,Instagram 普通台灣粉絲 (速度:慢速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),600.0,18.75,10,200000,No,No,No
+3,Instagram 普通台灣粉絲 (全女性)(速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),800.0,25.0,50,15000,No,No,Yes
+8,Instagram 普通台港澳中粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),600.0,18.75,10,200000,No,No,Yes
+9,Instagram 普通華人粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),600.0,18.75,10,200000,No,No,No
+10,Instagram 普通全球粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),300.0,9.375,10,100000,No,No,Yes
+12,Instagram 普通日本粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),3000.0,93.75,10,32000,No,No,Yes
+13,Instagram 普通韓國粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),3000.0,93.75,10,30000,No,No,Yes
+4,Instagram 高級台灣粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),4500.0,140.625,10,6000,No,No,Yes
+6,Instagram 高級台灣粉絲 (速度:慢速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),4500.0,140.625,10,6000,No,No,Yes
+28,Instagram 高級台灣粉絲 (全男性)(速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),6000.0,187.5,10,1400,No,No,Yes
+29,Instagram 高級台灣粉絲 (全女性)(速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (普通/高級系列),6000.0,187.5,10,4200,No,No,Yes
+14,Instagram 頂級台灣粉絲 (速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),6000.0,187.5,10,6100,No,No,Yes
+130,Instagram 頂級台灣粉絲 (全男性)(速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),8000.0,250.0,10,2400,No,No,Yes
+131,Instagram 頂級台灣粉絲 (全女性)(速度:快速),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),8000.0,250.0,10,3400,No,No,Yes
+16,Instagram 真人台灣粉絲 (純追蹤),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),8000.0,250.0,10,6100,No,No,Yes
+17,Instagram 真人台灣粉絲 (純追蹤)(全男性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),10000.0,312.5,10,2400,No,No,Yes
+18,Instagram 真人台灣粉絲 (純追蹤)(全女性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),10000.0,312.5,10,3400,No,No,Yes
+172,Instagram 真人香港粉絲 (純追蹤),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),9000.0,281.25,10,3000,No,No,No
+173,Instagram 真人香港粉絲 (純追蹤)(全男性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),11000.0,343.75,10,1000,No,No,No
+174,Instagram 真人香港粉絲 (純追蹤)(全女性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),11000.0,343.75,10,1700,No,No,No
+20,Instagram 真人台灣粉絲 (低互動),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),15000.0,468.75,10,5000,No,No,Yes
+21,Instagram 真人台灣粉絲 (低互動)(全男性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),20000.0,625.0,10,1700,No,No,Yes
+22,Instagram 真人台灣粉絲 (低互動)(全女性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),20000.0,625.0,10,2300,No,No,Yes
+24,Instagram 真人台灣粉絲 (高互動),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),35000.0,1093.75,10,500,No,No,Yes
+25,Instagram 真人台灣粉絲 (高互動)(全男性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),40000.0,1250.0,10,200,No,No,Yes
+26,Instagram 真人台灣粉絲 (高互動)(全女性),Instagram,Followers/Subscribers,Instagram 粉絲追蹤 (頂級/真人系列),40000.0,1250.0,10,300,No,No,Yes
+39,Instagram 普通台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,500.0,15.625,20,50000,No,No,Yes
+40,Instagram 普通台港澳中貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,400.0,12.5,20,50000,No,No,Yes
+140,Instagram 普通華人貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,400.0,12.5,20,5000,No,No,No
+38,Instagram 普通外國貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,200.0,6.25,10,3000000,No,Yes,Yes
+277,Instagram 普通日本貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,400.0,12.5,20,20000,No,No,No
+278,Instagram 普通韓國貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,400.0,12.5,20,20000,No,No,No
+31,Instagram 高級台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,1000.0,31.25,20,6000,No,No,Yes
+32,Instagram 高級台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,1500.0,46.875,30,3000,No,No,Yes
+33,Instagram 高級台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,1500.0,46.875,30,4200,No,No,Yes
+43,Instagram 頂級台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,2000.0,62.5,10,6000,No,No,Yes
+44,Instagram 頂級台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,2500.0,78.125,10,2100,No,No,Yes
+45,Instagram 頂級台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,2500.0,78.125,10,3400,No,No,Yes
+137,Instagram 真人台灣貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,3500.0,109.375,10,6000,No,No,Yes
+138,Instagram 真人台灣貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,5000.0,156.25,10,2100,No,No,Yes
+139,Instagram 真人台灣貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,5000.0,156.25,10,3400,No,No,Yes
+175,Instagram 真人香港貼文讚 (速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,3500.0,109.375,10,3000,No,No,Yes
+176,Instagram 真人香港貼文讚 (全男性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,5000.0,156.25,10,1000,No,No,Yes
+177,Instagram 真人香港貼文讚 (全女性)(速度:快速),Instagram,Likes/Reactions,Instagram 貼文讚,5000.0,156.25,10,1700,No,No,Yes
+46,Instagram 普通台灣貼文留言 (速度:快速),Instagram,Comments,Instagram 貼文留言,10000.0,312.5,1,1000,No,No,No
+142,Instagram 頂級台灣貼文留言 (速度:快速),Instagram,Comments,Instagram 貼文留言,15000.0,468.75,1,6000,No,No,No
+143,Instagram 頂級台灣貼文留言 (全男性)(速度:快速),Instagram,Comments,Instagram 貼文留言,20000.0,625.0,1,2100,No,No,No
+144,Instagram 頂級台灣貼文留言 (全女性)(速度:快速),Instagram,Comments,Instagram 貼文留言,20000.0,625.0,1,3400,No,No,No
+48,Instagram 真人台灣貼文留言 (速度:快速),Instagram,Comments,Instagram 貼文留言,20000.0,625.0,1,6000,No,No,No
+49,Instagram 真人台灣貼文留言 (全男性)(速度:快速),Instagram,Comments,Instagram 貼文留言,25000.0,781.25,1,2100,No,No,No
+50,Instagram 真人台灣貼文留言 (全女性)(速度:快速),Instagram,Comments,Instagram 貼文留言,25000.0,781.25,1,3400,No,No,No
+51,Instagram 真人香港貼文留言 (速度:快速),Instagram,Comments,Instagram 貼文留言,20000.0,625.0,1,3000,No,No,No
+52,Instagram 真人香港貼文留言 (全男性)(速度:快速),Instagram,Comments,Instagram 貼文留言,25000.0,781.25,1,1000,No,No,No
+53,Instagram 真人香港貼文留言 (全女性)(速度:快速),Instagram,Comments,Instagram 貼文留言,25000.0,781.25,1,1700,No,No,No
+181,Instagram 頂級台灣貼文留言+讚 (相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),20000.0,625.0,1,6000,No,No,No
+182,Instagram 頂級台灣貼文留言+讚 (全男性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),25000.0,781.25,1,2100,No,No,No
+183,Instagram 頂級台灣貼文留言+讚 (全女性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),25000.0,781.25,1,3400,No,No,No
+185,Instagram 真人台灣貼文留言+讚 (相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),25000.0,781.25,1,6000,No,No,No
+186,Instagram 真人台灣貼文留言+讚 (全男性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),30000.0,937.5,1,2100,No,No,No
+187,Instagram 真人台灣貼文留言+讚 (全女性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),30000.0,937.5,1,3400,No,No,No
+188,Instagram 真人香港貼文留言+讚 (相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),25000.0,781.25,1,3000,No,No,No
+189,Instagram 真人香港貼文留言+讚 (全男性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),30000.0,937.5,1,1000,No,No,No
+190,Instagram 真人香港貼文留言+讚 (全女性)(相同帳號)(速度:快速),Instagram,Likes/Reactions,🆕Instagram 貼文留言+讚 (相同帳號留言及讚)(更真實‼️),30000.0,937.5,1,1700,No,No,No
+55,Instagram 普通外國貼文自動讚,Instagram,Likes/Reactions,Instagram 貼文自動讚,200.0,6.25,10,50000,No,Yes,No
+56,Instagram 普通台灣貼文自動讚,Instagram,Likes/Reactions,Instagram 貼文自動讚,500.0,15.625,10,50000,No,No,No
+65,Instagram 普通華人貼文自動讚,Instagram,Likes/Reactions,Instagram 貼文自動讚,400.0,12.5,10,30000,No,No,No
+58,Instagram 高級台灣貼文自動讚,Instagram,Likes/Reactions,Instagram 貼文自動讚,1000.0,31.25,20,6000,No,No,No
+59,Instagram 頂級台灣貼文自動讚,Instagram,Likes/Reactions,Instagram 貼文自動讚,2000.0,62.5,10,6000,No,No,No
+60,Instagram 頂級台灣貼文自動讚 (全男性),Instagram,Likes/Reactions,Instagram 貼文自動讚,2500.0,78.125,10,2100,No,No,No
+61,Instagram 頂級台灣貼文自動讚 (全女性),Instagram,Likes/Reactions,Instagram 貼文自動讚,2500.0,78.125,10,3400,No,No,No
+66,Instagram 影片觀看人數 (Reels/Video) - 服務1,Instagram,Views/Plays,Instagram 觀看人數/觸及人數/分享/收藏,40.0,1.25,100,100000000,No,No,Yes
+67,Instagram 限時動態觀看人數,Instagram,Views/Plays,Instagram 觀看人數/觸及人數/分享/收藏,100.0,3.125,100,10000,No,Yes,No
+68,Instagram 觸及人數 (貼文/Reels/Video),Instagram,Views/Plays,Instagram 觀看人數/觸及人數/分享/收藏,100.0,3.125,100,1000000,No,No,Yes
+69,Instagram 分享人數 (貼文/Reels/Video),Instagram,Views/Plays,Instagram 觀看人數/觸及人數/分享/收藏,100.0,3.125,10,1000000,No,No,Yes
+70,Instagram 收藏人數 (貼文/Reels/Video),Instagram,Views/Plays,Instagram 觀看人數/觸及人數/分享/收藏,100.0,3.125,10,1000000,No,No,Yes
+71,Facebook 普通台灣 粉絲專頁讚及追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,4000.0,125.0,10,100000,No,No,Yes
+72,Facebook 普通全球 粉絲專頁讚及追蹤 (速度:快速),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,600.0,18.75,10,1000000,No,No,Yes
+148,Facebook 普通台灣 粉絲專頁讚及追蹤,Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,4000.0,125.0,10,100000,No,No,Yes
+74,Facebook 頂級台灣 粉絲專頁讚及追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,8000.0,250.0,50,10000,No,No,Yes
+75,Facebook 頂級台灣 社團粉絲 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,20000.0,625.0,50,4000,No,No,Yes
+76,Facebook 頂級台灣 個人專頁追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,20000.0,625.0,50,10000,No,No,Yes
+77,Facebook 頂級台灣 個人頁面好友 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,20000.0,625.0,10,8000,No,No,Yes
+149,Facebook 真人台灣 粉絲專頁讚及追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,15000.0,468.75,50,10000,No,No,Yes
+151,Facebook 真人台灣 社團粉絲 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,25000.0,781.25,50,4000,No,No,Yes
+150,Facebook 真人台灣 個人專頁追蹤 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,25000.0,781.25,50,10000,No,No,Yes
+224,Facebook 真人台灣 個人頁面好友 (速度:正常),Facebook,Followers/Subscribers,Facebook 粉絲專頁/社團/個人頁面服務,25000.0,781.25,10,5000,No,No,Yes
+78,Facebook 普通台灣貼文讚 (速度:正常),Facebook,Likes/Reactions,Facebook 貼文讚/表情,3000.0,93.75,10,100000,No,No,Yes
+167,Facebook 普通台港澳中貼文讚 (速度:正常),Facebook,Likes/Reactions,Facebook 貼文讚/表情,3000.0,93.75,10,100000,No,No,Yes
+221,Facebook 普通台灣貼文讚 (博弈/貸款/網約/充值專區),Facebook,Likes/Reactions,Facebook 貼文讚/表情,3000.0,93.75,10,80000,No,No,Yes
+81,Facebook 頂級台灣貼文讚 (速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,5000.0,156.25,20,15000,No,No,Yes
+82,Facebook 頂級台灣貼文讚 (全男性)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,6000.0,187.5,20,2000,No,No,Yes
+83,Facebook 頂級台灣貼文讚 (全女性)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,6000.0,187.5,20,8000,No,No,Yes
+222,Facebook 頂級台灣貼文讚 (博弈/貸款/網約/充值專區),Facebook,Likes/Reactions,Facebook 貼文讚/表情,5000.0,156.25,20,9000,No,No,Yes
+166,Facebook 頂級台港澳中貼文讚 (速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,5000.0,156.25,20,15000,No,No,Yes
+84,Facebook 頂級台灣貼文表情 (心心)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,9000.0,281.25,40,4000,No,No,No
+85,Facebook 頂級台灣貼文表情 (抱抱)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,9000.0,281.25,40,4000,No,No,No
+87,Facebook 頂級台灣貼文表情 (哈哈)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,9000.0,281.25,40,4000,No,No,No
+89,Facebook 頂級台灣貼文表情 (哇)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,9000.0,281.25,40,4000,No,No,No
+154,Facebook 真人台灣貼文讚 (速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,10000.0,312.5,20,15000,No,No,Yes
+80,Facebook 真人台灣貼文讚 (全男性)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,11000.0,343.75,20,2000,No,No,Yes
+86,Facebook 真人台灣貼文讚 (全女性)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,11000.0,343.75,20,8000,No,No,No
+223,Facebook 真人台灣貼文讚 (博弈/貸款/網約專區),Facebook,Likes/Reactions,Facebook 貼文讚/表情,10000.0,312.5,10,5000,No,No,Yes
+155,Facebook 真人台灣貼文表情 (心心)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,12000.0,375.0,40,4000,No,No,No
+156,Facebook 真人台灣貼文表情 (抱抱)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,12000.0,375.0,40,4000,No,No,No
+157,Facebook 真人台灣貼文表情 (哈哈)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,12000.0,375.0,40,4000,No,No,No
+158,Facebook 真人台灣貼文表情 (哇)(速度:1天內),Facebook,Likes/Reactions,Facebook 貼文讚/表情,12000.0,375.0,40,4000,No,No,No
+92,Facebook 普通台灣貼文留言 (速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,15000.0,468.75,1,2000,No,No,No
+161,Facebook 普通台港澳中貼文留言 (速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,20000.0,625.0,1,2000,No,No,No
+94,Facebook 頂級台灣貼文留言 (速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,25000.0,781.25,1,10000,No,No,No
+95,Facebook 頂級台灣貼文留言 (全男性)(速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,40000.0,1250.0,1,10000,No,No,No
+96,Facebook 頂級台灣貼文留言 (全女性)(速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,40000.0,1250.0,1,10000,No,No,No
+164,Facebook 頂級台灣粉絲專頁五星評論 (速度:正常),Facebook,Followers/Subscribers,Facebook 貼文留言/專頁評論,25000.0,781.25,1,1000,No,No,No
+168,Facebook 頂級台港澳中粉絲專頁五星評論 (速度:正常),Facebook,Followers/Subscribers,Facebook 貼文留言/專頁評論,25000.0,781.25,1,1000,No,No,No
+162,Facebook 真人台灣貼文留言 (速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,50000.0,1562.5,1,10000,No,No,No
+255,Facebook 真人台灣貼文留言 (全男性)(速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,55000.0,1718.75,1,10000,No,No,No
+256,Facebook 真人台灣貼文留言 (全女性)(速度:正常),Facebook,Comments,Facebook 貼文留言/專頁評論,55000.0,1718.75,1,10000,No,No,No
+163,Facebook 真人台灣貼文留言 (可選性別)(內容@tag好友),Facebook,Comments,Facebook 貼文留言/專頁評論,55000.0,1718.75,1,10000,No,No,No
+165,Facebook 真人台灣粉絲專頁五星評論 (速度:正常),Facebook,Followers/Subscribers,Facebook 貼文留言/專頁評論,50000.0,1562.5,1,1000,No,No,No
+218,Facebook 真人台灣粉絲專頁五星評論 (全女性)(速度:正常),Facebook,Followers/Subscribers,Facebook 貼文留言/專頁評論,55000.0,1718.75,1,5000,No,No,No
+97,Facebook 影片觀看人數 (速度:快速),Facebook,Views/Plays,Facebook 影片觀看/影片及貼文分享,130.0,4.0625,500,2147483647,No,No,Yes
+99,Facebook Reels觀看人數 (速度:快速),Facebook,Views/Plays,Facebook 影片觀看/影片及貼文分享,130.0,4.0625,100,50000000,No,No,Yes
+212,Facebook 頂級台灣影片及貼文分享人數 (速度:快速),Facebook,Views/Plays,Facebook 影片觀看/影片及貼文分享,25000.0,781.25,5,5000,No,No,No
+213,Facebook 真人台灣影片及貼文分享人數 (速度:快速),Facebook,Views/Plays,Facebook 影片觀看/影片及貼文分享,30000.0,937.5,5,7000,No,No,No
+178,Threads 普通台灣粉絲 (速度:慢),Threads,Followers/Subscribers,Threads 服務,800.0,25.0,20,5000,No,No,Yes
+193,Threads 頂級台灣粉絲 (速度:正常),Threads,Followers/Subscribers,Threads 服務,6000.0,187.5,20,4000,No,No,Yes
+194,Threads 真人台灣粉絲 (速度:正常),Threads,Followers/Subscribers,Threads 服務,8000.0,250.0,20,4000,No,No,Yes
+196,Threads 普通台灣串文讚 (速度:慢),Threads,Likes/Reactions,Threads 服務,600.0,18.75,20,2000,No,No,Yes
+197,Threads 頂級台灣串文讚 (速度:正常),Threads,Likes/Reactions,Threads 服務,2000.0,62.5,15,4000,No,No,Yes
+198,Threads 真人台灣串文讚 (速度:正常),Threads,Likes/Reactions,Threads 服務,3500.0,109.375,15,4000,No,No,Yes
+200,Threads 普通台灣串文留言 (速度:慢),Threads,Comments,Threads 服務,10000.0,312.5,1,1000,No,No,No
+201,Threads 頂級台灣串文留言 (速度:正常),Threads,Comments,Threads 服務,15000.0,468.75,1,1000,No,No,No
+202,Threads 真人台灣串文留言 (速度:正常),Threads,Comments,Threads 服務,20000.0,625.0,1,1000,No,No,No
+220,Threads 串文瀏覽量 (速度:正常),Threads,Other,Threads 服務,500.0,15.625,500,10000,No,No,Yes
+169,Line@ 官方好友,LINE,Other,Line 服務,5000.0,156.25,100,12000,No,No,No
+279,Dcard 真人貼文讚,Dcard,Likes/Reactions,Dcard 服務,25000.0,781.25,1,100,No,No,No
+280,Dcard 真人貼文收藏,Dcard,Saves,Dcard 服務,25000.0,781.25,1,100,No,No,No
+281,Dcard 真人貼文留言,Dcard,Comments,Dcard 服務,80000.0,2500.0,1,100,No,No,No
+209,Google 真人台灣五星評論 (速度:正常),Google,Reviews/Ratings,Google 服務,100000.0,3125.0,1,500,No,No,No
+210,Google 真人台灣五星評論 (全男性)(速度:正常),Google,Reviews/Ratings,Google 服務,200000.0,6250.0,1,500,No,No,No
+211,Google 真人台灣五星評論 (全女性)(速度:正常),Google,Reviews/Ratings,Google 服務,200000.0,6250.0,1,500,No,No,No
+274,Google 真人台灣五星評論 (速度:正常) ❰❰加照片❱❱,Google,Reviews/Ratings,Google 服務,150000.0,4687.5,1,500,No,No,No
+275,Google 真人台灣五星評論 (全男性)(速度:正常) ❰❰加照片❱❱,Google,Reviews/Ratings,Google 服務,300000.0,9375.0,1,500,No,No,No
+276,Google 真人台灣五星評論 (全女性)(速度:正常) ❰❰加照片❱❱,Google,Reviews/Ratings,Google 服務,300000.0,9375.0,1,500,No,No,No
+250,小紅書 真人華人粉絲關注  (速度:正常),Xiaohongshu,Followers/Subscribers,小紅書 服務,8000.0,250.0,100,10000,No,No,No
+251,小紅書 真人華人作品讚  (速度:正常),Xiaohongshu,Likes/Reactions,小紅書 服務,3500.0,109.375,50,10000,No,No,No
+252,小紅書 真人華人作品觀看+曝光  (速度:正常),Xiaohongshu,Views/Plays,小紅書 服務,130.0,4.0625,500,100000,No,No,No
+253,小紅書 真人華人作品收藏  (速度:正常),Xiaohongshu,Saves,小紅書 服務,10000.0,312.5,10,300,No,No,No
+254,小紅書 真人華人作品評論  (速度:正常),Xiaohongshu,Reviews/Ratings,小紅書 服務,12000.0,375.0,3,100,No,No,No
+170,Youtube 全球頻道訂閱 (速度:正常),YouTube,Followers/Subscribers,Youtube 服務,1300.0,40.625,100,1000000,No,No,No
+171,Youtube 全球影片讚 (速度:正常),YouTube,Likes/Reactions,Youtube 服務,200.0,6.25,50,150000,No,No,No
+119,Youtube 影片觀看人數 (速度:慢),YouTube,Views/Plays,Youtube 服務,130.0,4.0625,100,2000000,No,No,No
+122,Youtube 台灣影片留言 (速度:正常),YouTube,Comments,Youtube 服務,35000.0,1093.75,1,200,No,No,No
+214,Telegram 華人群組粉絲 (速度:正常),Telegram,Followers/Subscribers,Telegram 服務,300.0,9.375,500,200000,No,No,Yes
+215,Tiktok 全球粉絲追蹤 (速度:正常),TikTok,Followers/Subscribers,Tiktok 服務,300.0,9.375,10,10000000,No,No,No
+216,Tiktok 全球貼文讚 (速度:正常),TikTok,Likes/Reactions,Tiktok 服務,200.0,6.25,10,1000000,No,No,No
+217,Tiktok 觀看人數 (速度:正常),TikTok,Views/Plays,Tiktok 服務,130.0,4.0625,100,50000000,No,No,No
+240,一站式貼文設計、小編文案套餐,Taiwan Forums,Design/Dev,論壇口碑行銷 服務,1800000.0,56250.0,1,1000,No,No,No
+231,Logo 設計,Design/Dev Services,Design/Dev,平面設計 服務,3800000.0,118750.0,1,1000,No,No,No
+232,名片設計,Design/Dev Services,Design/Dev,平面設計 服務,2200000.0,68750.0,1,1000,No,No,No
+233,宣傳單張設計,Design/Dev Services,Design/Dev,平面設計 服務,2800000.0,87500.0,1,1000,No,No,No
+234,社交媒體貼文設計,Design/Dev Services,Design/Dev,平面設計 服務,1500000.0,46875.0,1,1000,No,No,No
+237,網站基本架構,Design/Dev Services,Design/Dev,網站架構及設計 服務,4000000.0,125000.0,1,1000,No,No,No
+238,購物車網站基本架構,Design/Dev Services,Design/Dev,網站架構及設計 服務,8000000.0,250000.0,1,1000,No,No,No
+239,網站品牌形象設計,Design/Dev Services,Design/Dev,網站架構及設計 服務,40000000.0,1250000.0,1,1000,No,No,No
+235,商品攝影,Design/Dev Services,Design/Dev,商品攝影 服務,1200000.0,37500.0,1,1,No,No,No
+236,作品集攝影,Design/Dev Services,Design/Dev,商品攝影 服務,1200000.0,37500.0,1,1,No,No,No

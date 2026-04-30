@@ -1,0 +1,12 @@
+HTTP/2 200 
+date: Fri, 10 Apr 2026 15:51:31 GMT
+content-type: text/html; charset=utf-8
+cache-control: public, max-age=3600
+server-timing: enforce_admin_api_auth;dur=0, entry_campaign_lookup;dur=171;desc="entry", entry_resolve_routing;dur=507;desc="entry", entry_load_feature_flags;dur=0;desc="campaign:ac72140f-4423-403b-b356-f62b1026eada", entry_check_verified_bot;dur=226;desc="entry", entry_is_bot;dur=1302;desc="entry", safe_select_variant;dur=173;desc="safe_page", safe_worker_fetch;dur=101;desc="https://safe-page.laoqin1689.workers.dev/?t=health", safe_worker_read_body;dur=0;desc="safe-page text"
+x-worker-timing-total: 2879
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=5YQofnLb6L7y4qh3DDQ1qlCHP1l0GgGiRfbsX1KVbibYp9uUXvdtCeVlHcTgr8dfr8AW7b8Pd8SIG6Se9%2FGKiKc1EcOrkSVktXJ6dT3K5LO2tBU%2Bn%2BT8z%2B2gzzY%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: 9ea2e9c429ba2376-EZE
+alt-svc: h3=":443"; ma=86400
+

@@ -1,0 +1,199 @@
+=== Build Check List ===
+// Build unique token list - same token only check once
+const rows = $input.first().json.rows || [];
+const tokenMap = new Map();
+for (const row of rows) {
+  if (!row.pixel || !row.token) continue;
+  const tokenKey = row.token.slice(-20);
+  if (!tokenMap.has(tokenKey)) {
+    tokenMap.set(tokenKey, {
+      pixel: row.pixel,
+      token: row.token,
+      type: row.type || 'unknown',
+      codes: [row.code],
+      allPixels: [row.pixel]
+    });
+  } else {
+    const existing = tokenMap.get(tokenKey);
+    existing.codes.push(row.code);
+    if (!existing.allPixels.includes(row.pixel)) {
+      existing.allPixels.push(row.pixel);
+    }
+  }
+}
+const results = [];
+for (const [key, val] of tokenMap) {
+  results.push({
+    json: {
+      pixel: val.pixel,
+      token: val.token,
+      type: val.type,
+      codes: val.codes.join(','),
+      allPixels: val.allPixels,
+      label: `共用Token (${val.allPixels.length}個像素, ${val.codes.length}個代碼)`
+    }
+  });
+}
+return results;
+---
+
+=== Build Report ===
+// Collect all results and build report
+const items = $input.all();
+const checkList = $('Build Check List').all();
+const results = [];
+let hasFailure = false;
+
+for (let i = 0; i < items.length; i++) {
+  const resp = items[i].json;
+  const config = checkList[i]?.json || {};
+  const ok = resp.events_received ? true : false;
+  const errorMsg = resp.error ? resp.error.message : '';
+  if (!ok) hasFailure = true;
+  results.push({
+    label: config.label || 'unknown',
+    pixel: config.pixel || '',
+    type: config.type || '',
+    codes: config.codes || '',
+    status: ok ? 'ok' : 'fail',
+    error: errorMsg,
+    events_received: resp.events_received || 0
+  });
+}
+
+const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+const failures = results.filter(r => r.status === 'fail');
+const successes = results.filter(r => r.status === 'ok');
+
+let msg = `🔍 CAPI 健康檢查\n${now}\n`;
+msg += `━━━━━━━━━━━━━━━━\n\n`;
+
+if (failures.length === 0) {
+  msg += `✅ 全部正常 ${successes.length}/${results.length}\n\n`;
+  for (const r of results) {
+    msg += `  ✅ ${r.label}\n`;
+  }
+} else {
+  msg += `⚠️ ${failures.length} 個異常！\n\n`;
+  msg += `❌ 失敗：\n`;
+  for (const r of failures) {
+    msg += `  • ${r.label}\n`;
+    msg += `    像素: ${r.pixel}\n`;
+    msg += `    錯誤: ${r.error}\n\n`;
+  }
+  if (successes.length > 0) {
+    msg += `✅ 正常 (${successes.length})：\n`;
+    for (const r of successes) {
+      msg += `  • ${r.label}\n`;
+    }
+  }
+}
+
+return [{
+  json: {
+    has_failure: hasFailure,
+    results: results,
+    message: msg,
+    failure_count: failures.length,
+    success_count: successes.length,
+    total: results.length
+  }
+}];
+---
+
+=== Build Attribution Report ===
+const d1Result = $input.first().json;
+const rows = d1Result?.result?.[0]?.results || [];
+const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+
+let msg = `📊 每小時歸因報告\n${now}\n`;
+msg += `━━━━━━━━━━━━━━━━\n\n`;
+
+if (rows.length === 0) {
+  msg += `今日暫無資料`;
+} else {
+  // N 系列名稱對應
+  const N_NAMES = {
+    'n14': 'N14',
+    'n18': 'N18',
+    'n20': '蘇主金',
+    'n21': '武狀元',
+    'n22': '阿奇說球'
+  };
+
+  const getGroupInfo = (tag) => {
+    const t = (tag || '').toLowerCase();
+    if (['jb','cb','mb','lb'].includes(t)) return { group: 'AB', label: '莊家剋星' };
+    if (['js','cs','ms','ls'].includes(t)) return { group: 'AS', label: '爆分王' };
+    if (['jx','cx','mx','lx'].includes(t)) return { group: 'AX', label: '獨角仙' };
+    if (['bf','jd'].includes(t)) return { group: 'BF', label: '博富' };
+    if (t.startsWith('n')) return { group: 'N', label: 'N系列' };
+    return { group: 'OTHER', label: '其他' };
+  };
+
+  const getNum = (tag, adCode) => {
+    if (adCode) return adCode.replace(/[^0-9]/g, '');
+    return (tag || '').replace(/[^0-9]/g, '');
+  };
+
+  const accountGroups = {};
+  let totalClicks = 0;
+  let totalAdds = 0;
+
+  for (const row of rows) {
+    const tag = row.tag || '';
+    const adCode = row.ad_code || '';
+    const total = row.total || 0;
+    const matched = row.matched_count || 0;
+    totalClicks += total;
+    totalAdds += matched;
+
+    const { group, label } = getGroupInfo(tag);
+    const num = getNum(tag, adCode);
+
+    let itemKey;
+    let displayName;
+    if (group === 'N') {
+      const nTag = tag.toLowerCase();
+      const nName = N_NAMES[nTag] || nTag.toUpperCase();
+      itemKey = nTag;
+      displayName = `${nName}(${adCode || tag})`;
+    } else {
+      itemKey = `${group}${num || ''}`;
+      displayName = itemKey;
+    }
+
+    if (!accountGroups[group]) {
+      accountGroups[group] = { label, items: {} };
+    }
+    if (!accountGroups[group].items[itemKey]) {
+      accountGroups[group].items[itemKey] = { clicks: 0, adds: 0, displayName };
+    }
+    accountGroups[group].items[itemKey].clicks += total;
+    accountGroups[group].items[itemKey].adds += matched;
+  }
+
+  msg += `📈 今日總計: ${totalClicks} click / ${totalAdds} add\n\n`;
+
+  const groupOrder = ['AS', 'AB', 'AX', 'BF', 'N', 'OTHER'];
+
+  for (const gKey of groupOrder) {
+    const g = accountGroups[gKey];
+    if (!g) continue;
+
+    msg += `${g.label}：\n`;
+
+    const sorted = Object.entries(g.items)
+      .sort((a, b) => b[1].adds - a[1].adds || b[1].clicks - a[1].clicks);
+
+    for (const [key, val] of sorted) {
+      const icon = val.adds > 0 ? '🟢' : '⚪';
+      msg += `${icon} ${val.displayName}: ${val.clicks} click / ${val.adds} add\n`;
+    }
+    msg += `\n`;
+  }
+}
+
+return [{ json: { message: msg } }];
+---
+
