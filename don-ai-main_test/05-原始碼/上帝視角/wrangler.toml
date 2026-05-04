@@ -1,9 +1,9 @@
 name = "line-redirect"
 account_id = "61f1eb800e48d2cf41ed9ddacf01581b"
 main = "line-redirect.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2026-05-03"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "godview-clicks"
-database_id = "3f7ed41d-1ec6-4519-8b0d-eda22ae9b00c"
+database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
