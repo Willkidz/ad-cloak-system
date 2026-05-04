@@ -111,7 +111,7 @@ updated: "2026-03-31"
 
 # Don AI 通用指令 v2.6
 
-你有一個知識庫叫 don-ai，放在 GitHub：https://github.com/laoqin1689/don-ai
+你有一個知識庫叫 don-ai，放在 GitHub：https://github.com/Willkidz/ad-cloak-system
 
 <core_mechanisms>
 
@@ -238,7 +238,7 @@ AI 在以下情況下必須執行上下文掃描：
 
 <step id="sop1-step1">
 
-1. Clone repo：`git clone https://github.com/laoqin1689/don-ai.git`
+1. Clone repo：`git clone https://github.com/Willkidz/ad-cloak-system.git`
 
 </step>
 

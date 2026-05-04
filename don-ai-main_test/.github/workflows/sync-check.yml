@@ -194,7 +194,7 @@ with open(record_file, 'w') as f:
           此 PR 包含從 Cloudflare 下載的最新源碼。"
 
             # Push branch
-            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/laoqin1689/don-ai.git "$BRANCH"
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/Willkidz/ad-cloak-system.git "$BRANCH"
 
             # Create PR using REST API
             PR_BODY=$(cat /tmp/diff-results/summary.md)
@@ -206,7 +206,7 @@ with open(record_file, 'w') as f:
               --arg head "$BRANCH" \
               '{title: $title, body: $body, head: $head, base: "main"}')
 
-            PR_RESPONSE=$(curl -s -X POST "https://api.github.com/repos/laoqin1689/don-ai/pulls" \
+            PR_RESPONSE=$(curl -s -X POST "https://api.github.com/repos/Willkidz/ad-cloak-system/pulls" \
               -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
               -d "$PR_JSON")
@@ -217,7 +217,7 @@ with open(record_file, 'w') as f:
               echo "❌ Failed to create PR"
               echo "Response: $PR_RESPONSE"
             else
-              echo "PR_URL=https://github.com/laoqin1689/don-ai/pull/$PR_NUMBER" >> $GITHUB_ENV
+              echo "PR_URL=https://github.com/Willkidz/ad-cloak-system/pull/$PR_NUMBER" >> $GITHUB_ENV
               echo "✅ PR created: #$PR_NUMBER"
             fi
           else
@@ -236,7 +236,7 @@ with open(record_file, 'w') as f:
           if ! git diff --quiet "05-原始碼/deploy-record.json"; then
             git add "05-原始碼/deploy-record.json"
             git commit -m "chore: update deploy-record.json timestamps (sync-check)"
-            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/laoqin1689/don-ai.git HEAD:main
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/Willkidz/ad-cloak-system.git HEAD:main
             echo "✅ deploy-record.json updated on main"
           else
             echo "No changes to deploy-record.json"

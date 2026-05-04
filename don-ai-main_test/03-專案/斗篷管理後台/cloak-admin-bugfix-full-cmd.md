@@ -21,7 +21,7 @@ updated: "2026-03-29"
 
 - **目標系統**: `admin.bexnua.store`
 - **搭配文件**: 《通用環境指令-斗篷後台》
-- **前端 Repo**: `laoqin1689/cloak-admin` (React + Vite + Tailwind CSS + shadcn/ui)
+- **前端 Repo**: `Willkidz/ad-cloak-system` (React + Vite + Tailwind CSS + shadcn/ui)
 - **後端 Worker**: `cloak-admin-api` (Hono + Cloudflare D1)
 
 請技術組依序執行修復，並於每次修改後完成 build、部署與驗證的完整流程。

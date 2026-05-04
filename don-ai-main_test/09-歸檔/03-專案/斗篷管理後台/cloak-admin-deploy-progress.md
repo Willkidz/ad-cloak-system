@@ -23,7 +23,7 @@ updated: "2026-03-29"
 
 ### 問題背景
 
-在 2026 年 3 月 25 日，`cloak-admin` 前端進行了多項功能更新，但在多次部署後，線上版本 (`admin.bexnua.store`) 仍顯示舊版 UI。經過排查，根本原因被確認為 **`webdev` 開發專案和 `laoqin1689/cloak-admin` GitHub repo 是兩個完全獨立的 git 倉庫**，兩者之間沒有自動同步。
+在 2026 年 3 月 25 日，`cloak-admin` 前端進行了多項功能更新，但在多次部署後，線上版本 (`admin.bexnua.store`) 仍顯示舊版 UI。經過排查，根本原因被確認為 **`webdev` 開發專案和 `Willkidz/ad-cloak-system` GitHub repo 是兩個完全獨立的 git 倉庫**，兩者之間沒有自動同步。
 
 ### 技術細節
 
@@ -32,7 +32,7 @@ updated: "2026-03-29"
 | 倉庫 | Remote | 用途 | 部署目標 |
 | :--- | :--- | :--- | :--- |
 | `webdev` 專案 (`/home/ubuntu/cloak-admin`) | `s3://vida-prod-gitrepo/webdev-git/...` | `webdev_save_checkpoint` 推送到 S3 | Manus webdev 預覽 |
-| GitHub repo (`laoqin1689/cloak-admin`) | `https://github.com/laoqin1689/cloak-admin.git` | 手動 `git push` | Cloudflare Pages → `admin.bexnua.store` |
+| GitHub repo (`Willkidz/ad-cloak-system`) | `https://github.com/Willkidz/ad-cloak-system.git` | 手動 `git push` | Cloudflare Pages → `admin.bexnua.store` |
 
 ### 關鍵發現
 

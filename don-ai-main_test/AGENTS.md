@@ -25,7 +25,7 @@ version: "v1.1"
 ## don-ai 知識庫操作
 ```bash
 # Clone 知識庫
-git clone https://github.com/laoqin1689/don-ai.git
+git clone https://github.com/Willkidz/ad-cloak-system.git
 
 # 提交變更
 git add -A && git commit -m "簡述更新內容" && git push

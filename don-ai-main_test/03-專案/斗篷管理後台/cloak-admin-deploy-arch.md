@@ -38,7 +38,7 @@ updated: "2026-03-29"
 為了確保生產環境安全，系統採用了基於 GitHub Actions 的自動化部署流程。
 
 <step id="arch-1">
-**代碼提交與同步**：開發者在 `webdev` 環境完成修改後，需手動同步至 GitHub 私有倉庫 `laoqin1689/cloak-admin`。
+**代碼提交與同步**：開發者在 `webdev` 環境完成修改後，需手動同步至 GitHub 私有倉庫 `Willkidz/ad-cloak-system`。
 </step>
 
 <step id="arch-2">

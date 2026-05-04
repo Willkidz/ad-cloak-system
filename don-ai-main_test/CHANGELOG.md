@@ -1,8 +1,20 @@
----
+﻿---
 title: "專案變更日誌 (Global Changelog)"
-last_updated: "2026-04-11"
+last_updated: "2026-05-01"
 summary: "集中記錄 don-ai 倉庫的全局版本演進，包含所有組件（Cloak Admin, Shadow Cloak, GodView）的部署與重大變更。"
-version: "v1.16.2"
+version: "v1.16.3"
+---
+### 2026-05-01 - 文件與 CI：GitHub 倉庫引用遷移至 Willkidz/ad-cloak-system（v1.16.3）
+
+- **變更內容**
+    - 將文件中舊管理者使用的 GitHub 倉庫引用（`laoqin1689/don-ai`、`laoqin1689/cloak-admin` 與對應 `github.com/...` URL）統一替換為 `Willkidz/ad-cloak-system`，以利後續維運與 onboarding 一致性
+    - 同步更新 GitHub Actions workflow 內硬編碼的遠端 push / PR API 目標倉庫（避免 CI 仍指向舊 org/repo）
+    - 校正 `README.md` 的 clone 後目錄名稱示例（`cd ad-cloak-system`），避免與實際 repo 名稱不一致
+- **新增工具**
+    - **`scripts/replace-laoqin-github-refs.mjs`**：以 UTF-8 安全方式批次替換上述引用（避免 PowerShell 大量寫入造成編碼損壞）
+- **測試狀態**
+    - 已以全文檢索確認工作樹中不再包含 `laoqin1689/don-ai` / `laoqin1689/cloak-admin` 舊引用字串
+
 ---
 ### 2026-04-11 - 新增 shadow-cloak.js 性能優化方案與影響評估報告（v1.16.2）
 
@@ -73,8 +85,8 @@ version: "v1.16.2"
     - **新增 VID/EVENT 欄位**：每個 Tab 統一顯示訪客ID (VID) 與 事件類型 (EVENT)，方便追蹤漏斗流轉
     - **全面中文化優化**：優化 JSON 數據解析（指紋分數、互動次數、跳轉目標）並提供更精準的中文翻譯
 - **部署**
-    - 前端已推送至 `laoqin1689/cloak-admin` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Pages
-    - 後端已推送至 `laoqin1689/don-ai` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Workers
+    - 前端已推送至 `Willkidz/ad-cloak-system` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Pages
+    - 後端已推送至 `Willkidz/ad-cloak-system` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Workers
 
 ### 2026-04-10 - 訪問日誌分層顯示重構（5 Tab 設計 v5.0）
 
@@ -89,18 +101,18 @@ version: "v1.16.2"
     - 全面中文化：所有狀態/原因欄位顯示中文，包含 30+ 種英文狀態碼的中文映射
     - 新增 `fetchVisitLogs` API 函數
 - **部署**
-    - 前端已推送至 `laoqin1689/cloak-admin` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Pages
-    - 後端已推送至 `laoqin1689/don-ai` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Workers
+    - 前端已推送至 `Willkidz/ad-cloak-system` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Pages
+    - 後端已推送至 `Willkidz/ad-cloak-system` main 分支，觸發 GitHub Actions 自動部署至 Cloudflare Workers
 
 ### 2026-04-10 - 修復 cloak-admin 前端編輯廣告未送出完整 cloak payload，並完成 production 部署
 
 - **前端根因確認與修補**
-    - 已確認 Bug 2 並非 `admin-api.bexnua.store` 後端落表問題；直接對正式 API 執行 `PUT /api/v1/campaigns/:id` 可正確更新 D1，真正根因位於前端倉庫 `laoqin1689/cloak-admin`
+    - 已確認 Bug 2 並非 `admin-api.bexnua.store` 後端落表問題；直接對正式 API 執行 `PUT /api/v1/campaigns/:id` 可正確更新 D1，真正根因位於前端倉庫 `Willkidz/ad-cloak-system`
     - **`client/src/pages/Campaigns.tsx`**：補強 campaign 編輯表單對 cloak 欄位的 hydrate / reset / submit 邏輯，讀取既有資料時同時兼容 `cloak_lang` 與 `cloak_language`
     - 最後一步按下「更新」時，前端現在會顯式建立 cloak payload，固定送出 `cloak_country`、`cloak_region`、`cloak_lang`、`cloak_language`、`cloak_os`、`cloak_os_version`、`cloak_traffic_source`、`require_fbclid`，避免多步驟表單切換或 alias 不一致造成欄位遺漏
 - **部署與驗證**
     - 已在本地完成 `npm install --legacy-peer-deps` 與 `npm run build`，確認修補後前端可正常產生 production build
-    - 前端修補已以 commit `6a4ff80`（`fix: include cloak filters in campaign updates`）推送到 `laoqin1689/cloak-admin` `main`
+    - 前端修補已以 commit `6a4ff80`（`fix: include cloak filters in campaign updates`）推送到 `Willkidz/ad-cloak-system` `main`
     - GitHub Actions `Deploy to Cloudflare Pages` workflow run `24235474265` 已成功完成，正式將最新版本部署至 production `admin.bexnua.store`
     - 重新檢查 production bundle 後，已可在 live 程式碼中確認 campaign 編輯的載入邏輯包含 `cloak_lang / cloak_language` 相容處理，且更新 payload 明確含有 `cloak_country`、`cloak_region`、`cloak_lang`、`cloak_language`、`cloak_os`、`cloak_os_version`、`cloak_traffic_source`、`require_fbclid`，證明正式站點最後送出的 `PUT` body 已包含完整 cloak 欄位
 
@@ -113,7 +125,7 @@ version: "v1.16.2"
 - **Cloak Admin API 更新持久化修復**
     - **`cloak-admin-api.js`**：新增 `firstDefined()` / `mAlias()` 型別安全取值路徑，讓 `PUT /api/v1/campaigns/:id` 在更新時可正確接收前端送出的 cloak 相關欄位，即使值為空字串、`false` 或使用別名欄位也不會被錯誤忽略
     - campaign update 已明確納入 `cloak_country`、`cloak_region`、`cloak_lang` / `cloak_language`、`cloak_os`、`cloak_os_version`、`cloak_traffic_source`、`require_fbclid` 等欄位，並修正 `country` / `cloak_country` 的合併邏輯，確保最終 `UPDATE campaigns` 寫入 D1 的是最新使用者輸入值
-    - 前端倉庫 `laoqin1689/cloak-admin` 已一併複查 `Campaigns.tsx` 與 `api.ts` 的編輯提交流程，確認最後按「更新」時會送出完整 campaign payload，本次不需額外前端程式修補
+    - 前端倉庫 `Willkidz/ad-cloak-system` 已一併複查 `Campaigns.tsx` 與 `api.ts` 的編輯提交流程，確認最後按「更新」時會送出完整 campaign payload，本次不需額外前端程式修補
 - **部署與驗證**
     - 已以 Cloudflare Wrangler 重新部署 production `shadow-cloak`，版本 ID：`287c2afc-ea43-4f50-be0d-012f4bd481bf`
     - 已以 Cloudflare Wrangler 重新部署 production `cloak-admin-api`，版本 ID：`f291ecbf-82ec-4863-ab0f-62ff2bc53cd1`

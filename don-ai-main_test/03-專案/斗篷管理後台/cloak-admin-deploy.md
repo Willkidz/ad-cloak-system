@@ -124,7 +124,7 @@ with open('dist/public/index.html', 'r+') as f:
 | 倉庫 | Remote | 用途 | 部署目標 |
 | :--- | :--- | :--- | :--- |
 | `webdev` 專案 | S3 | `webdev_save_checkpoint` 推送到 S3 | Manus webdev 預覽 |
-| GitHub repo | `github.com/laoqin1689/cloak-admin` | 手動 `git push` | Cloudflare Pages → `admin.bexnua.store` |
+| GitHub repo | `github.com/Willkidz/ad-cloak-system` | 手動 `git push` | Cloudflare Pages → `admin.bexnua.store` |
 
 ### 正確部署流程 (SOP)
 

@@ -145,7 +145,7 @@ jobs:
           [[d1_databases]]
           binding = "DB"
           database_name = "godview-clicks"
-          database_id = "3f7ed41d-1ec6-4519-8b0d-eda22ae9b00c"
+          database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
           TOML
                 ;;
               shadow-cloak)
@@ -153,13 +153,13 @@ jobs:
                   cat >> /tmp/deploy-$WORKER/wrangler.toml << 'TOML'
 
           [[kv_namespaces]]
-          binding = "CLOAKER_CONFIG"
-          id = "40f192e8fc514af1b6a55eff8f63bbff"
+          binding = "CLOAKER_CONFIG-staging"
+          id = "d41d974032014541a38214f30df1cb41"
 
           [[d1_databases]]
           binding = "DB"
           database_name = "godview-clicks-staging"
-          database_id = "594f8569-ad3c-40c0-ac7c-8b691f9d7885"
+          database_id = "a94ce480-39e7-48a5-ae90-9c58510be191"
 
           [[r2_buckets]]
           binding = "R2_ASSETS"
@@ -170,12 +170,12 @@ jobs:
 
           [[kv_namespaces]]
           binding = "CLOAKER_CONFIG"
-          id = "cfca8f5e3aa84d33b889cddfc5d5763c"
+          id = "5cbffe5c23d44f24a47be57ebf4ea7e1"
 
           [[d1_databases]]
           binding = "DB"
           database_name = "godview-clicks"
-          database_id = "3f7ed41d-1ec6-4519-8b0d-eda22ae9b00c"
+          database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
 
           [[r2_buckets]]
           binding = "R2_ASSETS"
@@ -285,7 +285,7 @@ jobs:
           else
             git add "05-原始碼/deploy-record.json"
             git commit -m "chore: update deploy-record.json - ${{ matrix.worker }} (${{ needs.detect-changes.outputs.deploy_env }}) deployed at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/laoqin1689/don-ai.git HEAD:main
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/Willkidz/ad-cloak-system.git HEAD:main
             echo "✅ Deployment record committed and pushed"
           fi
 

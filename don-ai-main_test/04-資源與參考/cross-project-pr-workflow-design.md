@@ -48,18 +48,18 @@ updated: "2026-03-29"
 ### 階段二：GitHub 分支建立 (Branch Creation)
 
 3. **HTTP Request 節點 (Get Main SHA)**：
-   - 呼叫 GitHub API 獲取 `laoqin1689/don-ai` 倉庫 `main` 分支的最新 Commit SHA。
-   - `GET https://api.github.com/repos/laoqin1689/don-ai/git/refs/heads/main`
+   - 呼叫 GitHub API 獲取 `Willkidz/ad-cloak-system` 倉庫 `main` 分支的最新 Commit SHA。
+   - `GET https://api.github.com/repos/Willkidz/ad-cloak-system/git/refs/heads/main`
 4. **HTTP Request 節點 (Create Branch)**：
    - 根據來源專案與時間戳生成分支名稱，例如：`auto-rule/cloak-admin-1711680000`。
    - 呼叫 GitHub API 建立新分支。
-   - `POST https://api.github.com/repos/laoqin1689/don-ai/git/refs`
+   - `POST https://api.github.com/repos/Willkidz/ad-cloak-system/git/refs`
 
 ### 階段三：文件讀取與內容生成 (File Processing)
 
 5. **HTTP Request 節點 (Get File Content)**：
    - 獲取 `.ai/pending-rules.md` 的當前內容與 `sha` 值。
-   - `GET https://api.github.com/repos/laoqin1689/don-ai/contents/.ai/pending-rules.md?ref={new_branch}`
+   - `GET https://api.github.com/repos/Willkidz/ad-cloak-system/contents/.ai/pending-rules.md?ref={new_branch}`
 6. **Code 節點 (Markdown 生成)**：
    - 將 Base64 解碼為原始 Markdown 文本。
    - 根據傳入的 JSON 數據，套用標準模板生成新的規則區塊：
@@ -78,14 +78,14 @@ updated: "2026-03-29"
 
 7. **HTTP Request 節點 (Update File)**：
    - 將更新後的 Base64 內容提交到新分支。
-   - `PUT https://api.github.com/repos/laoqin1689/don-ai/contents/.ai/pending-rules.md`
+   - `PUT https://api.github.com/repos/Willkidz/ad-cloak-system/contents/.ai/pending-rules.md`
    - Payload 包含：`message` ("Add new rule from {source_project}"), `content`, `sha`, `branch`。
 
 ### 階段五：發起 Pull Request (Create PR)
 
 8. **HTTP Request 節點 (Create PR)**：
    - 呼叫 GitHub API 發起 Pull Request。
-   - `POST https://api.github.com/repos/laoqin1689/don-ai/pulls`
+   - `POST https://api.github.com/repos/Willkidz/ad-cloak-system/pulls`
    - Payload：
      ```json
      {

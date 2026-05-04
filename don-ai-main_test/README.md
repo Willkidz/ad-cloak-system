@@ -26,8 +26,8 @@ activation_glob: null
 ### 第一步：Clone 知識庫
 
 ```bash
-gh repo clone laoqin1689/don-ai
-cd don-ai
+gh repo clone Willkidz/ad-cloak-system
+cd ad-cloak-system
 ```
 
 ### 第二步：建立系統認知

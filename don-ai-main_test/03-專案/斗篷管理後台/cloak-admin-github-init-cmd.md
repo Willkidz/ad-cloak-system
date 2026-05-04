@@ -54,8 +54,8 @@ updated: "2026-03-29"
 可使用 GitHub CLI 快速建立：
 
 ```bash
-gh repo create laoqin1689/cloak-admin --private
-gh repo create laoqin1689/cloak-admin-api --private
+gh repo create Willkidz/ad-cloak-system --private
+gh repo create Willkidz/ad-cloak-system-api --private
 ```
 
 </example>
@@ -109,7 +109,7 @@ curl -s "https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/workers/scri
 ```bash
 cd cloak-admin
 git init
-git remote add origin https://github.com/laoqin1689/cloak-admin.git
+git remote add origin https://github.com/Willkidz/ad-cloak-system.git
 git add .
 git commit -m "init: Initial commit of production frontend code (v1.10.2)"
 git branch -M main
@@ -126,7 +126,7 @@ git push -u origin main
 mkdir cloak-admin-api && cd cloak-admin-api
 # 將下載的 Worker 程式碼 (cloak-admin-api.js) 移入此目錄
 git init
-git remote add origin https://github.com/laoqin1689/cloak-admin-api.git
+git remote add origin https://github.com/Willkidz/ad-cloak-system-api.git
 git add .
 git commit -m "init: Initial commit of production API code (v1.10.2)"
 git branch -M main
