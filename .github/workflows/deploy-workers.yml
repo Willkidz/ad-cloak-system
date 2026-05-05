@@ -1,0 +1,309 @@
+name: Deploy Cloudflare Workers
+
+on:
+  push:
+    branches: [main, staging]
+    paths:
+      - '05-原始碼/**/*.js'
+      - '05-原始碼/**/*.toml'
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      workers: ${{ steps.changes.outputs.workers }}
+      deploy_env: ${{ steps.changes.outputs.deploy_env }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed Workers
+        id: changes
+        run: |
+          # Fix Chinese path encoding in git diff output
+          git config core.quotepath false
+
+          # Determine deploy environment based on branch
+          BRANCH="${{ github.ref_name }}"
+          if [ "$BRANCH" == "staging" ]; then
+            DEPLOY_ENV="staging"
+          else
+            DEPLOY_ENV="production"
+          fi
+          echo "deploy_env=$DEPLOY_ENV" >> $GITHUB_OUTPUT
+          echo "Deploying to: $DEPLOY_ENV (branch: $BRANCH)"
+
+          # Check if triggered by workflow_dispatch
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "Triggered by workflow_dispatch - deploying ALL workers"
+            # Deploy all workers
+            WORKERS='["cloak-admin-api","line-redirect","money-page","preview-page","safe-page","shadow-cloak"]'
+            echo "workers=$WORKERS" >> $GITHUB_OUTPUT
+            echo "Workers to deploy: $WORKERS"
+          else
+            # Get list of changed files from git diff
+            CHANGED=$(git diff --name-only HEAD~1 HEAD -- '05-原始碼/' || echo "")
+            echo "Changed files: $CHANGED"
+
+            # Build JSON array of workers to deploy
+            WORKERS="[]"
+
+            # Worker mapping: git path -> worker name
+            declare -A WORKER_MAP
+            WORKER_MAP["05-原始碼/斗篷管理後台/cloak-admin-api.js"]="cloak-admin-api"
+            WORKER_MAP["05-原始碼/斗篷管理後台/wrangler.toml"]="cloak-admin-api"
+            WORKER_MAP["05-原始碼/上帝視角/line-redirect.js"]="line-redirect"
+            WORKER_MAP["05-原始碼/上帝視角/money-page.js"]="money-page"
+            WORKER_MAP["05-原始碼/上帝視角/preview-page.js"]="preview-page"
+            WORKER_MAP["05-原始碼/斗篷管理後台/safe-page.js"]="safe-page"
+            WORKER_MAP["05-原始碼/斗篷管理後台/shadow-cloak.js"]="shadow-cloak"
+            # NOTE: line-redirect-staging 不在自動部署範圍內
+
+            DEPLOY_LIST=()
+            for file in $CHANGED; do
+              WORKER_NAME="${WORKER_MAP[$file]}"
+              if [ -n "$WORKER_NAME" ]; then
+                # Deduplicate
+                if [[ ! " ${DEPLOY_LIST[*]} " =~ " ${WORKER_NAME} " ]]; then
+                  echo "  → Will deploy: $WORKER_NAME (changed: $file)"
+                  DEPLOY_LIST+=("$WORKER_NAME")
+                fi
+              fi
+            done
+
+            # Convert to JSON array
+            if [ ${#DEPLOY_LIST[@]} -eq 0 ]; then
+              echo "workers=[]" >> $GITHUB_OUTPUT
+              echo "No workers to deploy."
+            else
+              JSON=$(printf '%s\n' "${DEPLOY_LIST[@]}" | jq -R . | jq -s -c .)
+              echo "workers=$JSON" >> $GITHUB_OUTPUT
+              echo "Workers to deploy: $JSON"
+            fi
+          fi
+
+  deploy:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.workers != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        worker: ${{ fromJson(needs.detect-changes.outputs.workers) }}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install wrangler
+        run: npm install -g wrangler
+
+      - name: Prepare deployment
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+
+          DEPLOY_ENV="${{ needs.detect-changes.outputs.deploy_env }}"
+
+          # Worker -> source file mapping
+          declare -A SRC_MAP
+          SRC_MAP["cloak-admin-api"]="05-原始碼/斗篷管理後台/cloak-admin-api.js"
+          SRC_MAP["line-redirect"]="05-原始碼/上帝視角/line-redirect.js"
+          SRC_MAP["preview-page"]="05-原始碼/上帝視角/preview-page.js"
+          SRC_MAP["safe-page"]="05-原始碼/斗篷管理後台/safe-page.js"
+          SRC_MAP["shadow-cloak"]="05-原始碼/斗篷管理後台/shadow-cloak.js"
+
+          WORKER="${{ matrix.worker }}"
+          SRC="${SRC_MAP[$WORKER]}"
+
+          echo "Deploying $WORKER from $SRC (env: $DEPLOY_ENV)"
+
+          # Create temp wrangler project
+          mkdir -p /tmp/deploy-$WORKER
+          cp "$SRC" /tmp/deploy-$WORKER/src.js
+
+          # ── cloak-admin-api: use dedicated wrangler.toml with [env.staging] ──
+          if [ "$WORKER" == "cloak-admin-api" ] && [ -f "05-原始碼/斗篷管理後台/wrangler.toml" ]; then
+            cp "05-原始碼/斗篷管理後台/wrangler.toml" /tmp/deploy-$WORKER/wrangler.toml
+            # Patch main path to point to src.js
+            sed -i 's|^main = .*|main = "src.js"|' /tmp/deploy-$WORKER/wrangler.toml
+          else
+            # ── Generate wrangler.toml for other workers ──
+            cat > /tmp/deploy-$WORKER/wrangler.toml << 'TOML'
+          name = "$WORKER"
+          main = "src.js"
+          compatibility_date = "2024-12-01"
+          TOML
+            # Replace $WORKER placeholder
+            sed -i "s/\$WORKER/$WORKER/" /tmp/deploy-$WORKER/wrangler.toml
+
+            # Add D1 / KV bindings for workers that need them
+            case $WORKER in
+              line-redirect)
+                cat >> /tmp/deploy-$WORKER/wrangler.toml << 'TOML'
+
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "godview-clicks"
+          database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
+          TOML
+                ;;
+              shadow-cloak)
+                if [ "$DEPLOY_ENV" == "staging" ]; then
+                  cat >> /tmp/deploy-$WORKER/wrangler.toml << 'TOML'
+
+          [[kv_namespaces]]
+          binding = "CLOAKER_CONFIG-staging"
+          id = "d41d974032014541a38214f30df1cb41"
+
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "godview-clicks-staging"
+          database_id = "a94ce480-39e7-48a5-ae90-9c58510be191"
+
+          [[r2_buckets]]
+          binding = "R2_ASSETS"
+          bucket_name = "cloak-assets"
+          TOML
+                else
+                  cat >> /tmp/deploy-$WORKER/wrangler.toml << 'TOML'
+
+          [[kv_namespaces]]
+          binding = "CLOAKER_CONFIG"
+          id = "5cbffe5c23d44f24a47be57ebf4ea7e1"
+
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "godview-clicks"
+          database_id = "81360d40-f713-4f02-8d0d-ad8e69e65c09"
+
+          [[r2_buckets]]
+          binding = "R2_ASSETS"
+          bucket_name = "cloak-assets"
+          TOML
+                fi
+                ;;
+            esac
+          fi
+
+          echo "=== wrangler.toml ==="
+          cat /tmp/deploy-$WORKER/wrangler.toml
+
+      - name: Deploy Worker (production)
+        if: needs.detect-changes.outputs.deploy_env == 'production'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          WORKER="${{ matrix.worker }}"
+          cd /tmp/deploy-$WORKER
+          wrangler deploy
+          echo "✅ $WORKER deployed to production"
+          echo "DEPLOYED_WORKER=$WORKER" >> $GITHUB_ENV
+
+      - name: Deploy Worker (staging)
+        if: needs.detect-changes.outputs.deploy_env == 'staging'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          WORKER="${{ matrix.worker }}"
+          cd /tmp/deploy-$WORKER
+          # cloak-admin-api uses [env.staging]; others get --name suffix
+          if [ "$WORKER" == "cloak-admin-api" ]; then
+            wrangler deploy --env staging
+          else
+            wrangler deploy --name "${WORKER}-staging"
+          fi
+          echo "✅ $WORKER deployed to staging"
+          echo "DEPLOYED_WORKER=$WORKER" >> $GITHUB_ENV
+
+      - name: Record deployment time and commit hash
+        if: always()
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+
+          # Create deploy-record.json if it doesn't exist
+          if [ ! -f "05-原始碼/deploy-record.json" ]; then
+            echo '{}' > "05-原始碼/deploy-record.json"
+          fi
+
+          WORKER="${{ matrix.worker }}"
+          DEPLOY_ENV="${{ needs.detect-changes.outputs.deploy_env }}"
+          DEPLOY_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT_HASH=$(git rev-parse HEAD)
+          RECORD_KEY="${WORKER}-${DEPLOY_ENV}"
+
+          python3 -c "
+          import json, os, sys
+
+          worker = os.environ['WORKER']
+          deploy_env = os.environ['DEPLOY_ENV']
+          deploy_time = os.environ['DEPLOY_TIME']
+          commit_hash = os.environ['COMMIT_HASH']
+          record_key = os.environ['RECORD_KEY']
+
+          record_file = '05-原始碼/deploy-record.json'
+
+          if os.path.exists(record_file):
+              with open(record_file, 'r') as f:
+                  records = json.load(f)
+          else:
+              records = {}
+
+          records[record_key] = {
+              'deployed_at': deploy_time,
+              'commit_hash': commit_hash,
+              'deployed_by': 'GitHub Actions',
+              'environment': deploy_env,
+          }
+
+          with open(record_file, 'w') as f:
+              json.dump(records, f, indent=2)
+
+          print(f'Recorded deployment: {record_key} at {deploy_time}')
+          "
+        env:
+          WORKER: ${{ matrix.worker }}
+          DEPLOY_ENV: ${{ needs.detect-changes.outputs.deploy_env }}
+          DEPLOY_TIME: ${{ env.DEPLOY_TIME }}
+          COMMIT_HASH: ${{ github.sha }}
+          RECORD_KEY: ${{ matrix.worker }}-${{ needs.detect-changes.outputs.deploy_env }}
+
+      - name: Commit and push deployment record
+        if: always()
+        run: |
+          # Fix Chinese path encoding
+          git config core.quotepath false
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          # Check if deploy-record.json has changes
+          if git diff --quiet "05-原始碼/deploy-record.json"; then
+            echo "No changes to deploy-record.json"
+          else
+            git add "05-原始碼/deploy-record.json"
+            git commit -m "chore: update deploy-record.json - ${{ matrix.worker }} (${{ needs.detect-changes.outputs.deploy_env }}) deployed at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/Willkidz/ad-cloak-system.git HEAD:main
+            echo "✅ Deployment record committed and pushed"
+          fi
+
+  notify:
+    needs: [detect-changes, deploy]
+    if: always() && needs.detect-changes.outputs.workers != '[]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment Summary
+        run: |
+          echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment**: ${{ needs.detect-changes.outputs.deploy_env }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Workers deployed**: ${{ needs.detect-changes.outputs.workers }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.deploy.result }}" == "success" ]; then
+            echo "✅ All deployments succeeded" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Some deployments may have failed. Check individual job logs." >> $GITHUB_STEP_SUMMARY
+          fi
