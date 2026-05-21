@@ -1017,7 +1017,7 @@ export default function Campaigns() {
         const tagUpper = tag.toUpperCase();
         return {
           tag: tagUpper,
-          url: `https://${tagLower}.freshpathlab.com/${tagUpper}${num}`
+          url: `https://${tagLower}.${import.meta.env.VITE_ATTRIBUTION_DOMAIN ?? 'tw6u.com'}/${tagUpper}${num}`
         };
       });
       setGeneratedLineLinks(links);

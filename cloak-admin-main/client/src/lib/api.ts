@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_BASE = import.meta.env.VITE_API_URL ?? 'https://admin-api.bexnua.store/api/v1';
+export const API_BASE = import.meta.env.VITE_API_URL ?? 'https://cloak-admin-api.p525678999.workers.dev/api/v1';
 
 export const API_KEY = import.meta.env.VITE_API_KEY ?? '';
 
